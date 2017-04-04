@@ -1,11 +1,11 @@
 webpackJsonp([1,5],{
 
-/***/ 217:
+/***/ 106:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(203);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__ = __webpack_require__(374);
@@ -63,7 +63,7 @@ var PostService = (function () {
 
 /***/ }),
 
-/***/ 332:
+/***/ 218:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -124,7 +124,7 @@ var AppComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(203);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__ = __webpack_require__(374);
@@ -216,11 +216,11 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dyna
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(472);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(214);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_owl_carousel__ = __webpack_require__(674);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_owl_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_ng2_owl_carousel__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(218);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__layouts_header_header__ = __webpack_require__(514);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__layouts_menu_menu__ = __webpack_require__(515);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__layouts_footer_footer__ = __webpack_require__(513);
@@ -311,7 +311,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var HomePageComponent = (function () {
     function HomePageComponent() {
     }
-    HomePageComponent.prototype.ngOnInit = function () { };
+    HomePageComponent.prototype.ngOnInit = function () {
+        // this._router.navigate(['/product']);
+    };
     HomePageComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'home',
@@ -330,6 +332,7 @@ var HomePageComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__post_post_service__ = __webpack_require__(106);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FooterComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -341,18 +344,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var FooterComponent = (function () {
-    function FooterComponent() {
+    function FooterComponent(_postService) {
+        this._postService = _postService;
     }
-    FooterComponent.prototype.ngOnInit = function () { };
+    FooterComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this._postService.getPosts({
+            footer: true,
+            skip: 0,
+            limit: 3
+        })
+            .subscribe(function (posts) {
+            _this.posts = posts;
+        });
+    };
     FooterComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'myFooter',
             template: __webpack_require__(680)
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__post_post_service__["a" /* PostService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__post_post_service__["a" /* PostService */]) === 'function' && _a) || Object])
     ], FooterComponent);
     return FooterComponent;
+    var _a;
 }());
 //# sourceMappingURL=E:/MyBlog/Myblog/src/footer.js.map
 
@@ -441,8 +457,8 @@ var MenuComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__post_post_service__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_component__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__post_post_service__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_component__ = __webpack_require__(218);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListPostComponent; });
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -506,7 +522,14 @@ var ListPostComponent = (function (_super) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__post_post_service__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_component__ = __webpack_require__(218);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SliderComponent; });
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -517,11 +540,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var SliderComponent = (function () {
-    function SliderComponent() {
-        this.images = [1, 2, 3, 4, 5, 6];
+
+
+var SliderComponent = (function (_super) {
+    __extends(SliderComponent, _super);
+    function SliderComponent(_postService) {
+        _super.call(this);
+        this._postService = _postService;
     }
     SliderComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this._postService.getPosts({
+            slider: true,
+            skip: 0,
+            limit: 6
+        })
+            .subscribe(function (posts) {
+            _this.posts = posts;
+        });
     };
     SliderComponent.prototype.ngAfterViewInit = function () {
     };
@@ -530,10 +566,11 @@ var SliderComponent = (function () {
             selector: 'mySlider',
             template: __webpack_require__(684)
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__post_post_service__["a" /* PostService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__post_post_service__["a" /* PostService */]) === 'function' && _a) || Object])
     ], SliderComponent);
     return SliderComponent;
-}());
+    var _a;
+}(__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]));
 //# sourceMappingURL=E:/MyBlog/Myblog/src/slider.js.map
 
 /***/ }),
@@ -543,10 +580,10 @@ var SliderComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(214);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery__ = __webpack_require__(673);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__post_service__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__post_service__ = __webpack_require__(106);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PostDetailComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -617,10 +654,10 @@ var PostDetailComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(214);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__post_post_detail_component__ = __webpack_require__(518);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__post_post_service__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__post_post_service__ = __webpack_require__(106);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PostModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -694,7 +731,7 @@ module.exports = "<myHeader></myHeader>\n<myMenu></myMenu>\n<router-outlet></rou
 /***/ 680:
 /***/ (function(module, exports) {
 
-module.exports = "<footer>\r\n  <div class=\"row top-footer\">\r\n    <div class=\"container\">\r\n      <div class=\"col-lg-4\">\r\n        <div class=\"row text-center\">\r\n          <span class=\"title\">POPULAR POSTS</span>\r\n        </div>\r\n        <div class=\"row list-post-footer\">\r\n          <div class=\"media\">\r\n            <a class=\"pull-left\" href=\"#\">\r\n              <img class=\"media-object\" src=\"assets/images/post-footer.jpg\" alt=\"Image\">\r\n            </a>\r\n            <div class=\"media-body\">\r\n              <h5 class=\"media-heading\">Media heading</h5>\r\n            </div>\r\n          </div>\r\n          <div class=\"media\">\r\n            <a class=\"pull-left\" href=\"#\">\r\n              <img class=\"media-object\" src=\"assets/images/post-footer.jpg\" alt=\"Image\">\r\n            </a>\r\n            <div class=\"media-body\">\r\n              <h5 class=\"media-heading\">Media heading</h5>\r\n            </div>\r\n          </div>\r\n          <div class=\"media\">\r\n            <a class=\"pull-left\" href=\"#\">\r\n              <img class=\"media-object\" src=\"assets/images/post-footer.jpg\" alt=\"Image\">\r\n            </a>\r\n            <div class=\"media-body\">\r\n              <h5 class=\"media-heading\">Media heading</h5>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-lg-4\">\r\n        <div class=\"row text-center\">\r\n          <span class=\"title\">LABELS</span>\r\n        </div>\r\n        <div class=\"row list-post-footer\">\r\n          <button class=\"btn btn-default btn-xs\">BREAK</button>\r\n          <button class=\"btn btn-default btn-xs\">FUTURE</button>\r\n        </div>\r\n        <div class=\"row list-img\">\r\n          <div class=\"col-lg-3\">\r\n            <a href=\"\" class=\"img-item\"><img src=\"assets/images/label.jpg\" alt=\"\"></a>\r\n          </div>\r\n          <div class=\"col-lg-3\">\r\n            <a href=\"\" class=\"img-item\"><img src=\"assets/images/label.jpg\" alt=\"\"></a>\r\n          </div>\r\n          <div class=\"col-lg-3\">\r\n            <a href=\"\" class=\"img-item\"><img src=\"assets/images/label.jpg\" alt=\"\"></a>\r\n          </div>\r\n          <div class=\"col-lg-3\">\r\n            <a href=\"\" class=\"img-item\"><img src=\"assets/images/label.jpg\" alt=\"\"></a>\r\n          </div>\r\n          <div class=\"col-lg-3\">\r\n            <a href=\"\" class=\"img-item\"><img src=\"assets/images/label.jpg\" alt=\"\"></a>\r\n          </div>\r\n          <div class=\"col-lg-3\">\r\n            <a href=\"\" class=\"img-item\"><img src=\"assets/images/label.jpg\" alt=\"\"></a>\r\n          </div>\r\n          <div class=\"col-lg-3\">\r\n            <a href=\"\" class=\"img-item\"><img src=\"assets/images/label.jpg\" alt=\"\"></a>\r\n          </div>\r\n          <div class=\"col-lg-3\">\r\n            <a href=\"\" class=\"img-item\"><img src=\"assets/images/label.jpg\" alt=\"\"></a>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-lg-4\">\r\n        <div class=\"row text-center\">\r\n          <span class=\"title\">BLOG ARCHIVE</span>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"row bottom-footer\">\r\n    <div class=\"container\">\r\n      <span class=\"pull-left\">COPYRIGHT © 2017 <span class=\"active\">BLOG</span></span>\r\n      <span class=\"pull-right\">CREATED BY <span class=\"active\">HAIDANGDEV</span></span>\r\n    </div>\r\n  </div>\r\n</footer>\r\n"
+module.exports = "<footer>\r\n  <div class=\"row top-footer\">\r\n    <div class=\"container\">\r\n      <div class=\"col-lg-4\">\r\n        <div class=\"row text-center\">\r\n          <span class=\"title\">POPULAR POSTS</span>\r\n        </div>\r\n        <div class=\"row list-post-footer\">\r\n          <div class=\"media\" *ngFor=\"let post of posts\">\r\n            <a class=\"pull-left\" [routerLink]=\"['/post/' + post.slug]\">\r\n              <img class=\"media-object\" [src]=\"post.image\" alt=\"{{post.title}}\">\r\n            </a>\r\n            <div class=\"media-body\">\r\n              <h5 class=\"media-heading\">\r\n                <a [routerLink]=\"['/post/' + post.slug]\">{{ post.title }}</a>\r\n              </h5>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-lg-4\">\r\n        <div class=\"row text-center\">\r\n          <span class=\"title\">LABELS</span>\r\n        </div>\r\n        <div class=\"row list-post-footer\">\r\n          <button class=\"btn btn-default btn-xs\">BREAK</button>\r\n          <button class=\"btn btn-default btn-xs\">FUTURE</button>\r\n        </div>\r\n        <div class=\"row list-img\">\r\n          <div class=\"col-lg-3\">\r\n            <a href=\"\" class=\"img-item\"><img src=\"assets/images/label.jpg\" alt=\"\"></a>\r\n          </div>\r\n          <div class=\"col-lg-3\">\r\n            <a href=\"\" class=\"img-item\"><img src=\"assets/images/label.jpg\" alt=\"\"></a>\r\n          </div>\r\n          <div class=\"col-lg-3\">\r\n            <a href=\"\" class=\"img-item\"><img src=\"assets/images/label.jpg\" alt=\"\"></a>\r\n          </div>\r\n          <div class=\"col-lg-3\">\r\n            <a href=\"\" class=\"img-item\"><img src=\"assets/images/label.jpg\" alt=\"\"></a>\r\n          </div>\r\n          <div class=\"col-lg-3\">\r\n            <a href=\"\" class=\"img-item\"><img src=\"assets/images/label.jpg\" alt=\"\"></a>\r\n          </div>\r\n          <div class=\"col-lg-3\">\r\n            <a href=\"\" class=\"img-item\"><img src=\"assets/images/label.jpg\" alt=\"\"></a>\r\n          </div>\r\n          <div class=\"col-lg-3\">\r\n            <a href=\"\" class=\"img-item\"><img src=\"assets/images/label.jpg\" alt=\"\"></a>\r\n          </div>\r\n          <div class=\"col-lg-3\">\r\n            <a href=\"\" class=\"img-item\"><img src=\"assets/images/label.jpg\" alt=\"\"></a>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-lg-4\">\r\n        <div class=\"row text-center\">\r\n          <span class=\"title\">BLOG ARCHIVE</span>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"row bottom-footer\">\r\n    <div class=\"container\">\r\n      <span class=\"pull-left\">COPYRIGHT © 2017 <span class=\"active\">BLOG</span></span>\r\n      <span class=\"pull-right\">CREATED BY <span class=\"active\">HAIDANGDEV</span></span>\r\n    </div>\r\n  </div>\r\n</footer>\r\n"
 
 /***/ }),
 
@@ -708,7 +745,7 @@ module.exports = "<header class=\"row\">\r\n  <div class=\"container\">\r\n    <
 /***/ 682:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row nav-menu\">\r\n  <div class=\"container\">\r\n    <ul class=\"middle-menu\">\r\n      <li><a [routerLink]=\"['/']\">HOME</a></li>\r\n      <li>\r\n        <a href=\"\">TUTORIAL \r\n          <img src=\"assets/images/gear.gif\" alt=\"\" *ngIf=\"!menu\"/>\r\n          <b class=\"caret\" *ngIf=\"menu\"></b>\r\n        </a>\r\n        <ul class=\"sub-category\" *ngIf=\"menu\">\r\n          <li *ngFor=\"let item of menu\">\r\n            <img [src]=\"item.image\" alt=\"{{ item.name }}\">\r\n            <div>\r\n              <h4 class=\"text-center\">{{ item.name }}</h4>\r\n            </div>\r\n          </li>\r\n        </ul>\r\n      </li>\r\n      <li><a href=\"\">ABOUT ME</a></li>\r\n    </ul>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"row nav-menu\">\r\n  <div class=\"container\">\r\n    <ul class=\"middle-menu\">\r\n      <li><a [routerLink]=\"['/']\">HOME</a></li>\r\n      <li>\r\n        <a href=\"\">TUTORIAL \r\n          <img src=\"assets/images/gear.gif\" alt=\"\" *ngIf=\"!menu\"/>\r\n          <b class=\"caret\" *ngIf=\"menu\"></b>\r\n        </a>\r\n        <ul class=\"sub-category\" *ngIf=\"menu\">\r\n          <li class=\"test-sub\" *ngFor=\"let item of menu\">\r\n            <div class=\"bg-sub\" [style.background]=\"item.background\">\r\n              <div>\r\n                <h4 class=\"text-center\" [style.color]=\"item.color\">{{ item.name }}</h4>\r\n              </div>\r\n              <img [src]=\"item.image\" alt=\"{{ item.name }}\">\r\n            </div>\r\n          </li>\r\n        </ul>\r\n      </li>\r\n      <li><a href=\"\">ABOUT ME</a></li>\r\n    </ul>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -722,7 +759,7 @@ module.exports = "<div class=\"loading\" *ngIf=\"!posts\">\r\n    <img src=\"ass
 /***/ 684:
 /***/ (function(module, exports) {
 
-module.exports = "<owl-carousel\r\n     [options]=\"{items: 3, dots: true, navigation: true, autoplay: true, loop: true}\"\r\n     [items]=\"images\"\r\n     [carouselClasses]=\"['owl-theme', 'row', 'sliding']\">\r\n     <div class=\"item\" *ngFor=\"let image of images;let i = index\">\r\n        <img class=\"img-responsive\" src=\"assets/images/1.jpg\" />\r\n        <div class=\"item-opacity\"></div>\r\n        <div class=\"item-body\">\r\n          <a class=\"btn btn-xs\">Detail</a>\r\n          <h4>Hãy xây dựng một REST API</h4>\r\n          <span>March 28, 2017</span>\r\n        </div>\r\n      </div>\r\n </owl-carousel>"
+module.exports = "<owl-carousel\r\n     [options]=\"{items: 3, dots: true, navigation: true, autoplay: true, loop: true}\"\r\n     [items]=\"posts\"\r\n     [carouselClasses]=\"['owl-theme', 'row', 'sliding']\">\r\n     <div class=\"item\" *ngFor=\"let post of posts;let i = index\">\r\n        <img class=\"img-responsive\" [src]=\"post.image\"/>\r\n        <div class=\"item-opacity\"></div>\r\n        <div class=\"item-body\">\r\n          <a [routerLink]=\"['/post/' + post.slug]\" class=\"btn btn-default\">Detail</a>\r\n          <h4>{{ post.title }}</h4>\r\n          <span>\r\n            {{ date(post.created_at).month }} \r\n            {{ date(post.created_at).date }}, \r\n            {{ date(post.created_at).year }}\r\n          </span>\r\n        </div>\r\n      </div>\r\n </owl-carousel>"
 
 /***/ }),
 
