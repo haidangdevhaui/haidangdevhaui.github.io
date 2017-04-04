@@ -1,27 +1,27 @@
 $(document).ready(function() {
-    var owl = $(".owl-carousel");
-    owl.owlCarousel({
-        margin: 0, //					<!-- kho img (px)-->
-        loop: true, //					<!-- slide chay theo vong -->
-        nav: true, //				<!-- Hien thi prev - next -->
-        navText: [], //<!-- Thay the prev - next mac dinh cua owl 'prev','next' -->
-        autoplay: false, //		<!-- tu dong chay -->
-        autoplayTimeout: 1500,
-        autoplayHoverPause: true,
-        autoplaySpeed: 1000,
-        responsiveClass: true, //	<!-- responsive slider -->
-        responsive: {
-            0: {
-                items: 1,
-            },
-            600: {
-                items: 3,
-            },
-            1000: {
-                items: 3,
-            }
-        }
-    });
+    // var owl = $(".owl-carousel");
+    // owl.owlCarousel({
+    //     margin: 0, //					<!-- kho img (px)-->
+    //     loop: true, //					<!-- slide chay theo vong -->
+    //     nav: true, //				<!-- Hien thi prev - next -->
+    //     navText: [], //<!-- Thay the prev - next mac dinh cua owl 'prev','next' -->
+    //     autoplay: false, //		<!-- tu dong chay -->
+    //     autoplayTimeout: 1500,
+    //     autoplayHoverPause: true,
+    //     autoplaySpeed: 1000,
+    //     responsiveClass: true, //	<!-- responsive slider -->
+    //     responsive: {
+    //         0: {
+    //             items: 1,
+    //         },
+    //         600: {
+    //             items: 3,
+    //         },
+    //         1000: {
+    //             items: 3,
+    //         }
+    //     }
+    // });
     /**/
     
     $(window).scroll(function() {
