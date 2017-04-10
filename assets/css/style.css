@@ -567,3 +567,13 @@ footer{
 .test-sub .bg-sub h4{
 	/*color: #FFF;*/
 }
+.chat-panel{
+	margin-top: 10px;
+}
+.chat-panel .panel-body{
+	overflow-y: auto;
+	height: 350px;
+}
+.btn-chat{
+	margin-top: 5px;
+}
