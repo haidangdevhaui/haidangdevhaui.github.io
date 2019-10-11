@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Remember music note by Haidangdevhaui</title>
+	<style type="text/css">
+		#note {
+			font-size: 50px;
+		}
+		#answer {
+			width: 100px;
+		    height: 100px;
+		    text-align: center;
+		    font-size: 50px;
+		}
+		#btn-answer {
+			width: 100px;
+		    height: 50px;
+		    text-align: center;
+		    font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+	<center>
+		
+		<p id="note"></p>
+		<input type="text" name="answer" id="answer">
+		<br>
+		<br>
+		<button id="btn-answer" onclick="submit()">Trả lời</button>
+		<h1 id="result"></h1>
+
+	</center>
+
+	<script type="text/javascript">
+		
+		window.note = '';
+
+		var data = {
+			'D': 'Rê',
+			'E': 'Mi',
+			'F': 'Fa',
+			'G': 'Sol',
+			'A': 'La',
+			'B': 'Si',
+			'C': 'Đô'
+		}
+
+		function selectRandNote() {
+			var noteArr = Object.values(data);
+			var index = Math.floor(Math.random() * noteArr.length);
+			return noteArr[index]
+		}
+
+		function init() {
+			window.note = selectRandNote();
+			document.getElementById('note').innerHTML = window.note;
+			document.getElementById('result').innerHTML = '';
+			document.getElementById('answer').value = '';
+			document.getElementById('answer').focus();
+		}
+
+		function submit() {
+			var answer = document.getElementById('answer').value.toUpperCase();
+			if (data[answer] == window.note) {
+				document.getElementById('result').innerHTML = "Đúng"
+				document.getElementById('result').style.color = "#4CAE51"
+			} else {
+				document.getElementById('result').innerHTML = "Sai"
+				document.getElementById('result').style.color = "red"
+			}
+
+			setTimeout(function() {
+				init()
+			}, 1000)
+		}
+
+		init()
+
+	</script>
+</body>
+</html>

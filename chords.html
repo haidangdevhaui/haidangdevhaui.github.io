@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Remember music note by Haidangdevhaui</title>
+	<style type="text/css">
+		#chord {
+			width: 100px;
+			height: 100px;
+		}
+		#answer {
+			width: 100px;
+		    height: 100px;
+		    text-align: center;
+		    font-size: 50px;
+		}
+		#btn-answer {
+			width: 100px;
+		    height: 50px;
+		    text-align: center;
+		    font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+	<center>
+		<img src="" id="chord">
+		<br>
+		<input type="text" name="answer" id="answer">
+		<br>
+		<br>
+		<button id="btn-answer" onclick="submit()">Trả lời</button>
+		<h1 id="result"></h1>
+
+	</center>
+
+	<script type="text/javascript">
+		
+		window.chord = '';
+
+		var data = {
+			'C': 'C',
+			'Dm': 'Dm',
+			'D': 'D',
+			'E': 'E',
+			'Em': 'Em',
+			'Am': 'Am',
+			'G': 'G',
+			'G7': 'G7',
+			'A': 'A',
+			'F': 'F',
+		}
+
+		function selectRandNote() {
+			var noteArr = Object.values(data);
+			var index = Math.floor(Math.random() * noteArr.length);
+			return noteArr[index]
+		}
+
+		function init() {
+			window.chord = selectRandNote();
+			document.getElementById('chord').setAttribute('src', 'assets/images/' + window.chord + '.png');
+			document.getElementById('result').innerHTML = '';
+			document.getElementById('answer').value = '';
+			document.getElementById('answer').focus();
+		}
+
+		function submit() {
+			var answer = document.getElementById('answer').value.capitalize();
+			if (data[answer] == window.chord) {
+				document.getElementById('result').innerHTML = "Đúng"
+				document.getElementById('result').style.color = "#4CAE51"
+			} else {
+				document.getElementById('result').innerHTML = "Sai"
+				document.getElementById('result').style.color = "red"
+			}
+
+			setTimeout(function() {
+				init()
+			}, 1000)
+		}
+
+		String.prototype.capitalize = function() {
+			return this.charAt(0).toUpperCase() + this.slice(1)
+		}
+
+		init()
+
+	</script>
+</body>
+</html>
