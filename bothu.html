@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kanji N5 Practice</title>
+    <style>
+      #input-container,.kanji-display{display:flex;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,.1)}button,input{padding:12px}#result,.kanji-display,h1,input{text-align:center}#input-container,.kanji-display,.word-info{box-shadow:0 4px 15px rgba(0,0,0,.1)}*{margin:0;padding:0;box-sizing:border-box}body{font-family:"Segoe UI",Arial,sans-serif;background:linear-gradient(135deg,#f5f7fa 0,#c3cfe2 100%);min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px}.kanji-display,.word-info,input{background:#fff}h1{color:#2c3e50;text-shadow:1px 1px 2px rgba(0,0,0,.1);font-size:2.5em;margin-bottom:30px}#result,button,input{font-size:18px}.kanji-display{font-size:80px;margin:20px auto;padding:25px;width:100%;max-width:300px;transition:transform .2s;justify-content:center;align-items:center}#result,.word-info{max-width:400px;display:none}#group-selection,#input-container{margin:20px auto;flex-direction:column;width:100%}.kanji-display:hover{transform:scale(1.05)}#input-container{max-width:400px;gap:15px;background:rgba(255,255,255,.9);padding:20px}input{border:2px solid #ddd;border-radius:8px;transition:border-color .3s;width:100%}#result.correct,button{background:linear-gradient(45deg,#2ecc71,#27ae60);color:#fff}input:focus{border-color:#3498db;outline:0;box-shadow:0 0 5px rgba(52,152,219,.3)}button{border:none;border-radius:8px;cursor:pointer;transition:transform .2s,box-shadow .2s;width:100%}button:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(46,204,113,.3)}#result{margin:20px auto;padding:15px 20px;border-radius:8px;transition:.3s;font-weight:500}#result.correct{box-shadow:0 4px 15px rgba(46,204,113,.3)}#result.incorrect{background:linear-gradient(45deg,#e74c3c,#c0392b);color:#fff;box-shadow:0 4px 15px rgba(231,76,60,.3);line-height:1.5}#result.warning{background:linear-gradient(45deg,#f39c12,#e67e22);color:#fff;box-shadow:0 4px 15px rgba(243,156,18,.3)}#result.completed{background:linear-gradient(45deg,#3498db,#2980b9);color:#fff;font-size:24px;padding:20px;border-radius:12px;box-shadow:0 6px 20px rgba(52,152,219,.4);animation:1s infinite bounce}@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}.word-info{margin:20px auto;padding:20px;border-radius:15px;width:100%;border-left:5px solid #3498db;text-align:left}.word-info p{margin:8px 0;font-size:16px;color:#2c3e50}.example{font-style:italic;color:#7f8c8d;background:#f8f9fa;padding:5px 10px;border-radius:5px;display:block}#group-selection{max-width:600px;display:flex;align-items:center}#group-selection h2{color:#2c3e50;text-align:center;margin-bottom:20px}.group-button{margin:10px;padding:15px;font-size:16px;background:linear-gradient(45deg,#3498db,#2980b9);width:100%;max-width:500px;border-radius:10px;transition:.3s;box-shadow:0 2px 10px rgba(52,152,219,.2);text-align:center}.group-button:hover{transform:translateY(-3px);box-shadow:0 5px 15px rgba(52,152,219,.4)}.meaning-options{margin:15px 0;display:flex;flex-direction:column;gap:10px;width:100%}.meaning-option{padding:12px;border-radius:8px;background:#fff;border:2px solid #ddd;cursor:pointer;transition:.3s;display:flex;align-items:center;justify-content:flex-start;width:100%;margin-bottom:5px}.meaning-option:hover{border-color:#3498db;background:#f8f9fa}.meaning-option input{margin-right:10px;width:auto}.meaning-option input:checked+label{color:#2ecc71;font-weight:700}#exercise-container{display:none;width:100%;max-width:500px;flex-direction:column;align-items:center}@media (max-width:600px){#result{padding:12px 15px}#result.completed{font-size:20px;padding:15px}#result,.word-info p,button,input{font-size:16px}body{padding:15px}.kanji-display{font-size:60px;padding:20px;width:90%}#input-container{margin:15px auto;padding:15px;width:90%}button,input{padding:10px}.group-button{font-size:14px;padding:12px}#exercise-container,#group-selection{width:90%}}
+    </style>
+  </head>
+  <body>
+    <h1>Kanji N5 Practice</h1>
+ 
+    <div id="result"></div>
+ 
+    <div id="exercise-container">
+      <div id="kanji" class="kanji-display"></div>
+      <div id="input-container">
+        <div class="meaning-options" id="meaningOptions"></div>
+        <button onclick="checkAnswer()">Check Answer</button>
+      </div>
+ 
+      <div id="wordInfo" class="word-info">
+        <p><strong>Âm Hán Việt:</strong> <span id="wordHanViet"></span></p>
+        <p><strong>Meaning:</strong> <span id="wordMeaning"></span></p>
+        <p class="example">
+          <strong>Example:</strong> <span id="wordExample"></span>
+        </p>
+      </div>
+    </div>
+ 
+    <div id="group-selection">
+      <h2>Choose Kanji Groups</h2>
+      <button
+        id="startButton"
+        class="group-button"
+        onclick="startExercise()"
+        disabled
+      >
+        Start Exercise
+      </button>
+    </div>
+ 
+    <script>
+      const updatedKanjiList=[{kanji:"一",hanviet:"Nhất",on:"ichi",kun:"hito(tsu)",meaning:"Một",example:"一日 (ichinichi - Một ngày)",},{kanji:"丨",hanviet:"Cổn",on:"kon",kun:"",meaning:"Nét sổ",example:"中 (chū - Giữa)",},{kanji:"丶",hanviet:"Chủ",on:"chu",kun:"ten",meaning:"Dấu chấm",example:"主 (shu - Chủ)",},{kanji:"丿",hanviet:"Phiệt",on:"hetsu",kun:"no",meaning:"Nét phẩy",example:"乂 (gai - Cắt)",},{kanji:"乙",hanviet:"Ất",on:"otsu",kun:"oto",meaning:"Thứ hai (trong 10 can)",example:"乙女 (otome - Thiếu nữ)",},{kanji:"亅",hanviet:"Quyết",on:"ketsu",kun:"",meaning:"Nét móc",example:"了 (ryō - Kết thúc)",},{kanji:"二",hanviet:"Nhị",on:"ni",kun:"futa(tsu)",meaning:"Hai",example:"二月 (nigatsu - Tháng Hai)",},{kanji:"亠",hanviet:"Đầu",on:"tō",kun:"",meaning:"Đầu, nắp",example:"京 (kyō - Kinh đô)",},{kanji:"人",hanviet:"Nhân",on:"jin",kun:"hito",meaning:"Người",example:"人間 (ningen - Con người)",},{kanji:"儿",hanviet:"Nhi",on:"ji",kun:"ko",meaning:"Trẻ con",example:"兄弟 (kyōdai - Anh em)",},{kanji:"入",hanviet:"Nhập",on:"nyū",kun:"hai(ru)",meaning:"Vào",example:"入学 (nyūgaku - Nhập học)",},{kanji:"八",hanviet:"Bát",on:"hachi",kun:"ya(tsu)",meaning:"Tám",example:"八日 (yōka - Ngày tám)",},{kanji:"冂",hanviet:"Quynh",on:"kei",kun:"",meaning:"Vùng biên",example:"内 (nai - Bên trong)",},{kanji:"冖",hanviet:"Mịch",on:"beki",kun:"",meaning:"Che phủ",example:"写 (sha - Sao chép)",},{kanji:"冫",hanviet:"Băng",on:"hyō",kun:"kōri",meaning:"Nước đá",example:"冷 (rei - Lạnh)",},{kanji:"几",hanviet:"Kỷ",on:"ki",kun:"",meaning:"Ghế, bàn nhỏ",example:"机 (ki - Bàn)",},{kanji:"凵",hanviet:"Khảm",on:"kan",kun:"",meaning:"Miệng mở",example:"凶 (kyō - Hung dữ)",},{kanji:"刀",hanviet:"Đao",on:"tō",kun:"katana",meaning:"Dao",example:"切 (setsu - Cắt)",},{kanji:"力",hanviet:"Lực",on:"ryoku",kun:"chikara",meaning:"Sức mạnh",example:"努力 (doryoku - Nỗ lực)",},{kanji:"勹",hanviet:"Bao",on:"hō",kun:"",meaning:"Gói, bao bọc",example:"包 (hō - Gói)",},{kanji:"匕",hanviet:"Chủy",on:"hi",kun:"",meaning:"Dao găm",example:"比 (hi - So sánh)",},{kanji:"匚",hanviet:"Phương",on:"hō",kun:"",meaning:"Hộp",example:"区 (ku - Khu vực)",},{kanji:"匸",hanviet:"Hệ",on:"kei",kun:"",meaning:"Che giấu",example:"医 (i - Y học)",},{kanji:"十",hanviet:"Thập",on:"jū",kun:"tō",meaning:"Mười",example:"十日 (tōka - Ngày mười)",},{kanji:"卜",hanviet:"Bốc",on:"boku",kun:"",meaning:"Bói toán",example:"占 (sen - Chiêm tinh)",},{kanji:"卩",hanviet:"Tiết",on:"setsu",kun:"",meaning:"Ấn chương",example:"節 (setsu - Tiết)",},{kanji:"厂",hanviet:"Hán",on:"kan",kun:"",meaning:"Vách đá",example:"原 (gen - Nguyên)",},{kanji:"厶",hanviet:"Khâu",on:"shi",kun:"",meaning:"Riêng tư",example:"私 (shi - Tư)",},{kanji:"又",hanviet:"Hựu",on:"yū",kun:"mata",meaning:"Lại, nữa",example:"友 (yū - Bạn)",},{kanji:"口",hanviet:"Khẩu",on:"kō",kun:"kuchi",meaning:"Miệng",example:"言う (iu - Nói)",},{kanji:"囗",hanviet:"Vi",on:"i",kun:"",meaning:"Vùng bao quanh",example:"国 (koku - Quốc gia)",},{kanji:"土",hanviet:"Thổ",on:"do",kun:"tsuchi",meaning:"Đất",example:"土地 (tochi - Đất đai)",},{kanji:"士",hanviet:"Sĩ",on:"shi",kun:"",meaning:"Kẻ sĩ",example:"士兵 (heishi - Lính)",},{kanji:"夂",hanviet:"Chí",on:"chi",kun:"",meaning:"Đi chậm",example:"冬 (tō - Mùa đông)",},{kanji:"夊",hanviet:"Tuy",on:"sui",kun:"",meaning:"Chân chậm",example:"夏 (ka - Mùa hè)",},{kanji:"夕",hanviet:"Tịch",on:"seki",kun:"yū",meaning:"Buổi tối",example:"夕方 (yūgata - Chiều tối)",},{kanji:"大",hanviet:"Đại",on:"dai",kun:"ō(kii)",meaning:"Lớn",example:"大学 (daigaku - Đại học)",},{kanji:"女",hanviet:"Nữ",on:"jo",kun:"onna",meaning:"Phụ nữ",example:"女の子 (onnanoko - Con gái)",},{kanji:"子",hanviet:"Tử",on:"shi",kun:"ko",meaning:"Con, trẻ",example:"子供 (kodomo - Trẻ em)",},{kanji:"宀",hanviet:"Miên",on:"ben",kun:"",meaning:"Mái nhà",example:"家 (ka - Nhà)",},{kanji:"寸",hanviet:"Thốn",on:"sun",kun:"",meaning:"Thước",example:"村 (son - Làng)",},{kanji:"小",hanviet:"Tiểu",on:"shō",kun:"chii(sai)",meaning:"Nhỏ",example:"小学校 (shōgakkō - Tiểu học)",},{kanji:"尢",hanviet:"Uông",on:"ō",kun:"",meaning:"Khom lưng",example:"就 (shū - Thành tựu)",},{kanji:"尸",hanviet:"Thi",on:"shi",kun:"",meaning:"Xác chết",example:"尾 (bi - Đuôi)",},{kanji:"屮",hanviet:"Triệt",on:"tetsu",kun:"",meaning:"Chồi non",example:"屯 (ton - Đồn trú)",},{kanji:"山",hanviet:"Sơn",on:"san",kun:"yama",meaning:"Núi",example:"山田 (yamada - Ruộng núi)",},{kanji:"川",hanviet:"Xuyên",on:"sen",kun:"kawa",meaning:"Sông",example:"川口 (kawaguchi - Cửa sông)",},{kanji:"工",hanviet:"Công",on:"kō",kun:"",meaning:"Thợ, công việc",example:"工場 (kōjō - Nhà máy)",},{kanji:"己",hanviet:"Kỷ",on:"ki",kun:"onore",meaning:"Bản thân",example:"自己 (jiko - Tự mình)",},{kanji:"巾",hanviet:"Cân",on:"kin",kun:"",meaning:"Khăn",example:"布 (fu - Vải)",},{kanji:"干",hanviet:"Can",on:"kan",kun:"hosu",meaning:"Khô",example:"乾燥 (kansō - Khô ráo)",},{kanji:"幺",hanviet:"Yêu",on:"yō",kun:"",meaning:"Nhỏ bé",example:"幼 (yō - Ấu thơ)",},{kanji:"广",hanviet:"Quảng",on:"kō",kun:"",meaning:"Nhà rộng",example:"店 (ten - Cửa hàng)",},{kanji:"廴",hanviet:"Dẫn",on:"in",kun:"",meaning:"Kéo dài",example:"建 (ken - Xây dựng)",},{kanji:"廾",hanviet:"Củng",on:"kyō",kun:"",meaning:"Chắp tay",example:"弄 (rō - Đùa nghịch)",},{kanji:"弋",hanviet:"Dực",on:"yoku",kun:"",meaning:"Bắn tên",example:"式 (shiki - Kiểu)",},{kanji:"弓",hanviet:"Cung",on:"kyū",kun:"yumi",meaning:"Cung tên",example:"弓道 (kyūdō - Cung đạo)",},{kanji:"彐",hanviet:"Ký",on:"ki",kun:"",meaning:"Đầu heo",example:"録 (roku - Ghi chép)",},{kanji:"彡",hanviet:"Sam",on:"san",kun:"",meaning:"Lông, nét nghiêng",example:"形 (kei - Hình dạng)",},{kanji:"彳",hanviet:"Xích",on:"teki",kun:"",meaning:"Bước nhỏ",example:"行 (kō - Đi)",},{kanji:"心",hanviet:"Tâm",on:"shin",kun:"kokoro",meaning:"Trái tim",example:"心臓 (shinzō - Tim)",},{kanji:"戈",hanviet:" Qua",on:"ka",kun:"",meaning:"Giáo mác",example:"我 (ga - Ta)",},{kanji:"戶",hanviet:"Hộ",on:"ko",kun:"",meaning:"Cửa",example:"所 (sho - Nơi)",},{kanji:"手",hanviet:"Thủ",on:"shu",kun:"te",meaning:"Tay",example:"手紙 (tegami - Thư)",},{kanji:"支",hanviet:"Chi",on:"shi",kun:"sasa(eru)",meaning:"Cành, đỡ",example:"支持 (shiji - Ủng hộ)",},{kanji:"攴",hanviet:"Phộc",on:"boku",kun:"",meaning:"Đánh nhẹ",example:"教 (kyō - Dạy)",},{kanji:"文",hanviet:"Văn",on:"bun",kun:"fumi",meaning:"Văn học",example:"文化 (bunka - Văn hóa)",},{kanji:"斗",hanviet:"Đẩu",on:"to",kun:"",meaning:"Đấu (đơn vị đo)",example:"料 (ryō - Phí)",},{kanji:"斤",hanviet:"Cân",on:"kin",kun:"",meaning:"Cân (đơn vị)",example:"新 (shin - Mới)",},{kanji:"方",hanviet:"Phương",on:"hō",kun:"kata",meaning:"Phương hướng",example:"方法 (hōhō - Phương pháp)",},{kanji:"无",hanviet:"Vô",on:"mu",kun:"",meaning:"Không",example:"無視 (mushi - Bỏ qua)",},{kanji:"日",hanviet:"Nhật",on:"nichi",kun:"hi",meaning:"Mặt trời, Ngày",example:"日曜日 (nichiyoubi - Chủ nhật)",},{kanji:"曰",hanviet:"Viết",on:"etsu",kun:"",meaning:"Nói",example:"曲 (kyoku - Khúc nhạc)",},{kanji:"月",hanviet:"Nguyệt",on:"getsu",kun:"tsuki",meaning:"Mặt trăng, Tháng",example:"月曜日 (getsuyoubi - Thứ hai)",},{kanji:"木",hanviet:"Mộc",on:"boku",kun:"ki",meaning:"Cây, gỗ",example:"木曜日 (mokuyoubi - Thứ năm)",},{kanji:"欠",hanviet:"Khiếm",on:"ketsu",kun:"ka(keru)",meaning:"Thiếu",example:"次 (ji - Lần tới)",},{kanji:"止",hanviet:"Chỉ",on:"shi",kun:"to(maru)",meaning:"Dừng",example:"止める (tomeru - Dừng lại)",},{kanji:"歹",hanviet:"Đãi",on:"tai",kun:"",meaning:"Xương, chết",example:"死 (shi - Chết)",},{kanji:"殳",hanviet:"Thù",on:"shu",kun:"",meaning:"Vũ khí",example:"段 (dan - Đoạn)",},{kanji:"毋",hanviet:"Vô",on:"mu",kun:"",meaning:"Chớ",example:"母 (bo - Mẹ)",},{kanji:"比",hanviet:"Tỷ",on:"hi",kun:"kura(beru)",meaning:"So sánh",example:"比べる (kuraberu - So sánh)",},{kanji:"毛",hanviet:"Mao",on:"mō",kun:"ke",meaning:"Lông",example:"毛布 (mōfu - Chăn)",},{kanji:"氏",hanviet:"Thị",on:"shi",kun:"",meaning:"Họ",example:"氏名 (shimei - Tên họ)",},{kanji:"气",hanviet:"Khí",on:"ki",kun:"",meaning:"Hơi thở",example:"気 (ki - Khí)",},{kanji:"水",hanviet:"Thủy",on:"sui",kun:"mizu",meaning:"Nước",example:"水曜日 (suiyoubi - Thứ tư)",},{kanji:"火",hanviet:"Hỏa",on:"ka",kun:"hi",meaning:"Lửa",example:"火曜日 (kayoubi - Thứ ba)",},{kanji:"爪",hanviet:"Trảo",on:"sō",kun:"tsume",meaning:"Móng vuốt",example:"争 (sō - Tranh giành)",},{kanji:"父",hanviet:"Phụ",on:"fu",kun:"tō",meaning:"Cha",example:"父親 (fushin - Cha)",},{kanji:"爻",hanviet:"Hào",on:"kō",kun:"",meaning:"Quẻ",example:"爻辞 (kōji - Lời quẻ)",},{kanji:"爿",hanviet:"Tường",on:"shō",kun:"",meaning:"Tấm gỗ",example:"床 (shō - Giường)",},{kanji:"片",hanviet:"Phiến",on:"hen",kun:"kata",meaning:"Mảnh, tấm",example:"片手 (katate - Một tay)",},{kanji:"牙",hanviet:"Nha",on:"ga",kun:"kiba",meaning:"Răng nanh",example:"牙 (kiba - Răng nanh)",},{kanji:"牛",hanviet:"Ngưu",on:"gyū",kun:"ushi",meaning:"Bò",example:"牛肉 (gyūniku - Thịt bò)",},{kanji:"犬",hanviet:"Khuyển",on:"ken",kun:"inu",meaning:"Chó",example:"犬 (inu - Chó)",},{kanji:"玄",hanviet:"Huyền",on:"gen",kun:"",meaning:"Huyền bí",example:"玄関 (genkan - Cửa ra vào)",},{kanji:"玉",hanviet:"Ngọc",on:"gyoku",kun:"tama",meaning:"Ngọc",example:"玉子 (tamago - Trứng)",},{kanji:"瓜",hanviet:"Qua",on:"ka",kun:"uri",meaning:"Dưa",example:"西瓜 (suika - Dưa hấu)",},{kanji:"瓦",hanviet:"Ngõa",on:"ga",kun:"kawara",meaning:"Ngói",example:"瓦屋 (gaya - Nhà ngói)",},{kanji:"甘",hanviet:"Cam",on:"kan",kun:"ama(i)",meaning:"Ngọt",example:"甘い (amai - Ngọt)",},{kanji:"生",hanviet:"Sinh",on:"sei",kun:"i(kiru)",meaning:"Sống, sinh",example:"学生 (gakusei - Học sinh)",},{kanji:"用",hanviet:"Dụng",on:"yō",kun:"mochi(iru)",meaning:"Dùng",example:"用品 (yōhin - Đồ dùng)",},{kanji:"田",hanviet:"Điền",on:"den",kun:"ta",meaning:"Ruộng",example:"田中 (tanaka - Giữa ruộng)",},{kanji:"疋",hanviet:"Thất",on:"hitsu",kun:"",meaning:"Cuộn vải",example:"匹 (hiki - Con (động vật))",},{kanji:"疒",hanviet:"Nạch",on:"byō",kun:"",meaning:"Bệnh",example:"病 (byō - Bệnh)",},{kanji:"癶",hanviet:"Phát",on:"hatsu",kun:"",meaning:"Chân giang",example:"発 (hatsu - Phát)",},{kanji:"白",hanviet:"Bạch",on:"haku",kun:"shiro(i)",meaning:"Trắng",example:"白い (shiroi - Trắng)",},{kanji:"皮",hanviet:"Bì",on:"hi",kun:"kawa",meaning:"Da",example:"皮革 (hikaku - Da thuộc)",},{kanji:"皿",hanviet:"Mãnh",on:"bei",kun:"sara",meaning:"Đĩa",example:"皿 (sara - Đĩa)",},{kanji:"目",hanviet:"Mục",on:"moku",kun:"me",meaning:"Mắt",example:"目的 (mokuteki - Mục đích)",},{kanji:"矛",hanviet:"Mâu",on:"mu",kun:"hoko",meaning:"Giáo",example:"矛 (hoko - Giáo)",},{kanji:"矢",hanviet:"Thỉ",on:"shi",kun:"ya",meaning:"Tên",example:"矢印 (yajirushi - Mũi tên)",},{kanji:"石",hanviet:"Thạch",on:"seki",kun:"ishi",meaning:"Đá",example:"石橋 (ishibashi - Cầu đá)",},{kanji:"示",hanviet:"Thị",on:"ji",kun:"shime(su)",meaning:"Chỉ, bày tỏ",example:"示す (shimesu - Chỉ ra)",},{kanji:"禸",hanviet:"Nhu",on:"ju",kun:"",meaning:"Dấu chân thú",example:"離 (ri - Rời)",},{kanji:"禾",hanviet:"Hòa",on:"ka",kun:"nogi",meaning:"Lúa",example:"和 (wa - Hòa)",},{kanji:"穴",hanviet:"Huyệt",on:"ketsu",kun:"ana",meaning:"Hang, lỗ",example:"穴 (ana - Lỗ)",},{kanji:"立",hanviet:"Lập",on:"ritsu",kun:"ta(tsu)",meaning:"Đứng",example:"立つ (tatsu - Đứng)",},{kanji:"竹",hanviet:"Trúc",on:"chiku",kun:"take",meaning:"Tre",example:"竹林 (chikurin - Rừng tre)",},{kanji:"米",hanviet:"Mễ",on:"bei",kun:"kome",meaning:"Gạo",example:"米 (kome - Gạo)",},{kanji:"糸",hanviet:"Mịch",on:"shi",kun:"ito",meaning:"Sợi, chỉ",example:"糸 (ito - Chỉ)",},{kanji:"缶",hanviet:"Phẫu",on:"kan",kun:"",meaning:"Lon, đồ chứa",example:"缶 (kan - Lon)",},{kanji:"网",hanviet:"Võng",on:"mō",kun:"",meaning:"Lưới",example:"網 (mō - Lưới)",},{kanji:"羊",hanviet:"Dương",on:"yō",kun:"hitsuji",meaning:"Cừu",example:"羊 (hitsuji - Cừu)",},{kanji:"羽",hanviet:"Vũ",on:"u",kun:"hane",meaning:"Lông, cánh",example:"羽 (hane - Cánh)",},{kanji:"老",hanviet:"Lão",on:"rō",kun:"oi(ru)",meaning:"Già",example:"老人 (rōjin - Người già)",},{kanji:"而",hanviet:"Nhi",on:"ji",kun:"",meaning:"Mà, và",example:"耐 (tai - Chịu đựng)",},{kanji:"耒",hanviet:"Lỗi",on:"rai",kun:"",meaning:"Cái cày",example:"耕 (kō - Cày)",},{kanji:"耳",hanviet:"Nhĩ",on:"ji",kun:"mimi",meaning:"Tai",example:"耳 (mimi - Tai)",},{kanji:"聿",hanviet:"Duật",on:"jutsu",kun:"",meaning:"Bút lông",example:"筆 (hitsu - Bút)",},{kanji:"肉",hanviet:"Nhục",on:"niku",kun:"",meaning:"Thịt",example:"肉 (niku - Thịt)",},{kanji:"臣",hanviet:"Thần",on:"shin",kun:"",meaning:"Tôi tớ",example:"臣下 (shinka - Thần tử)",},{kanji:"自",hanviet:"Tự",on:"ji",kun:"mizuka(ra)",meaning:"Tự mình",example:"自分 (jibun - Bản thân)",},{kanji:"至",hanviet:"Chí",on:"shi",kun:"ita(ru)",meaning:"Đến",example:"至る (itaru - Đến)",},{kanji:"臼",hanviet:"Cữu",on:"kyū",kun:"",meaning:"Cối",example:"臼歯 (kyūshi - Răng hàm)",},{kanji:"舌",hanviet:"Thiệt",on:"zetsu",kun:"shita",meaning:"Lưỡi",example:"舌 (shita - Lưỡi)",},{kanji:"舛",hanviet:"Suyễn",on:"sen",kun:"",meaning:"Trái ngược",example:"舞 (bu - Múa)",},{kanji:"舟",hanviet:"Chu",on:"shū",kun:"fune",meaning:"Thuyền",example:"舟 (fune - Thuyền)",},{kanji:"艮",hanviet:"Cấn",on:"kon",kun:"",meaning:"Dừng lại",example:"銀 (gin - Bạc)",},{kanji:"色",hanviet:"Sắc",on:"shoku",kun:"iro",meaning:"Màu sắc",example:"色 (iro - Màu)",},{kanji:"艸",hanviet:"Thảo",on:"sō",kun:"kusa",meaning:"Cỏ",example:"草 (kusa - Cỏ)",},{kanji:"虍",hanviet:"Hổ",on:"ko",kun:"",meaning:"Hổ",example:"虎 (ko - Hổ)",},{kanji:"虫",hanviet:"Trùng",on:"chū",kun:"mushi",meaning:"Côn trùng",example:"虫 (mushi - Côn trùng)",},{kanji:"血",hanviet:"Huyết",on:"ketsu",kun:"chi",meaning:"Máu",example:"血 (chi - Máu)",},{kanji:"行",hanviet:"Hành",on:"kō",kun:"i(ku)",meaning:"Đi",example:"行く (iku - Đi)",},{kanji:"衣",hanviet:"Y",on:"i",kun:"koromo",meaning:"Áo",example:"衣服 (ifuku - Quần áo)",},{kanji:"襾",hanviet:"Á",on:"a",kun:"",meaning:"Che phủ",example:"西 (sei - Tây)",},{kanji:"見",hanviet:"Kiến",on:"ken",kun:"mi(ru)",meaning:"Thấy",example:"見る (miru - Nhìn)",},{kanji:"角",hanviet:"Giác",on:"kaku",kun:"tsuno",meaning:"Sừng",example:"角 (tsuno - Sừng)",},{kanji:"言",hanviet:"Ngôn",on:"gen",kun:"koto",meaning:"Lời nói",example:"言葉 (kotoba - Từ ngữ)",},{kanji:"谷",hanviet:"Cốc",on:"koku",kun:"tani",meaning:"Thung lũng",example:"谷 (tani - Thung lũng)",},{kanji:"豆",hanviet:"Đậu",on:"tō",kun:"mame",meaning:"Đậu",example:"豆 (mame - Đậu)",},{kanji:"豕",hanviet:"Thỉ",on:"shi",kun:"",meaning:"Lợn",example:"豚 (ton - Lợn)",},{kanji:"豸",hanviet:"Trãi",on:"tai",kun:"",meaning:"Thú không chân",example:"豹 (hyō - Báo)",},{kanji:"貝",hanviet:"Bối",on:"bai",kun:"kai",meaning:"Vỏ sò",example:"貝 (kai - Vỏ sò)",},{kanji:"赤",hanviet:"Xích",on:"seki",kun:"aka(i)",meaning:"Đỏ",example:"赤い (akai - Đỏ)",},{kanji:"走",hanviet:"Tẩu",on:"sō",kun:"hashi(ru)",meaning:"Chạy",example:"走る (hashiru - Chạy)",},{kanji:"足",hanviet:"Túc",on:"soku",kun:"ashi",meaning:"Chân",example:"足 (ashi - Chân)",},{kanji:"身",hanviet:"Thân",on:"shin",kun:"mi",meaning:"Thân thể",example:"身体 (shintai - Cơ thể)",},{kanji:"車",hanviet:"Xa",on:"sha",kun:"kuruma",meaning:"Xe",example:"車 (kuruma - Xe)",},{kanji:"辛",hanviet:"Tân",on:"shin",kun:"kara(i)",meaning:"Cay",example:"辛い (karai - Cay)",},{kanji:"辰",hanviet:"Thìn",on:"shin",kun:"",meaning:"Rồng (thứ 5 trong 12 con giáp)",example:"辰年 (tatsudoshi - Năm Thìn)",},{kanji:"辵",hanviet:"Sước",on:"chaku",kun:"",meaning:"Bước đi",example:"進 (shin - Tiến)",},{kanji:"邑",hanviet:"Ấp",on:"yū",kun:"",meaning:"Làng",example:"都 (to - Đô)",},{kanji:"酉",hanviet:"Dậu",on:"yū",kun:"",meaning:"Gà (thứ 10 trong 12 con giáp)",example:"酒 (shu - Rượu)",},{kanji:"釆",hanviet:"Biện",on:"ben",kun:"",meaning:"Phân biệt",example:"番 (ban - Lần)",},{kanji:"里",hanviet:"Lý",on:"ri",kun:"sato",meaning:"Làng, dặm",example:"里 (sato - Làng)",},{kanji:"金",hanviet:"Kim",on:"kin",kun:"kane",meaning:"Vàng, kim loại",example:"金曜日 (kinyōbi - Thứ sáu)",},{kanji:"長",hanviet:"Trường",on:"chō",kun:"naga(i)",meaning:"Dài",example:"長い (nagai - Dài)",},{kanji:"門",hanviet:"Môn",on:"mon",kun:"kado",meaning:"Cửa",example:"門 (mon - Cửa)",},{kanji:"阜",hanviet:"Phụ",on:"fu",kun:"",meaning:"Đồi",example:"降 (kō - Xuống)",},{kanji:"隶",hanviet:"Đãi",on:"tai",kun:"",meaning:"Nô lệ",example:"隷 (rei - Nô lệ)",},{kanji:"隹",hanviet:"Chuy",on:"sui",kun:"",meaning:"Chim",example:"雀 (jak - Chim sẻ)",},{kanji:"雨",hanviet:"Vũ",on:"u",kun:"ame",meaning:"Mưa",example:"雨 (ame - Mưa)",},{kanji:"青",hanviet:"Thanh",on:"sei",kun:"ao(i)",meaning:"Xanh",example:"青い (aoi - Xanh)",},{kanji:"非",hanviet:"Phi",on:"hi",kun:"",meaning:"Không",example:"非難 (hinan - Chỉ trích)",},{kanji:"面",hanviet:"Diện",on:"men",kun:"omo",meaning:"Mặt",example:"面 (men - Mặt)",},{kanji:"革",hanviet:"Cách",on:"kaku",kun:"kawa",meaning:"Da thuộc",example:"革 (kawa - Da)",},{kanji:"韋",hanviet:"Vĩ",on:"i",kun:"",meaning:"Da mềm",example:"違 (i - Vi phạm)",},{kanji:"韭",hanviet:"Cửu",on:"kyū",kun:"",meaning:"Hẹ",example:"韭 (kyū - Hẹ)",},{kanji:"音",hanviet:"Âm",on:"on",kun:"oto",meaning:"Âm thanh",example:"音 (oto - Âm thanh)",},{kanji:"頁",hanviet:"Hiệt",on:"yō",kun:"peji",meaning:"Trang sách",example:"頁 (peji - Trang)",},{kanji:"風",hanviet:"Phong",on:"fū",kun:"kaze",meaning:"Gió",example:"風 (kaze - Gió)",},{kanji:"飛",hanviet:"Phi",on:"hi",kun:"to(bu)",meaning:"Bay",example:"飛ぶ (tobu - Bay)",},{kanji:"食",hanviet:"Thực",on:"shoku",kun:"ta(beru)",meaning:"Ăn",example:"食べる (taberu - Ăn)",},{kanji:"首",hanviet:"Thủ",on:"shu",kun:"kubi",meaning:"Đầu, cổ",example:"首 (kubi - Cổ)",},{kanji:"香",hanviet:"Hương",on:"kō",kun:"kao(ri)",meaning:"Hương thơm",example:"香り (kaori - Hương thơm)",},{kanji:"馬",hanviet:"Mã",on:"ba",kun:"uma",meaning:"Ngựa",example:"馬 (uma - Ngựa)",},{kanji:"骨",hanviet:"Cốt",on:"kotsu",kun:"hone",meaning:"Xương",example:"骨 (hone - Xương)",},{kanji:"高",hanviet:"Cao",on:"kō",kun:"taka(i)",meaning:"Cao",example:"高い (takai - Cao)",},{kanji:"髟",hanviet:"Tiêu",on:"hyō",kun:"",meaning:"Tóc dài",example:"髪 (kami - Tóc)",},{kanji:"鬥",hanviet:"Đấu",on:"tō",kun:"",meaning:"Đấu tranh",example:"鬪 (tō - Đấu)",},{kanji:"鬯",hanviet:"Sưởng",on:"chō",kun:"",meaning:"Rượu thơm",example:"鬱 (utsu - U uất)",},{kanji:"鬲",hanviet:"Cách",on:"kaku",kun:"",meaning:"Vạc",example:"隔 (kaku - Ngăn cách)",},{kanji:"鬼",hanviet:"Quỷ",on:"ki",kun:"oni",meaning:"Quỷ",example:"鬼 (oni - Quỷ)",},{kanji:"魚",hanviet:"Ngư",on:"gyo",kun:"uo",meaning:"Cá",example:"魚 (uo - Cá)",},{kanji:"鳥",hanviet:"Điểu",on:"chō",kun:"tori",meaning:"Chim",example:"鳥 (tori - Chim)",},{kanji:"鹵",hanviet:"Lỗ",on:"ro",kun:"",meaning:"Muối",example:"鹽 (en - Muối)",},{kanji:"鹿",hanviet:"Lộc",on:"roku",kun:"shika",meaning:"Hươu",example:"鹿 (shika - Hươu)",},{kanji:"麦",hanviet:"Mạch",on:"baku",kun:"mugi",meaning:"Lúa mạch",example:"麦 (mugi - Lúa mạch)",},{kanji:"麻",hanviet:"Ma",on:"ma",kun:"asa",meaning:"Gai dầu",example:"麻 (asa - Gai dầu)",},{kanji:"黃",hanviet:"Hoàng",on:"kō",kun:"ki",meaning:"Vàng",example:"黄色 (kiiro - Màu vàng)",},{kanji:"黍",hanviet:"Thử",on:"sho",kun:"kibi",meaning:"Kê",example:"黍 (kibi - Kê)",},{kanji:"黒",hanviet:"Hắc",on:"koku",kun:"kuro(i)",meaning:"Đen",example:"黒い (kuroi - Đen)",},{kanji:"黹",hanviet:"Chỉ",on:"shi",kun:"",meaning:"Thêu",example:"黻 (futsu - Hoa văn)",},{kanji:"黽",hanviet:"Mãnh",on:"bō",kun:"",meaning:"Con rắn",example:"黽勉 (bōben - Cố gắng)",},{kanji:"鼎",hanviet:"Đỉnh",on:"tei",kun:"",meaning:"Vạc lớn",example:"鼎 (tei - Vạc)",},{kanji:"鼓",hanviet:"Cổ",on:"ko",kun:"tsuzumi",meaning:"Trống",example:"鼓 (tsuzumi - Trống)",},{kanji:"鼠",hanviet:"Thử",on:"so",kun:"nezumi",meaning:"Chuột",example:"鼠 (nezumi - Chuột)",},{kanji:"鼻",hanviet:"Tỵ",on:"bi",kun:"hana",meaning:"Mũi",example:"鼻 (hana - Mũi)",},{kanji:"齊",hanviet:"Tề",on:"sei",kun:"",meaning:"Đều",example:"斉 (sei - Đều)",},{kanji:"齒",hanviet:"Xỉ",on:"shi",kun:"ha",meaning:"Răng",example:"歯 (ha - Răng)",},{kanji:"龍",hanviet:"Long",on:"ryū",kun:"tatsu",meaning:"Rồng",example:"龍 (tatsu - Rồng)",},{kanji:"龜",hanviet:"Quy",on:"ki",kun:"kame",meaning:"Rùa",example:"亀 (kame - Rùa)",},{kanji:"龠",hanviet:"Dược",on:"yaku",kun:"",meaning:"Sáo",example:"籥 (yaku - Sáo)",},]
+      let kanjiList = [];
+      let currentKanji;
+      let meaningOptions = [];
+ 
+      const kanjiGroups = [];
+      for (let i = 0; i < updatedKanjiList.length; i += 6) {
+        kanjiGroups.push(updatedKanjiList.slice(i, i + 6));
+      }
+ 
+      function createGroupSelection() {
+        const groupDiv = document.getElementById("group-selection");
+        kanjiGroups.forEach((group, index) => {
+          const div = document.createElement("div");
+          div.className = "meaning-option"; // Reusing this class for consistent styling
+ 
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.id = `group${index}`;
+          checkbox.name = "kanjiGroup";
+          checkbox.value = index;
+          checkbox.addEventListener("change", toggleStartButton);
+ 
+          const label = document.createElement("label");
+          label.htmlFor = `group${index}`;
+          label.textContent = `Group ${index + 1}: ${group
+            .map((k) => k.kanji)
+            .join(", ")}`;
+ 
+          div.appendChild(checkbox);
+          div.appendChild(label);
+          groupDiv.insertBefore(div, document.getElementById("startButton"));
+        });
+      }
+ 
+      function toggleStartButton() {
+        const checkboxes = document.querySelectorAll(
+          'input[name="kanjiGroup"]:checked'
+        );
+        document.getElementById("startButton").disabled =
+          checkboxes.length === 0;
+      }
+ 
+      function startExercise() {
+        const selectedGroups = Array.from(
+          document.querySelectorAll('input[name="kanjiGroup"]:checked')
+        ).map((checkbox) => parseInt(checkbox.value));
+ 
+        kanjiList = selectedGroups
+          .map((groupIndex) => kanjiGroups[groupIndex])
+          .flat();
+ 
+        if (kanjiList.length > 0) {
+          document.getElementById("group-selection").style.display = "none";
+          document.getElementById("exercise-container").style.display = "flex";
+          getRandomKanji();
+        }
+      }
+ 
+      function generateMeaningOptions() {
+        // Clear previous options
+        const meaningContainer = document.getElementById("meaningOptions");
+        meaningContainer.innerHTML = "";
+ 
+        // Generate 3 random wrong meanings plus the correct one
+        meaningOptions = [currentKanji.hanviet];
+        while (meaningOptions.length < 4) {
+          const randomKanji =
+            updatedKanjiList[
+              Math.floor(Math.random() * updatedKanjiList.length)
+            ];
+          if (
+            !meaningOptions.includes(randomKanji.hanviet) &&
+            randomKanji.hanviet !== currentKanji.hanviet
+          ) {
+            meaningOptions.push(randomKanji.hanviet);
+          }
+        }
+ 
+        // Shuffle options
+        meaningOptions.sort(() => Math.random() - 0.5);
+ 
+        // Create radio buttons
+        meaningOptions.forEach((hanviet, index) => {
+          const div = document.createElement("div");
+          div.className = "meaning-option";
+ 
+          const input = document.createElement("input");
+          input.type = "radio";
+          input.name = "meaning";
+          input.id = `meaning${index}`;
+          input.value = hanviet;
+ 
+          const label = document.createElement("label");
+          label.htmlFor = `meaning${index}`;
+          label.textContent = hanviet;
+ 
+          div.appendChild(input);
+          div.appendChild(label);
+          meaningContainer.appendChild(div);
+        });
+      }
+ 
+      function checkAnswer() {
+        const selectedMeaning = document.querySelector(
+          'input[name="meaning"]:checked'
+        );
+        const resultDiv = document.getElementById("result");
+        resultDiv.style.display = "block";
+        resultDiv.className = ""; // Reset classes
+        const correctMeaning =
+          selectedMeaning && selectedMeaning.value === currentKanji.hanviet;
+ 
+        if (!selectedMeaning) {
+          resultDiv.className = "warning";
+          resultDiv.textContent = "Vui lòng chọn một nghĩa trước!";
+          return;
+        }
+ 
+        if (correctMeaning) {
+          document.getElementById("meaningOptions").style.display = "none";
+          resultDiv.className = "correct";
+          resultDiv.textContent = "Correctly! This word will be removed...";
+ 
+          document.getElementById("wordHanViet").textContent =
+            currentKanji.hanviet || "(none)";
+          document.getElementById("wordMeaning").textContent =
+            currentKanji.meaning;
+          document.getElementById("wordExample").textContent =
+            currentKanji.example;
+          document.getElementById("wordInfo").style.display = "block";
+ 
+          kanjiList = kanjiList.filter((k) => k.kanji !== currentKanji.kanji);
+          setTimeout(getRandomKanji, 2500);
+        } else {
+          resultDiv.className = "incorrect";
+          let errorMessage = "Incorrect! The correct answer is:<br>";
+          errorMessage += `Hán Việt: ${currentKanji.hanviet || "(none)"}<br>`;
+          errorMessage += `Meaning: ${currentKanji.meaning}`;
+          resultDiv.innerHTML = errorMessage;
+          setTimeout(getRandomKanji, 2500);
+        }
+      }
+ 
+      function getRandomKanji() {
+        if (kanjiList.length === 0) {
+          document.getElementById("kanji").textContent = "🎉 Completed!";
+          const resultDiv = document.getElementById("result");
+          resultDiv.style.display = "block";
+          resultDiv.className = "completed";
+          resultDiv.textContent =
+            "Congratulations! You've finished the exercise!";
+          document.getElementById("meaningOptions").innerHTML = "";
+          document.getElementById("wordInfo").style.display = "none";
+          document.getElementById("group-selection").style.display = "flex";
+          document.getElementById("input-container").style.display = "none";
+          return;
+        }
+ 
+        const randomIndex = Math.floor(Math.random() * kanjiList.length);
+        currentKanji = kanjiList[randomIndex];
+ 
+        document.getElementById("kanji").textContent = currentKanji.kanji;
+        document.getElementById("result").textContent = "";
+        document.getElementById("result").style.display = "none";
+        document.getElementById("wordInfo").style.display = "none";
+        document.getElementById("meaningOptions").style.display = "block";
+        document.getElementById("input-container").style.display = "flex";
+ 
+        generateMeaningOptions();
+      }
+ 
+      window.onload = createGroupSelection;
+    </script>
+  </body>
+</html>
