@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kanji N5 Practice</title>
+    <style>
+      #input-container,.kanji-display{display:flex;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,.1)}button,input{padding:12px}#result,.kanji-display,h1,input{text-align:center}#input-container,.kanji-display,.word-info{box-shadow:0 4px 15px rgba(0,0,0,.1)}*{margin:0;padding:0;box-sizing:border-box}body{font-family:"Segoe UI",Arial,sans-serif;background:linear-gradient(135deg,#f5f7fa 0,#c3cfe2 100%);min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px}.kanji-display,.word-info,input{background:#fff}h1{color:#2c3e50;text-shadow:1px 1px 2px rgba(0,0,0,.1);font-size:2.5em;margin-bottom:30px}#result,button,input{font-size:18px}.kanji-display{font-size:80px;margin:20px auto;padding:25px;width:100%;max-width:300px;transition:transform .2s;justify-content:center;align-items:center}#result,.word-info{max-width:400px;display:none}#group-selection,#input-container{margin:20px auto;flex-direction:column;width:100%}.kanji-display:hover{transform:scale(1.05)}#input-container{max-width:400px;gap:15px;background:rgba(255,255,255,.9);padding:20px}input{border:2px solid #ddd;border-radius:8px;transition:border-color .3s;width:100%}#result.correct,button{background:linear-gradient(45deg,#2ecc71,#27ae60);color:#fff}input:focus{border-color:#3498db;outline:0;box-shadow:0 0 5px rgba(52,152,219,.3)}button{border:none;border-radius:8px;cursor:pointer;transition:transform .2s,box-shadow .2s;width:100%}button:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(46,204,113,.3)}#result{margin:20px auto;padding:15px 20px;border-radius:8px;transition:.3s;font-weight:500}#result.correct{box-shadow:0 4px 15px rgba(46,204,113,.3)}#result.incorrect{background:linear-gradient(45deg,#e74c3c,#c0392b);color:#fff;box-shadow:0 4px 15px rgba(231,76,60,.3);line-height:1.5}#result.warning{background:linear-gradient(45deg,#f39c12,#e67e22);color:#fff;box-shadow:0 4px 15px rgba(243,156,18,.3)}#result.completed{background:linear-gradient(45deg,#3498db,#2980b9);color:#fff;font-size:24px;padding:20px;border-radius:12px;box-shadow:0 6px 20px rgba(52,152,219,.4);animation:1s infinite bounce}@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}.word-info{margin:20px auto;padding:20px;border-radius:15px;width:100%;border-left:5px solid #3498db;text-align:left}.word-info p{margin:8px 0;font-size:16px;color:#2c3e50}.example{font-style:italic;color:#7f8c8d;background:#f8f9fa;padding:5px 10px;border-radius:5px;display:block}#group-selection{max-width:600px;display:flex;align-items:center}#group-selection h2{color:#2c3e50;text-align:center;margin-bottom:20px}.group-button{margin:10px;padding:15px;font-size:16px;background:linear-gradient(45deg,#3498db,#2980b9);width:100%;max-width:500px;border-radius:10px;transition:.3s;box-shadow:0 2px 10px rgba(52,152,219,.2);text-align:center}.group-button:hover{transform:translateY(-3px);box-shadow:0 5px 15px rgba(52,152,219,.4)}.meaning-options{margin:15px 0;display:flex;flex-direction:column;gap:10px;width:100%}.meaning-option{padding:12px;border-radius:8px;background:#fff;border:2px solid #ddd;cursor:pointer;transition:.3s;display:flex;align-items:center;justify-content:flex-start;width:100%;margin-bottom:5px}.meaning-option:hover{border-color:#3498db;background:#f8f9fa}.meaning-option input{margin-right:10px;width:auto}.meaning-option input:checked+label{color:#2ecc71;font-weight:700}#exercise-container{display:none;width:100%;max-width:500px;flex-direction:column;align-items:center}@media (max-width:600px){#result{padding:12px 15px}#result.completed{font-size:20px;padding:15px}#result,.word-info p,button,input{font-size:16px}body{padding:15px}.kanji-display{font-size:60px;padding:20px;width:90%}#input-container{margin:15px auto;padding:15px;width:90%}button,input{padding:10px}.group-button{font-size:14px;padding:12px}#exercise-container,#group-selection{width:90%}}
+    </style>
+  </head>
+  <body>
+    <h1>Kanji N5 Practice</h1>
+ 
+    <div id="result"></div>
+ 
+    <div id="exercise-container">
+      <div id="kanji" class="kanji-display"></div>
+      <div id="input-container">
+        <input type="text" id="hvInput" placeholder="Type Hán Việt here" />
+        <input type="text" id="onInput" placeholder="Type on'yomi here" />
+        <input type="text" id="kunInput" placeholder="Type kun'yomi here" />
+        <div class="meaning-options" id="meaningOptions"></div>
+        <button onclick="checkAnswer()">Check Answer</button>
+      </div>
+ 
+      <div id="wordInfo" class="word-info">
+        <p><strong>Âm Hán Việt:</strong> <span id="wordHanViet"></span></p>
+        <p><strong>On'yomi:</strong> <span id="wordOn"></span></p>
+        <p><strong>Kun'yomi:</strong> <span id="wordKun"></span></p>
+        <p><strong>Meaning (VN):</strong> <span id="wordMeaning"></span></p>
+        <p class="example">
+          <strong>Example:</strong> <span id="wordExample"></span>
+        </p>
+      </div>
+    </div>
+ 
+    <div id="group-selection">
+      <h2>Choose Kanji Groups</h2>
+      <button
+        id="startButton"
+        class="group-button"
+        onclick="startExercise()"
+        disabled
+      >
+        Start Exercise
+      </button>
+    </div>
+ 
+    <script>
+      const updatedKanjiList = [
+        {
+          kanji: "日",
+          hanviet: "Nhật",
+          on: "nichi",
+          kun: "hi",
+          meaning: "Mặt trời, Ngày",
+          example: "日曜日 (nichiyoubi - Chủ nhật)",
+        },
+        {
+          kanji: "月",
+          hanviet: "Nguyệt",
+          on: "getsu",
+          kun: "tsuki",
+          meaning: "Mặt trăng, Tháng",
+          example: "月曜日 (getsuyoubi - Thứ hai)",
+        },
+        {
+          kanji: "金",
+          hanviet: "Kim",
+          on: "kin",
+          kun: "kane",
+          meaning: "Vàng, Tiền",
+          example: "金曜日 (kinyoubi - Thứ sáu)",
+        },
+        {
+          kanji: "水",
+          hanviet: "Thủy",
+          on: "sui",
+          kun: "mizu",
+          meaning: "Nước",
+          example: "水曜日 (suiyoubi - Thứ tư)",
+        },
+        {
+          kanji: "火",
+          hanviet: "Hỏa",
+          on: "ka",
+          kun: "hi",
+          meaning: "Lửa",
+          example: "火曜日 (kayoubi - Thứ ba)",
+        },
+        {
+          kanji: "木",
+          hanviet: "Mộc",
+          on: "moku",
+          kun: "ki",
+          meaning: "Cây, Gỗ",
+          example: "木曜日 (mokuyoubi - Thứ năm)",
+        },
+        {
+          kanji: "土",
+          hanviet: "Thổ",
+          on: "do",
+          kun: "tsuchi",
+          meaning: "Đất",
+          example: "土曜日 (doyoubi - Thứ bảy)",
+        },
+        {
+          kanji: "車",
+          hanviet: "Xa",
+          on: "sha",
+          kun: "kuruma",
+          meaning: "Xe hơi, Phương tiện",
+          example: "自動車 (jidousha - Ô tô)",
+        },
+        {
+          kanji: "門",
+          hanviet: "Môn",
+          on: "mon",
+          kun: "kado",
+          meaning: "Cổng",
+          example: "門前 (monzen - Trước cổng)",
+        },
+        {
+          kanji: "田",
+          hanviet: "Điền",
+          on: "den",
+          kun: "ta",
+          meaning: "Ruộng lúa",
+          example: "田中 (tanaka - Tên phổ biến, nghĩa là 'giữa ruộng')",
+        },
+        {
+          kanji: "山",
+          hanviet: "Sơn",
+          on: "san",
+          kun: "yama",
+          meaning: "Núi",
+          example: "富士山 (fujisan - Núi Phú Sĩ)",
+        },
+        {
+          kanji: "川",
+          hanviet: "Xuyên",
+          on: "sen",
+          kun: "kawa",
+          meaning: "Sông",
+          example: "川辺 (kawabe - Bờ sông)",
+        },
+        {
+          kanji: "雨",
+          hanviet: "Vũ",
+          on: "u",
+          kun: "ame",
+          meaning: "Mưa",
+          example: "雨の日 (ame no hi - Ngày mưa)",
+        },
+        {
+          kanji: "天",
+          hanviet: "Thiên",
+          on: "ten",
+          kun: "ame",
+          meaning: "Trời",
+          example: "天気 (tenki - Thời tiết)",
+        },
+        {
+          kanji: "気",
+          hanviet: "Khí",
+          on: "ki",
+          kun: "ke",
+          meaning: "Tinh thần, Không khí",
+          example: "元気 (genki - Khỏe mạnh)",
+        },
+        {
+          kanji: "父",
+          hanviet: "Phụ",
+          on: "fu",
+          kun: "tou",
+          meaning: "Cha",
+          example: "お父さん (otousan - Bố)",
+        },
+        {
+          kanji: "母",
+          hanviet: "Mẫu",
+          on: "bo",
+          kun: "haha",
+          meaning: "Mẹ",
+          example: "お母さん (okaasan - Mẹ)",
+        },
+        {
+          kanji: "私",
+          hanviet: "Tư",
+          on: "shi",
+          kun: "watashi",
+          meaning: "Tôi",
+          example: "私たち (watashitachi - Chúng tôi)",
+        },
+        {
+          kanji: "兄",
+          hanviet: "Huynh",
+          on: "kei",
+          kun: "ani",
+          meaning: "Anh trai",
+          example: "お兄さん (oniisan - Anh trai)",
+        },
+        {
+          kanji: "姉",
+          hanviet: "Tỷ",
+          on: "shi",
+          kun: "ane",
+          meaning: "Chị gái",
+          example: "お姉さん (oneesan - Chị gái)",
+        },
+        {
+          kanji: "弟",
+          hanviet: "Đệ",
+          on: "tei",
+          kun: "otouto",
+          meaning: "Em trai",
+          example: "弟さん (otoutosan - Em trai)",
+        },
+        {
+          kanji: "妹",
+          hanviet: "Muội",
+          on: "mai",
+          kun: "imouto",
+          meaning: "Em gái",
+          example: "妹さん (imoutosan - Em gái)",
+        },
+        {
+          kanji: "一",
+          hanviet: "Nhất",
+          on: "ichi",
+          kun: "hito",
+          meaning: "Một",
+          example: "一日 (ichinichi - Một ngày)",
+        },
+        {
+          kanji: "二",
+          hanviet: "Nhị",
+          on: "ni",
+          kun: "futa",
+          meaning: "Hai",
+          example: "二月 (nigatsu - Tháng hai)",
+        },
+        {
+          kanji: "三",
+          hanviet: "Tam",
+          on: "san",
+          kun: "mi",
+          meaning: "Ba",
+          example: "三人 (sannin - Ba người)",
+        },
+        {
+          kanji: "四",
+          hanviet: "Tứ",
+          on: "shi",
+          kun: "yo",
+          meaning: "Bốn",
+          example: "四月 (shigatsu - Tháng tư)",
+        },
+        {
+          kanji: "五",
+          hanviet: "Ngũ",
+          on: "go",
+          kun: "itsu",
+          meaning: "Năm",
+          example: "五日 (itsuka - Ngày năm)",
+        },
+        {
+          kanji: "六",
+          hanviet: "Lục",
+          on: "roku",
+          kun: "mu",
+          meaning: "Sáu",
+          example: "六月 (rokugatsu - Tháng sáu)",
+        },
+        {
+          kanji: "七",
+          hanviet: "Thất",
+          on: "shichi",
+          kun: "nana",
+          meaning: "Bảy",
+          example: "七日 (nanoka - Ngày bảy)",
+        },
+        {
+          kanji: "八",
+          hanviet: "Bát",
+          on: "hachi",
+          kun: "ya",
+          meaning: "Tám",
+          example: "八月 (hachigatsu - Tháng tám)",
+        },
+        {
+          kanji: "九",
+          hanviet: "Cửu",
+          on: "kyuu",
+          kun: "kokono",
+          meaning: "Chín",
+          example: "九日 (kokonoka - Ngày chín)",
+        },
+        {
+          kanji: "十",
+          hanviet: "Thập",
+          on: "juu",
+          kun: "tou",
+          meaning: "Mười",
+          example: "十月 (juugatsu - Tháng mười)",
+        },
+        {
+          kanji: "百",
+          hanviet: "Bách",
+          on: "hyaku",
+          kun: "",
+          meaning: "Trăm",
+          example: "百円 (hyakuen - Một trăm yên)",
+        },
+        {
+          kanji: "千",
+          hanviet: "Thiên",
+          on: "sen",
+          kun: "chi",
+          meaning: "Ngàn",
+          example: "千円 (senen - Một nghìn yên)",
+        },
+        {
+          kanji: "万",
+          hanviet: "Vạn",
+          on: "man",
+          kun: "yorozu",
+          meaning: "Mười nghìn",
+          example: "一万円 (ichimanen - Mười nghìn yên)",
+        },
+        {
+          kanji: "円",
+          hanviet: "Viên",
+          on: "en",
+          kun: "maru",
+          meaning: "Yên, Hình tròn",
+          example: "円い (marui - Tròn)",
+        },
+        {
+          kanji: "年",
+          hanviet: "Niên",
+          on: "nen",
+          kun: "toshi",
+          meaning: "Năm",
+          example: "今年 (kotoshi - Năm nay)",
+        },
+        {
+          kanji: "半",
+          hanviet: "Bán",
+          on: "han",
+          kun: "naka",
+          meaning: "Nửa",
+          example: "半分 (hanbun - Một nửa)",
+        },
+        {
+          kanji: "分",
+          hanviet: "Phân",
+          on: "bun",
+          kun: "wake",
+          meaning: "Phút, Chia",
+          example: "三分 (sanbun - Ba phút)",
+        },
+        {
+          kanji: "時",
+          hanviet: "Thì",
+          on: "ji",
+          kun: "toki",
+          meaning: "Thời gian, Giờ",
+          example: "二時 (niji - Hai giờ)",
+        },
+        {
+          kanji: "人",
+          hanviet: "Nhân",
+          on: "jin",
+          kun: "hito",
+          meaning: "Người",
+          example: "日本人 (nihonjin - Người Nhật)",
+        },
+        {
+          kanji: "女",
+          hanviet: "Nữ",
+          on: "jo",
+          kun: "onna",
+          meaning: "Phụ nữ",
+          example: "女の子 (onnanoko - Con gái)",
+        },
+        {
+          kanji: "生",
+          hanviet: "Sinh",
+          on: "sei",
+          kun: "umu",
+          meaning: "Cuộc sống, Sinh ra",
+          example: "先生 (sensei - Giáo viên)",
+        },
+        {
+          kanji: "子",
+          hanviet: "Tử",
+          on: "shi",
+          kun: "ko",
+          meaning: "Đứa trẻ",
+          example: "子犬 (koinu - Chó con)",
+        },
+        {
+          kanji: "学",
+          hanviet: "Học",
+          on: "gaku",
+          kun: "manabu",
+          meaning: "Học tập",
+          example: "学校 (gakkou - Trường học)",
+        },
+        {
+          kanji: "先",
+          hanviet: "Tiên",
+          on: "sen",
+          kun: "saki",
+          meaning: "Trước, Phía trước",
+          example: "先生 (sensei - Giáo viên)",
+        },
+        {
+          kanji: "白",
+          hanviet: "Bạch",
+          on: "haku",
+          kun: "shiro",
+          meaning: "Trắng",
+          example: "白い (shiroi - Màu trắng)",
+        },
+        {
+          kanji: "口",
+          hanviet: "Khẩu",
+          on: "kou",
+          kun: "kuchi",
+          meaning: "Miệng",
+          example: "出口 (deguchi - Lối ra)",
+        },
+        {
+          kanji: "石",
+          hanviet: "Thạch",
+          on: "seki",
+          kun: "ishi",
+          meaning: "Đá",
+          example: "石鹸 (sekken - Xà phòng)",
+        },
+        {
+          kanji: "手",
+          hanviet: "Thủ",
+          on: "shu",
+          kun: "te",
+          meaning: "Tay",
+          example: "手紙 (tegami - Thư)",
+        },
+        {
+          kanji: "足",
+          hanviet: "Túc",
+          on: "soku",
+          kun: "ashi",
+          meaning: "Chân, Đủ",
+          example: "足りる (tariru - Đủ)",
+        },
+        {
+          kanji: "耳",
+          hanviet: "Nhĩ",
+          on: "ji",
+          kun: "mimi",
+          meaning: "Tai",
+          example: "耳が聞こえる (mimi ga kikoeru - Nghe được)",
+        },
+        {
+          kanji: "目",
+          hanviet: "Mục",
+          on: "moku",
+          kun: "me",
+          meaning: "Mắt",
+          example: "目が覚める (me ga sameru - Thức dậy)",
+        },
+        {
+          kanji: "体",
+          hanviet: "Thể",
+          on: "tai",
+          kun: "karada",
+          meaning: "Cơ thể",
+          example: "体が痛い (karada ga itai - Cơ thể đau)",
+        },
+        {
+          kanji: "上",
+          hanviet: "Thượng",
+          on: "jou",
+          kun: "ue",
+          meaning: "Trên",
+          example: "上着 (uwagi - Áo khoác)",
+        },
+        {
+          kanji: "下",
+          hanviet: "Hạ",
+          on: "ka",
+          kun: "shita",
+          meaning: "Dưới",
+          example: "下着 (shitagi - Đồ lót)",
+        },
+        {
+          kanji: "中",
+          hanviet: "Trung",
+          on: "chuu",
+          kun: "naka",
+          meaning: "Giữa, Bên trong",
+          example: "中学生 (chuugakusei - Học sinh cấp 2)",
+        },
+        {
+          kanji: "大",
+          hanviet: "Đại",
+          on: "dai",
+          kun: "ou",
+          meaning: "Lớn",
+          example: "大学 (daigaku - Đại học)",
+        },
+        {
+          kanji: "小",
+          hanviet: "Tiểu",
+          on: "shou",
+          kun: "chiisai",
+          meaning: "Nhỏ",
+          example: "小さい (chiisai - Nhỏ)",
+        },
+        {
+          kanji: "本",
+          hanviet: "Bản",
+          on: "hon",
+          kun: "moto",
+          meaning: "Sách, Nguồn gốc",
+          example: "日本 (nihon - Nhật Bản)",
+        },
+        {
+          kanji: "力",
+          hanviet: "Lực",
+          on: "ryoku",
+          kun: "chikara",
+          meaning: "Sức mạnh",
+          example: "体力 (tairyoku - Sức khỏe)",
+        },
+        {
+          kanji: "何",
+          hanviet: "Hà",
+          on: "ka",
+          kun: "nani",
+          meaning: "Cái gì",
+          example: "何時 (nanji - Mấy giờ)",
+        },
+        {
+          kanji: "出",
+          hanviet: "Xuất",
+          on: "shutsu",
+          kun: "de",
+          meaning: "Ra ngoài",
+          example: "出かける (dekakeru - Đi ra ngoài)",
+        },
+        {
+          kanji: "入",
+          hanviet: "Nhập",
+          on: "nyuu",
+          kun: "hairu",
+          meaning: "Vào trong",
+          example: "入る (hairu - Vào)",
+        },
+        {
+          kanji: "明",
+          hanviet: "Minh",
+          on: "mei",
+          kun: "aka",
+          meaning: "Sáng, Ánh sáng",
+          example: "明日 (ashita - Ngày mai)",
+        },
+        {
+          kanji: "休",
+          hanviet: "Hưu",
+          on: "kyuu",
+          kun: "yasumu",
+          meaning: "Nghỉ ngơi",
+          example: "休む (yasumu - Nghỉ)",
+        },
+        {
+          kanji: "好",
+          hanviet: "Hảo",
+          on: "kou",
+          kun: "suki",
+          meaning: "Thích",
+          example: "好き (suki - Thích)",
+        },
+        {
+          kanji: "男",
+          hanviet: "Nam",
+          on: "dan",
+          kun: "otoko",
+          meaning: "Đàn ông",
+          example: "男の子 (otokonoko - Con trai)",
+        },
+        {
+          kanji: "間",
+          hanviet: "Gian",
+          on: "kan",
+          kun: "aida",
+          meaning: "Khoảng cách, Không gian",
+          example: "時間 (jikan - Thời gian)",
+        },
+        {
+          kanji: "岩",
+          hanviet: "Nham",
+          on: "gan",
+          kun: "iwa",
+          meaning: "Đá lớn",
+          example: "岩石 (ganseki - Đá)",
+        },
+        {
+          kanji: "畑",
+          hanviet: "Bãi",
+          on: "hata",
+          kun: "hatake",
+          meaning: "Cánh đồng",
+          example: "畑仕事 (hatashigoto - Công việc đồng ruộng)",
+        },
+        {
+          kanji: "森",
+          hanviet: "Sâm",
+          on: "shin",
+          kun: "mori",
+          meaning: "Rừng",
+          example: "森林 (shinrin - Rừng)",
+        },
+        {
+          kanji: "林",
+          hanviet: "Lâm",
+          on: "rin",
+          kun: "hayashi",
+          meaning: "Lùm cây",
+          example: "林道 (rindou - Đường rừng)",
+        },
+        {
+          kanji: "右",
+          hanviet: "Hữu",
+          on: "u",
+          kun: "migi",
+          meaning: "Phải",
+          example: "右側 (migigawa - Bên phải)",
+        },
+        {
+          kanji: "左",
+          hanviet: "Tả",
+          on: "sa",
+          kun: "hidari",
+          meaning: "Trái",
+          example: "左側 (hidarigawa - Bên trái)",
+        },
+        {
+          kanji: "東",
+          hanviet: "Đông",
+          on: "tou",
+          kun: "higashi",
+          meaning: "Đông",
+          example: "東京 (toukyou - Tokyo)",
+        },
+        {
+          kanji: "西",
+          hanviet: "Tây",
+          on: "sei",
+          kun: "nishi",
+          meaning: "Tây",
+          example: "西口 (nishiguchi - Cửa tây)",
+        },
+        {
+          kanji: "北",
+          hanviet: "Bắc",
+          on: "hoku",
+          kun: "kita",
+          meaning: "Bắc",
+          example: "北海道 (hokkaidou - Hokkaido)",
+        },
+        {
+          kanji: "南",
+          hanviet: "Nam",
+          on: "nan",
+          kun: "minami",
+          meaning: "Nam",
+          example: "南口 (minamiguchi - Cửa nam)",
+        },
+        {
+          kanji: "外",
+          hanviet: "Ngoại",
+          on: "gai",
+          kun: "soto",
+          meaning: "Bên ngoài",
+          example: "外国人 (gaikokujin - Người nước ngoài)",
+        },
+        {
+          kanji: "駅",
+          hanviet: "Dịch",
+          on: "eki",
+          kun: "",
+          meaning: "Ga tàu",
+          example: "駅前 (ekimae - Trước ga)",
+        },
+        {
+          kanji: "会",
+          hanviet: "Hội",
+          on: "kai",
+          kun: "au",
+          meaning: "Cuộc họp, Gặp",
+          example: "会社 (kaisha - Công ty)",
+        },
+        {
+          kanji: "内",
+          hanviet: "Nội",
+          on: "nai",
+          kun: "uchi",
+          meaning: "Bên trong",
+          example: "国内 (kokunai - Trong nước)",
+        },
+        {
+          kanji: "長",
+          hanviet: "Trường",
+          on: "chou",
+          kun: "naga",
+          meaning: "Dài, Lãnh đạo",
+          example: "長い (nagai - Dài)",
+        },
+        {
+          kanji: "高",
+          hanviet: "Cao",
+          on: "kou",
+          kun: "taka",
+          meaning: "Cao, Đắt",
+          example: "高い (takai - Cao)",
+        },
+        {
+          kanji: "名",
+          hanviet: "Danh",
+          on: "mei",
+          kun: "na",
+          meaning: "Tên",
+          example: "名前 (namae - Tên)",
+        },
+        {
+          kanji: "行",
+          hanviet: "Hành",
+          on: "kou",
+          kun: "iku",
+          meaning: "Đi",
+          example: "行く (iku - Đi)",
+        },
+        {
+          kanji: "来",
+          hanviet: "Lai",
+          on: "rai",
+          kun: "kuru",
+          meaning: "Đến",
+          example: "来る (kuru - Đến)",
+        },
+        {
+          kanji: "食",
+          hanviet: "Thực",
+          on: "shoku",
+          kun: "taberu",
+          meaning: "Ăn",
+          example: "食べる (taberu - Ăn)",
+        },
+        {
+          kanji: "見",
+          hanviet: "Kiến",
+          on: "ken",
+          kun: "miru",
+          meaning: "Nhìn, Thấy",
+          example: "見る (miru - Nhìn)",
+        },
+        {
+          kanji: "聞",
+          hanviet: "Văn",
+          on: "bun",
+          kun: "kiku",
+          meaning: "Nghe",
+          example: "聞く (kiku - Nghe)",
+        },
+        {
+          kanji: "読",
+          hanviet: "Độc",
+          on: "doku",
+          kun: "yomu",
+          meaning: "Đọc",
+          example: "読む (yomu - Đọc)",
+        },
+        {
+          kanji: "書",
+          hanviet: "Thư",
+          on: "sho",
+          kun: "kaku",
+          meaning: "Viết",
+          example: "書く (kaku - Viết)",
+        },
+        {
+          kanji: "話",
+          hanviet: "Thoại",
+          on: "wa",
+          kun: "hanasu",
+          meaning: "Nói",
+          example: "話す (hanasu - Nói)",
+        },
+        {
+          kanji: "午",
+          hanviet: "Ngọ",
+          on: "go",
+          kun: "uma",
+          meaning: "Trưa",
+          example: "午後 (gogo - Buổi chiều)",
+        },
+        {
+          kanji: "前",
+          hanviet: "Tiền",
+          on: "zen",
+          kun: "mae",
+          meaning: "Trước",
+          example: "名前 (namae - Tên)",
+        },
+        {
+          kanji: "後",
+          hanviet: "Hậu",
+          on: "go",
+          kun: "ushiro",
+          meaning: "Sau",
+          example: "後ろ (ushiro - Phía sau)",
+        },
+        {
+          kanji: "毎",
+          hanviet: "Mỗi",
+          on: "mai",
+          kun: "",
+          meaning: "Mỗi",
+          example: "毎日 (mainichi - Mỗi ngày)",
+        },
+        {
+          kanji: "校",
+          hanviet: "Hiệu",
+          on: "kou",
+          kun: "",
+          meaning: "Trường học",
+          example: "学校 (gakkou - Trường học)",
+        },
+        {
+          kanji: "語",
+          hanviet: "Ngữ",
+          on: "go",
+          kun: "kataru",
+          meaning: "Ngôn ngữ",
+          example: "日本語 (nihongo - Tiếng Nhật)",
+        },
+        {
+          kanji: "今",
+          hanviet: "Kim",
+          on: "kon",
+          kun: "ima",
+          meaning: "Bây giờ",
+          example: "今日 (kyou - Hôm nay)",
+        },
+        {
+          kanji: "電",
+          hanviet: "Điện",
+          on: "den",
+          kun: "",
+          meaning: "Điện",
+          example: "電話 (denwa - Điện thoại)",
+        },
+        {
+          kanji: "国",
+          hanviet: "Quốc",
+          on: "koku",
+          kun: "kuni",
+          meaning: "Quốc gia",
+          example: "日本国 (nihonkoku - Nước Nhật)",
+        },
+      ];
+      let kanjiList = [];
+      let currentKanji;
+      let meaningOptions = [];
+      let incorrectWords = [];
+ 
+      const kanjiGroups = [];
+      for (let i = 0; i < updatedKanjiList.length; i += 5) {
+        kanjiGroups.push(updatedKanjiList.slice(i, i + 5));
+      }
+ 
+      function createGroupSelection() {
+        const groupDiv = document.getElementById("group-selection");
+        kanjiGroups.forEach((group, index) => {
+          const div = document.createElement("div");
+          div.className = "meaning-option"; // Reusing this class for consistent styling
+ 
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.id = `group${index}`;
+          checkbox.name = "kanjiGroup";
+          checkbox.value = index;
+          checkbox.addEventListener("change", toggleStartButton);
+ 
+          const label = document.createElement("label");
+          label.htmlFor = `group${index}`;
+          label.textContent = `Group ${index + 1}: ${group
+            .map((k) => k.kanji)
+            .join(", ")}`;
+ 
+          div.appendChild(checkbox);
+          div.appendChild(label);
+          div.onclick = () => {
+            checkbox.checked = !checkbox.checked;
+            toggleStartButton();
+          };
+          groupDiv.insertBefore(div, document.getElementById("startButton"));
+        });
+      }
+ 
+      function toggleStartButton() {
+        const checkboxes = document.querySelectorAll(
+          'input[name="kanjiGroup"]:checked'
+        );
+        document.getElementById("startButton").disabled =
+          checkboxes.length === 0;
+      }
+ 
+      function startExercise() {
+        const selectedGroups = Array.from(
+          document.querySelectorAll('input[name="kanjiGroup"]:checked')
+        ).map((checkbox) => parseInt(checkbox.value));
+ 
+        kanjiList = selectedGroups
+          .map((groupIndex) => kanjiGroups[groupIndex])
+          .flat();
+ 
+        incorrectWords = [];
+        if (kanjiList.length > 0) {
+          document.getElementById("group-selection").style.display = "none";
+          document.getElementById("exercise-container").style.display = "flex";
+          getRandomKanji();
+        }
+      }
+ 
+      function generateMeaningOptions() {
+        // Clear previous options
+        const meaningContainer = document.getElementById("meaningOptions");
+        meaningContainer.innerHTML = "";
+ 
+        // Generate 3 random wrong meanings plus the correct one
+        meaningOptions = [currentKanji.meaning];
+        while (meaningOptions.length < 4) {
+          const randomKanji =
+            updatedKanjiList[
+              Math.floor(Math.random() * updatedKanjiList.length)
+            ];
+          if (
+            !meaningOptions.includes(randomKanji.meaning) &&
+            randomKanji.meaning !== currentKanji.meaning
+          ) {
+            meaningOptions.push(randomKanji.meaning);
+          }
+        }
+ 
+        // Shuffle options
+        meaningOptions.sort(() => Math.random() - 0.5);
+ 
+        // Create radio buttons
+        meaningOptions.forEach((meaning, index) => {
+          const div = document.createElement("div");
+          div.className = "meaning-option";
+ 
+          const input = document.createElement("input");
+          input.type = "radio";
+          input.name = "meaning";
+          input.id = `meaning${index}`;
+          input.value = meaning;
+ 
+          const label = document.createElement("label");
+          label.htmlFor = `meaning${index}`;
+          label.textContent = meaning;
+ 
+          div.appendChild(input);
+          div.appendChild(label);
+          div.onclick = () => {
+            input.checked = true;
+          };
+          meaningContainer.appendChild(div);
+        });
+      }
+ 
+      function checkAnswer() {
+        const onInput = document
+          .getElementById("onInput")
+          .value.toLowerCase()
+          .trim();
+        const kunInput = document
+          .getElementById("kunInput")
+          .value.toLowerCase()
+          .trim();
+        const hvInput = document
+          .getElementById("hvInput")
+          .value.toLowerCase()
+          .trim();
+        const selectedMeaning = document.querySelector(
+          'input[name="meaning"]:checked'
+        );
+        const resultDiv = document.getElementById("result");
+        resultDiv.style.display = "block";
+        resultDiv.className = ""; // Reset classes
+ 
+        const correctOn =
+          (currentKanji.on === "" && onInput === "") ||
+          onInput === currentKanji.on;
+        const correctKun =
+          (currentKanji.kun === "" && kunInput === "") ||
+          kunInput === currentKanji.kun;
+        const correctHV =
+          (currentKanji.hanviet === "" && hvInput === "") ||
+          hvInput === currentKanji.hanviet?.toLowerCase();
+        const correctMeaning =
+          selectedMeaning && selectedMeaning.value === currentKanji.meaning;
+ 
+        if (!selectedMeaning) {
+          resultDiv.className = "warning";
+          resultDiv.textContent = "Vui lòng chọn một nghĩa trước!";
+          return;
+        }
+ 
+        document.getElementById("input-container").style.display = "none";
+ 
+        if (correctKun && correctOn && correctMeaning && correctHV) {
+          document.getElementById("meaningOptions").style.display = "none";
+          resultDiv.className = "correct";
+          resultDiv.textContent = "Correctly! This word will be removed...";
+ 
+          document.getElementById("wordOn").textContent =
+            currentKanji.on || "(none)";
+          document.getElementById("wordKun").textContent =
+            currentKanji.kun || "(none)";
+          document.getElementById("wordHanViet").textContent =
+            currentKanji.hanviet || "(none)";
+          document.getElementById("wordMeaning").textContent =
+            currentKanji.meaning;
+          document.getElementById("wordExample").textContent =
+            currentKanji.example;
+          document.getElementById("wordInfo").style.display = "block";
+ 
+          kanjiList = kanjiList.filter((k) => k.kanji !== currentKanji.kanji);
+          setTimeout(getRandomKanji, 2500);
+        } else {
+          if (!incorrectWords.includes(currentKanji.kanji)) {
+            incorrectWords.push(currentKanji.kanji);
+          }
+          resultDiv.className = "incorrect";
+          let errorMessage = "Incorrect! The correct answer is:<br>";
+          errorMessage += `Hán Việt: ${currentKanji.hanviet || "(none)"}<br>`;
+          errorMessage += `On: ${currentKanji.on || "(none)"}<br>`;
+          errorMessage += `Kun: ${currentKanji.kun || "(none)"}<br>`;
+          errorMessage += `Meaning: ${currentKanji.meaning}`;
+          resultDiv.innerHTML = errorMessage;
+          setTimeout(getRandomKanji, 2500);
+        }
+      }
+ 
+      function getRandomKanji() {
+        if (kanjiList.length === 0) {
+          document.getElementById("kanji").textContent = "🎉 Completed!";
+          const resultDiv = document.getElementById("result");
+          resultDiv.style.display = "block";
+          resultDiv.className = "completed";
+          resultDiv.innerHTML =
+            "Congratulations! You've finished the exercise!" +
+            (incorrectWords.length === 0
+              ? ""
+              : "<br/>Incorrect words: " + incorrectWords.join(", "));
+          document.getElementById("hvInput").disabled = true;
+          document.getElementById("onInput").disabled = true;
+          document.getElementById("kunInput").disabled = true;
+          document.getElementById("meaningOptions").innerHTML = "";
+          document.getElementById("wordInfo").style.display = "none";
+          document.getElementById("group-selection").style.display = "flex";
+          document.getElementById("input-container").style.display = "none";
+          return;
+        }
+ 
+        const randomIndex = Math.floor(Math.random() * kanjiList.length);
+        currentKanji = kanjiList[randomIndex];
+        document.getElementById("input-container").style.display = "flex";
+        document.getElementById("kanji").textContent = currentKanji.kanji;
+        document.getElementById("onInput").value = "";
+        document.getElementById("kunInput").value = "";
+        document.getElementById("hvInput").value = "";
+        document.getElementById("onInput").disabled = false;
+        document.getElementById("kunInput").disabled = false;
+        document.getElementById("hvInput").disabled = false;
+        document.getElementById("result").textContent = "";
+        document.getElementById("result").style.display = "none";
+        document.getElementById("wordInfo").style.display = "none";
+        document.getElementById("meaningOptions").style.display = "block";
+        document.getElementById("input-container").style.display = "flex";
+ 
+        generateMeaningOptions();
+        document.getElementById("hvInput").focus();
+      }
+ 
+      document
+        .getElementById("hvInput")
+        .addEventListener("keypress", function (event) {
+          if (event.key === "Enter") {
+            document.getElementById("onInput").focus();
+          }
+        });
+ 
+      document
+        .getElementById("onInput")
+        .addEventListener("keypress", function (event) {
+          if (event.key === "Enter") {
+            document.getElementById("kunInput").focus();
+          }
+        });
+ 
+      document
+        .getElementById("kunInput")
+        .addEventListener("keypress", function (event) {
+          if (event.key === "Enter") {
+            const firstRadio = document.querySelector('input[name="meaning"]');
+            if (firstRadio) firstRadio.focus();
+          }
+        });
+ 
+      window.onload = createGroupSelection;
+    </script>
+  </body>
+</html>
