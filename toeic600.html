@@ -1,0 +1,931 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TOEIC Flashcards</title>
+  <style>
+    :root {
+      --bg: #f7f4ed;
+      --panel: #fffdf8;
+      --text: #1f2933;
+      --muted: #6b7280;
+      --line: #e4ded3;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --ok: #15803d;
+      --bad: #b91c1c;
+      --warn: #b45309;
+      --shadow: 0 14px 30px rgba(31, 41, 51, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      border-radius: 8px;
+      min-height: 44px;
+      padding: 10px 14px;
+      background: var(--accent);
+      color: white;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    button:hover { background: var(--accent-dark); }
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
+
+    .app {
+      width: min(1040px, 100%);
+      margin: 0 auto;
+      padding: 18px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 8px 0 16px;
+    }
+
+    .title h1 {
+      margin: 0;
+      font-size: clamp(26px, 5vw, 42px);
+      line-height: 1.1;
+    }
+
+    .title p {
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+
+    .ghost {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--line);
+    }
+
+    .ghost:hover {
+      background: #edf3ff;
+    }
+
+    .danger {
+      background: #fff1f2;
+      color: var(--bad);
+      border: 1px solid #fecdd3;
+    }
+
+    .danger:hover {
+      background: #ffe4e6;
+    }
+
+    .success {
+      background: var(--ok);
+    }
+
+    .success:hover {
+      background: #166534;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 3px 10px rgba(31, 41, 51, 0.05);
+    }
+
+    .topic-card {
+      text-align: left;
+      color: var(--text);
+      width: 100%;
+      background: var(--panel);
+    }
+
+    .topic-card:hover {
+      background: #fdf7ea;
+      border-color: #d6cbbb;
+    }
+
+    .topic-card h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #f1ede5;
+      color: #4b5563;
+      font-weight: 700;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      margin: 14px 0;
+    }
+
+    .toolbar-left,
+    .toolbar-right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .word-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 10px;
+    }
+
+    .word-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: start;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .word-row input {
+      width: 20px;
+      height: 20px;
+      margin-top: 3px;
+      accent-color: var(--ok);
+    }
+
+    .word-main {
+      min-width: 0;
+    }
+
+    .word {
+      font-weight: 800;
+      font-size: 17px;
+    }
+
+    .ipa {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .meaning {
+      margin-top: 4px;
+      color: #374151;
+      font-size: 14px;
+    }
+
+    .mode-card {
+      display: grid;
+      gap: 12px;
+      max-width: 760px;
+      margin: 18px auto 0;
+    }
+
+    .mode-option {
+      text-align: left;
+      background: var(--panel);
+      color: var(--text);
+      border: 1px solid var(--line);
+      padding: 18px;
+    }
+
+    .mode-option strong {
+      display: block;
+      font-size: 21px;
+      margin-bottom: 4px;
+    }
+
+    .study-wrap {
+      max-width: 760px;
+      margin: 18px auto 0;
+    }
+
+    .progress {
+      height: 10px;
+      background: #e7e0d4;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 12px 0;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: var(--accent);
+      transition: width 180ms ease;
+    }
+
+    .flashcard {
+      width: 100%;
+      min-height: 330px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 26px;
+      background: var(--panel);
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .flashcard:hover {
+      background: var(--panel);
+    }
+
+    .flashcard > span {
+      display: grid;
+      justify-items: center;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .flash-word {
+      display: block;
+      font-size: clamp(36px, 10vw, 68px);
+      line-height: 1.05;
+      font-weight: 900;
+      overflow-wrap: anywhere;
+      text-align: center;
+    }
+
+    .flash-ipa {
+      display: block;
+      font-size: 20px;
+      color: var(--muted);
+      line-height: 1.35;
+      text-align: center;
+      overflow-wrap: anywhere;
+    }
+
+    .flash-meaning {
+      display: block;
+      margin-top: 14px;
+      font-size: clamp(24px, 7vw, 42px);
+      font-weight: 800;
+      color: var(--ok);
+      line-height: 1.18;
+      text-align: center;
+      overflow-wrap: anywhere;
+    }
+
+    .study-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .quiz-question {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 22px;
+      text-align: center;
+    }
+
+    .quiz-options {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .option {
+      text-align: left;
+      background: var(--panel);
+      color: var(--text);
+      border: 1px solid var(--line);
+      font-weight: 700;
+    }
+
+    .option:hover {
+      background: #fdf7ea;
+    }
+
+    .option.correct {
+      background: #dcfce7;
+      color: #14532d;
+      border-color: #86efac;
+    }
+
+    .option.wrong {
+      background: #fee2e2;
+      color: #7f1d1d;
+      border-color: #fecaca;
+    }
+
+    .feedback {
+      min-height: 28px;
+      margin-top: 12px;
+      font-weight: 800;
+    }
+
+    .feedback.ok { color: var(--ok); }
+    .feedback.bad { color: var(--bad); }
+
+    .empty {
+      text-align: center;
+      padding: 30px 14px;
+      color: var(--muted);
+    }
+
+    .footer-note {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .app { padding: 14px; }
+      .topbar { display: block; }
+      .topbar button { margin-top: 12px; width: 100%; }
+      .toolbar { display: grid; }
+      .toolbar-left, .toolbar-right { display: grid; grid-template-columns: 1fr; }
+      .toolbar button { width: 100%; }
+      .study-actions { grid-template-columns: 1fr; }
+      .flashcard { min-height: 290px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="title">
+        <h1>TOEIC Flashcards</h1>
+        <p id="subtitle">Chọn chủ đề, bỏ qua từ đã biết, rồi học bằng flashcard hoặc trắc nghiệm.</p>
+      </div>
+      <button class="ghost" id="homeBtn" type="button">Chủ đề</button>
+    </header>
+
+    <section id="app"></section>
+  </main>
+
+  <script>
+    const DATA_TEXT = `
+Business & Management|delegation|/ˌdelɪˈɡeɪʃən/|sự ủy quyền; giao nhiệm vụ
+Business & Management|subsidiary|/səbˈsɪdiˌeri/|công ty con
+Business & Management|affiliate|/əˈfɪliət/|chi nhánh; đơn vị liên kết
+Business & Management|accountability|/əˌkaʊntəˈbɪləti/|trách nhiệm giải trình
+Business & Management|outcome|/ˈaʊtkʌm/|kết quả
+Business & Management|assessment|/əˈsesmənt/|sự đánh giá
+Business & Management|acquisition|/ˌækwɪˈzɪʃən/|sự mua lại; sự thu nhận
+Business & Management|governance|/ˈɡʌvərnəns/|sự quản trị
+Business & Management|consensus|/kənˈsensəs/|sự đồng thuận
+Office & Administration|cubicle|/ˈkjuːbɪkəl/|ô làm việc nhỏ
+Office & Administration|corridor|/ˈkɔːrɪdɔːr/|hành lang
+Office & Administration|memorandum|/ˌmeməˈrændəm/|bản ghi nhớ
+Office & Administration|bulletin|/ˈbʊlətɪn/|bản tin; thông báo
+Office & Administration|stationery|/ˈsteɪʃəneri/|văn phòng phẩm
+Office & Administration|appointment|/əˈpɔɪntmənt/|cuộc hẹn; sự bổ nhiệm
+Office & Administration|postage|/ˈpoʊstɪdʒ/|bưu phí
+Office & Administration|binder|/ˈbaɪndər/|bìa kẹp hồ sơ
+Office & Administration|planner|/ˈplænər/|sổ lập kế hoạch; người lập kế hoạch
+Human Resources|vacancy|/ˈveɪkənsi/|vị trí trống; chỗ trống
+Human Resources|occupation|/ˌɑːkjuˈpeɪʃən/|nghề nghiệp
+Human Resources|orientation|/ˌɔːriənˈteɪʃən/|buổi định hướng
+Human Resources|probation|/proʊˈbeɪʃən/|thời gian thử việc
+Human Resources|personnel|/ˌpɜːrsəˈnel/|nhân sự
+Human Resources|subordinate|/səˈbɔːrdɪnət/|cấp dưới
+Human Resources|shift|/ʃɪft/|ca làm việc
+Human Resources|pension|/ˈpenʃən/|lương hưu
+Human Resources|attendance|/əˈtendəns/|sự có mặt; chuyên cần
+Human Resources|absence|/ˈæbsəns/|sự vắng mặt
+Human Resources|appraisal|/əˈpreɪzəl/|sự đánh giá hiệu suất
+Human Resources|incentive|/ɪnˈsentɪv/|sự khuyến khích; khoản thưởng
+Marketing & Sales|publicity|/pʌbˈlɪsəti/|sự quảng bá; công chúng biết đến
+Marketing & Sales|brochure|/broʊˈʃʊr/|tờ quảng cáo; sách giới thiệu
+Marketing & Sales|flyer|/ˈflaɪər/|tờ rơi
+Marketing & Sales|segment|/ˈseɡmənt/|phân khúc
+Marketing & Sales|coupon|/ˈkuːpɑːn/|phiếu giảm giá
+Marketing & Sales|bargain|/ˈbɑːrɡən/|món hời; mặc cả
+Marketing & Sales|wholesale|/ˈhoʊlseɪl/|bán sỉ
+Marketing & Sales|outlet|/ˈaʊtlet/|cửa hàng bán lẻ; điểm bán
+Marketing & Sales|commission|/kəˈmɪʃən/|hoa hồng
+Marketing & Sales|endorsement|/ɪnˈdɔːrsmənt/|sự chứng thực; ủng hộ
+Marketing & Sales|showcase|/ˈʃoʊkeɪs/|trưng bày; giới thiệu nổi bật
+Finance & Accounting|deficit|/ˈdefɪsɪt/|thâm hụt
+Finance & Accounting|surplus|/ˈsɜːrpləs/|thặng dư
+Finance & Accounting|shareholder|/ˈʃerhoʊldər/|cổ đông
+Finance & Accounting|liability|/ˌlaɪəˈbɪləti/|khoản nợ; trách nhiệm pháp lý
+Finance & Accounting|equity|/ˈekwəti/|vốn chủ sở hữu
+Finance & Accounting|installment|/ɪnˈstɔːlmənt/|khoản trả góp
+Finance & Accounting|reimbursement|/ˌriːɪmˈbɜːrsmənt/|sự hoàn trả chi phí
+Finance & Accounting|payroll|/ˈpeɪroʊl/|bảng lương
+Finance & Accounting|fiscal|/ˈfɪskəl/|thuộc tài chính; tài khóa
+Finance & Accounting|dividend|/ˈdɪvɪdend/|cổ tức
+Finance & Accounting|bond|/bɑːnd/|trái phiếu
+Travel & Transportation|itinerary|/aɪˈtɪnəreri/|lịch trình chuyến đi
+Travel & Transportation|lodging|/ˈlɑːdʒɪŋ/|chỗ ở tạm
+Travel & Transportation|concierge|/kɑːnsiˈerʒ/|nhân viên hỗ trợ khách sạn
+Travel & Transportation|baggage|/ˈbæɡɪdʒ/|hành lý
+Travel & Transportation|customs|/ˈkʌstəmz/|hải quan
+Travel & Transportation|boarding|/ˈbɔːrdɪŋ/|việc lên máy bay/tàu
+Travel & Transportation|aircraft|/ˈerkræft/|máy bay
+Travel & Transportation|shuttle|/ˈʃʌtəl/|xe đưa đón
+Travel & Transportation|fare|/fer/|giá vé
+Travel & Transportation|commute|/kəˈmjuːt/|đi làm hằng ngày
+Travel & Transportation|intersection|/ˌɪntərˈsekʃən/|ngã tư; giao lộ
+Travel & Transportation|shipment|/ˈʃɪpmənt/|lô hàng; sự vận chuyển
+Travel & Transportation|cargo|/ˈkɑːrɡoʊ/|hàng hóa vận chuyển
+Travel & Transportation|freight|/freɪt/|hàng chuyên chở; cước vận tải
+Travel & Transportation|ferry|/ˈferi/|phà
+Travel & Transportation|cruise|/kruːz/|chuyến du ngoạn bằng tàu
+Travel & Transportation|baggage-claim|/ˈbæɡɪdʒ kleɪm/|khu nhận hành lý
+Travel & Transportation|aisle|/aɪl/|lối đi giữa các hàng ghế
+Travel & Transportation|boarding-pass|/ˈbɔːrdɪŋ pæs/|thẻ lên máy bay
+Travel & Transportation|carry-on|/ˈkeri ɑːn/|hành lý xách tay
+Meetings & Communication|correspondence|/ˌkɔːrəˈspɑːndəns/|thư từ trao đổi
+Meetings & Communication|inquiry|/ˈɪnkwəri/|câu hỏi; yêu cầu thông tin
+Meetings & Communication|teleconference|/ˈtelikɑːnfərəns/|hội nghị qua điện thoại/video
+Meetings & Communication|venue|/ˈvenjuː/|địa điểm tổ chức
+Meetings & Communication|handout|/ˈhændaʊt/|tài liệu phát tay
+Meetings & Communication|briefing|/ˈbriːfɪŋ/|buổi thông báo ngắn
+Meetings & Communication|advisory|/ədˈvaɪzəri/|thông báo tư vấn; mang tính khuyến cáo
+Meetings & Communication|interpreter|/ɪnˈtɜːrprətər/|phiên dịch viên
+Manufacturing & Logistics|plant|/plænt/|nhà máy
+Manufacturing & Logistics|defect|/ˈdiːfekt/|lỗi; khuyết tật
+Manufacturing & Logistics|shortage|/ˈʃɔːrtɪdʒ/|sự thiếu hụt
+Manufacturing & Logistics|hazard|/ˈhæzərd/|mối nguy hiểm
+Manufacturing & Logistics|precaution|/prɪˈkɔːʃən/|biện pháp phòng ngừa
+Manufacturing & Logistics|prototype|/ˈproʊtətaɪp/|nguyên mẫu
+Manufacturing & Logistics|forklift|/ˈfɔːrklɪft/|xe nâng
+Manufacturing & Logistics|conveyor|/kənˈveɪər/|băng chuyền
+Manufacturing & Logistics|pallet|/ˈpælət/|kệ kê hàng
+Manufacturing & Logistics|yield|/jiːld/|sản lượng; tạo ra
+Manufacturing & Logistics|dispatcher|/dɪˈspætʃər/|nhân viên điều phối
+Purchasing & Contracts|clause|/klɔːz/|điều khoản
+Purchasing & Contracts|guarantee|/ˌɡerənˈtiː/|sự bảo đảm; bảo đảm
+Purchasing & Contracts|penalty|/ˈpenəlti/|khoản phạt
+Purchasing & Contracts|settlement|/ˈsetəlmənt/|sự dàn xếp; thanh toán
+Purchasing & Contracts|dispute|/dɪˈspjuːt/|tranh chấp
+Purchasing & Contracts|compensation|/ˌkɑːmpənˈseɪʃən/|sự bồi thường; thù lao
+Purchasing & Contracts|procurement|/prəˈkjʊrmənt/|sự mua sắm; thu mua
+Purchasing & Contracts|bidder|/ˈbɪdər/|người/công ty dự thầu
+Purchasing & Contracts|amendment|/əˈmendmənt/|sự sửa đổi; điều khoản bổ sung
+Purchasing & Contracts|validity|/vəˈlɪdəti/|hiệu lực; tính hợp lệ
+Purchasing & Contracts|confidentiality|/ˌkɑːnfɪˌdenʃiˈæləti/|tính bảo mật
+Purchasing & Contracts|indemnity|/ɪnˈdemnəti/|sự bồi thường thiệt hại
+Purchasing & Contracts|arbitration|/ˌɑːrbɪˈtreɪʃən/|trọng tài phân xử
+Purchasing & Contracts|disclosure|/dɪsˈkloʊʒər/|sự tiết lộ; công bố
+Purchasing & Contracts|tender|/ˈtendər/|hồ sơ mời thầu; đấu thầu
+Purchasing & Contracts|prerequisite|/ˌpriːˈrekwəzɪt/|điều kiện tiên quyết
+Purchasing & Contracts|remainder|/rɪˈmeɪndər/|phần còn lại
+Purchasing & Contracts|surcharge|/ˈsɜːrtʃɑːrdʒ/|phụ phí
+Purchasing & Contracts|clearance|/ˈklɪrəns/|sự thông quan; sự giải phóng hàng
+Purchasing & Contracts|consent|/kənˈsent/|sự đồng ý
+Purchasing & Contracts|proof-of-purchase|/pruːf əv ˈpɜːrtʃəs/|bằng chứng mua hàng
+Purchasing & Contracts|merchant|/ˈmɜːrtʃənt/|thương nhân; người bán
+Purchasing & Contracts|rebate|/ˈriːbeɪt/|khoản hoàn tiền; giảm giá sau mua
+Technology & IT|reliable|/rɪˈlaɪəbəl/|đáng tin cậy
+Technology & IT|outage|/ˈaʊtɪdʒ/|sự gián đoạn dịch vụ
+Technology & IT|malfunction|/ˌmælˈfʌŋkʃən/|sự trục trặc
+Real Estate & Facilities|stairway|/ˈsterweɪ/|cầu thang
+Real Estate & Facilities|landlord|/ˈlændlɔːrd/|chủ nhà
+Real Estate & Facilities|utility|/juːˈtɪləti/|tiện ích; dịch vụ điện nước
+Real Estate & Facilities|plumbing|/ˈplʌmɪŋ/|hệ thống ống nước
+Real Estate & Facilities|heating|/ˈhiːtɪŋ/|hệ thống sưởi
+Real Estate & Facilities|ventilation|/ˌventɪˈleɪʃən/|sự thông gió
+Real Estate & Facilities|renovation|/ˌrenəˈveɪʃən/|sự cải tạo
+Real Estate & Facilities|blueprint|/ˈbluːprɪnt/|bản thiết kế
+Real Estate & Facilities|furniture|/ˈfɜːrnɪtʃər/|đồ nội thất
+Real Estate & Facilities|appliance|/əˈplaɪəns/|thiết bị gia dụng
+Real Estate & Facilities|vacant|/ˈveɪkənt/|còn trống
+Real Estate & Facilities|occupied|/ˈɑːkjupaɪd/|đang được sử dụng; có người ở
+Real Estate & Facilities|spacious|/ˈspeɪʃəs/|rộng rãi
+Real Estate & Facilities|furnished|/ˈfɜːrnɪʃt/|có trang bị nội thất
+Real Estate & Facilities|premises|/ˈpremɪsɪz/|cơ sở; khuôn viên
+Real Estate & Facilities|mortgage|/ˈmɔːrɡɪdʒ/|khoản vay thế chấp
+Real Estate & Facilities|ceiling|/ˈsiːlɪŋ/|trần nhà
+Real Estate & Facilities|basement|/ˈbeɪsmənt/|tầng hầm
+Real Estate & Facilities|leaseholder|/ˈliːshoʊldər/|người thuê theo hợp đồng
+Real Estate & Facilities|occupancy|/ˈɑːkjəpənsi/|tình trạng sử dụng/chỗ ở
+Real Estate & Facilities|floorplan|/ˈflɔːrplæn/|sơ đồ mặt bằng
+Real Estate & Facilities|walkthrough|/ˈwɔːkθruː/|buổi xem/kiểm tra từng bước
+Real Estate & Facilities|carport|/ˈkɑːrpɔːrt/|mái che chỗ đậu xe
+Real Estate & Facilities|amenities|/əˈmenətiz/|tiện nghi
+Real Estate & Facilities|upkeep|/ˈʌpkiːp/|sự bảo trì
+Customer Service & Hospitality|attendant|/əˈtendənt/|nhân viên phục vụ
+Customer Service & Hospitality|clerk|/klɜːrk/|nhân viên bán hàng/văn phòng
+Customer Service & Hospitality|beverage|/ˈbevərɪdʒ/|đồ uống
+Customer Service & Hospitality|catering|/ˈkeɪtərɪŋ/|dịch vụ ăn uống
+Customer Service & Hospitality|banquet|/ˈbæŋkwɪt/|tiệc lớn
+Customer Service & Hospitality|housekeeping|/ˈhaʊskiːpɪŋ/|dịch vụ dọn phòng
+Customer Service & Hospitality|amenity|/əˈmenəti/|tiện nghi
+Customer Service & Hospitality|courteous|/ˈkɜːrtiəs/|lịch sự; nhã nhặn
+Customer Service & Hospitality|valet|/væˈleɪ/|nhân viên đỗ xe/phục vụ
+Customer Service & Hospitality|grievance|/ˈɡriːvəns/|lời phàn nàn; bất bình
+Customer Service & Hospitality|appeal|/əˈpiːl/|sự hấp dẫn; lời khẩn cầu
+Customer Service & Hospitality|proof|/pruːf/|bằng chứng
+Customer Service & Hospitality|markdown|/ˈmɑːrkdaʊn/|sự giảm giá
+Customer Service & Hospitality|entree|/ˈɑːntreɪ/|món chính
+Customer Service & Hospitality|patron|/ˈpeɪtrən/|khách quen; người bảo trợ
+Customer Service & Hospitality|obtainable|/əbˈteɪnəbəl/|có thể đạt được; có thể lấy được
+`.trim();
+    const words = DATA_TEXT.split("\n").map((line, index) => {
+      const [topic, word, ipa, meaning] = line.split("|");
+      return { id: `${topic}-${word}`.toLowerCase().replace(/[^a-z0-9]+/g, "-"), topic, word, ipa, meaning, index };
+    });
+
+    const topics = [...new Set(words.map(item => item.topic))];
+    const app = document.querySelector("#app");
+    const homeBtn = document.querySelector("#homeBtn");
+    const storageKey = "toeic-flashcards-known-v1";
+    let known = new Set(JSON.parse(localStorage.getItem(storageKey) || "[]"));
+    let currentTopic = "";
+    let studyList = [];
+    let mode = "";
+    let cursor = 0;
+    let flipped = false;
+    let selected = false;
+    let correctCount = 0;
+    let wrongWords = [];
+
+    function saveKnown() {
+      localStorage.setItem(storageKey, JSON.stringify([...known]));
+    }
+
+    function byTopic(topic) {
+      return words.filter(item => item.topic === topic);
+    }
+
+    function unknownItems(items) {
+      return items.filter(item => !known.has(item.id));
+    }
+
+    function shuffle(items) {
+      const copy = [...items];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function setSubtitle(text) {
+      document.querySelector("#subtitle").textContent = text;
+    }
+
+    function renderTopics() {
+      currentTopic = "";
+      setSubtitle("Chọn chủ đề, bỏ qua từ đã biết, rồi học bằng flashcard hoặc trắc nghiệm.");
+      const totalKnown = words.filter(item => known.has(item.id)).length;
+      app.innerHTML = `
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <span class="pill">${words.length} từ</span>
+            <span class="pill">${totalKnown} đã biết</span>
+            <span class="pill">${words.length - totalKnown} cần ôn</span>
+          </div>
+          <div class="toolbar-right">
+            <button class="ghost" type="button" data-action="all">Học tất cả chủ đề</button>
+            <button class="danger" type="button" data-action="reset">Xóa trạng thái đã biết</button>
+          </div>
+        </div>
+        <div class="grid">
+          ${topics.map(topic => {
+            const items = byTopic(topic);
+            const knownCount = items.filter(item => known.has(item.id)).length;
+            return `
+              <button class="card topic-card" type="button" data-topic="${topic}">
+                <h2>${topic}</h2>
+                <div class="stats">
+                  <span>${items.length} từ</span>
+                  <span>${knownCount} đã biết</span>
+                  <span>${items.length - knownCount} cần ôn</span>
+                </div>
+              </button>
+            `;
+          }).join("")}
+        </div>
+        <p class="footer-note">Dữ liệu lưu trong trình duyệt của bạn bằng localStorage.</p>
+      `;
+    }
+
+    function renderWordList(topic, customItems) {
+      currentTopic = topic;
+      const items = customItems || byTopic(topic);
+      const unknownCount = unknownItems(items).length;
+      setSubtitle(topic === "All" ? "Danh sách tất cả từ cần học." : `Chủ đề: ${topic}`);
+      app.innerHTML = `
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <button class="ghost" type="button" data-action="topics">Chủ đề</button>
+            <span class="pill">${items.length} từ</span>
+            <span class="pill">${unknownCount} chưa đánh dấu biết</span>
+          </div>
+          <div class="toolbar-right">
+            <button class="ghost" type="button" data-action="clear-topic">Bỏ đánh dấu đã biết</button>
+            <button type="button" data-action="choose-mode" ${unknownCount ? "" : "disabled"}>Bắt đầu học</button>
+          </div>
+        </div>
+        <div class="word-list">
+          ${items.map(item => `
+            <label class="word-row">
+              <input type="checkbox" data-known="${item.id}" ${known.has(item.id) ? "checked" : ""}>
+              <span class="word-main">
+                <span class="word">${item.word}</span>
+                <span class="ipa">${item.ipa}</span>
+                <span class="meaning">${item.meaning}</span>
+              </span>
+            </label>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function renderModePicker(items) {
+      studyList = unknownItems(items);
+      setSubtitle(`${studyList.length} từ sẽ xuất hiện trong bài học.`);
+      if (!studyList.length) {
+        app.innerHTML = `
+          <div class="empty card">
+            <h2>Bạn đã đánh dấu biết hết các từ trong phần này.</h2>
+            <button class="ghost" type="button" data-action="word-list">Quay lại danh sách từ</button>
+          </div>
+        `;
+        return;
+      }
+      app.innerHTML = `
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <button class="ghost" type="button" data-action="word-list">Danh sách từ</button>
+            <span class="pill">${studyList.length} từ</span>
+          </div>
+        </div>
+        <div class="mode-card">
+          <button class="mode-option" type="button" data-mode="flashcard">
+            <strong>Flashcard</strong>
+            Xem từ và IPA trước, chạm để lật nghĩa tiếng Việt.
+          </button>
+          <button class="mode-option" type="button" data-mode="quiz">
+            <strong>Trắc nghiệm</strong>
+            Chọn 1 trong 4 nghĩa tiếng Việt, biết đúng sai ngay sau khi chọn.
+          </button>
+        </div>
+      `;
+    }
+
+    function startStudy(chosenMode, items) {
+      mode = chosenMode;
+      studyList = shuffle(items || studyList);
+      cursor = 0;
+      flipped = false;
+      selected = false;
+      correctCount = 0;
+      wrongWords = [];
+      if (mode === "flashcard") renderFlashcard();
+      if (mode === "quiz") renderQuiz();
+    }
+
+    function progressText() {
+      return `${Math.min(cursor + 1, studyList.length)} / ${studyList.length}`;
+    }
+
+    function progressPercent() {
+      return studyList.length ? Math.round((cursor / studyList.length) * 100) : 0;
+    }
+
+    function renderStudyShell(content) {
+      app.innerHTML = `
+        <div class="study-wrap">
+          <div class="toolbar">
+            <div class="toolbar-left">
+              <button class="ghost" type="button" data-action="word-list">Danh sách từ</button>
+              <span class="pill">${progressText()}</span>
+            </div>
+          </div>
+          <div class="progress"><span style="width:${progressPercent()}%"></span></div>
+          ${content}
+        </div>
+      `;
+    }
+
+    function renderFlashcard() {
+      if (cursor >= studyList.length) return renderDone("flashcard");
+      const item = studyList[cursor];
+      setSubtitle("Chạm vào thẻ để lật nghĩa tiếng Việt.");
+      renderStudyShell(`
+        <button class="flashcard" type="button" data-action="flip">
+          <span>
+            <span class="flash-word">${item.word}</span>
+            <span class="flash-ipa">${item.ipa}</span>
+            ${flipped ? `<span class="flash-meaning">${item.meaning}</span>` : ""}
+          </span>
+        </button>
+        <div class="study-actions">
+          <button class="ghost" type="button" data-action="prev" ${cursor === 0 ? "disabled" : ""}>Trước</button>
+          <button class="success" type="button" data-action="mark-known">Đã biết</button>
+          <button type="button" data-action="next">Tiếp</button>
+        </div>
+      `);
+    }
+
+    function makeOptions(item) {
+      const distractors = shuffle(words.filter(other => other.id !== item.id)).slice(0, 3);
+      return shuffle([item, ...distractors]);
+    }
+
+    function renderQuiz() {
+      if (cursor >= studyList.length) return renderDone("quiz");
+      const item = studyList[cursor];
+      const options = makeOptions(item);
+      setSubtitle("Chọn nghĩa tiếng Việt đúng nhất.");
+      renderStudyShell(`
+        <div class="quiz-question">
+          <div class="flash-word">${item.word}</div>
+          <div class="flash-ipa">${item.ipa}</div>
+          <div class="quiz-options">
+            ${options.map(option => `
+              <button class="option" type="button" data-answer="${option.id}">${option.meaning}</button>
+            `).join("")}
+          </div>
+          <div class="feedback" id="feedback"></div>
+          <div class="study-actions">
+            <button class="ghost" type="button" data-action="prev" ${cursor === 0 || selected ? "disabled" : ""}>Trước</button>
+            <button type="button" data-action="next-quiz" ${selected ? "" : "disabled"}>Tiếp</button>
+            <button class="success" type="button" data-action="mark-known">Đã biết</button>
+          </div>
+        </div>
+      `);
+    }
+
+    function chooseAnswer(answerId) {
+      if (selected) return;
+      selected = true;
+      const item = studyList[cursor];
+      const buttons = [...document.querySelectorAll("[data-answer]")];
+      const isCorrect = answerId === item.id;
+      if (isCorrect) {
+        correctCount += 1;
+      } else {
+        wrongWords.push(item);
+      }
+      buttons.forEach(button => {
+        button.disabled = true;
+        if (button.dataset.answer === item.id) button.classList.add("correct");
+        if (button.dataset.answer === answerId && !isCorrect) button.classList.add("wrong");
+      });
+      const feedback = document.querySelector("#feedback");
+      feedback.className = `feedback ${isCorrect ? "ok" : "bad"}`;
+      feedback.textContent = isCorrect ? "Đúng rồi." : `Sai. Đáp án đúng: ${item.meaning}`;
+      const nextButton = document.querySelector("[data-action='next-quiz']");
+      if (nextButton) nextButton.disabled = false;
+    }
+
+    function nextCard() {
+      cursor += 1;
+      flipped = false;
+      selected = false;
+      if (mode === "flashcard") renderFlashcard();
+      if (mode === "quiz") renderQuiz();
+    }
+
+    function prevCard() {
+      cursor = Math.max(0, cursor - 1);
+      flipped = false;
+      selected = false;
+      if (mode === "flashcard") renderFlashcard();
+      if (mode === "quiz") renderQuiz();
+    }
+
+    function markCurrentKnown() {
+      if (!studyList[cursor]) return;
+      known.add(studyList[cursor].id);
+      saveKnown();
+      nextCard();
+    }
+
+    function renderDone(doneMode) {
+      const wrongUnique = [...new Map(wrongWords.map(item => [item.id, item])).values()];
+      setSubtitle("Bài học đã kết thúc.");
+      app.innerHTML = `
+        <div class="study-wrap">
+          <div class="card empty">
+            <h2>Hoàn thành</h2>
+            ${doneMode === "quiz" ? `<p>Bạn đúng ${correctCount}/${studyList.length}. Số từ sai: ${wrongUnique.length}.</p>` : `<p>Bạn đã đi hết ${studyList.length} flashcard.</p>`}
+            <div class="study-actions">
+              <button type="button" data-action="retry">Học lại</button>
+              <button class="ghost" type="button" data-action="word-list">Danh sách từ</button>
+              <button class="ghost" type="button" data-action="topics">Chủ đề</button>
+            </div>
+            ${doneMode === "quiz" && wrongUnique.length ? `
+              <button class="danger" type="button" data-action="wrong-only">Học lại từ bị sai</button>
+            ` : ""}
+          </div>
+        </div>
+      `;
+    }
+
+    function currentItems() {
+      return currentTopic === "All" ? words : byTopic(currentTopic);
+    }
+
+    app.addEventListener("click", event => {
+      const topicButton = event.target.closest("[data-topic]");
+      const actionButton = event.target.closest("[data-action]");
+      const modeButton = event.target.closest("[data-mode]");
+      const answerButton = event.target.closest("[data-answer]");
+
+      if (topicButton) {
+        renderWordList(topicButton.dataset.topic);
+        return;
+      }
+
+      if (modeButton) {
+        startStudy(modeButton.dataset.mode);
+        return;
+      }
+
+      if (answerButton) {
+        chooseAnswer(answerButton.dataset.answer);
+        return;
+      }
+
+      if (!actionButton) return;
+      const action = actionButton.dataset.action;
+
+      if (action === "topics") renderTopics();
+      if (action === "all") renderWordList("All", words);
+      if (action === "reset" && confirm("Xóa toàn bộ trạng thái đã biết?")) {
+        known = new Set();
+        saveKnown();
+        renderTopics();
+      }
+      if (action === "clear-topic") {
+        currentItems().forEach(item => known.delete(item.id));
+        saveKnown();
+        renderWordList(currentTopic, currentItems());
+      }
+      if (action === "choose-mode") renderModePicker(currentItems());
+      if (action === "word-list") renderWordList(currentTopic || "All", currentItems());
+      if (action === "flip") {
+        flipped = !flipped;
+        renderFlashcard();
+      }
+      if (action === "next") nextCard();
+      if (action === "next-quiz") nextCard();
+      if (action === "prev") prevCard();
+      if (action === "mark-known") markCurrentKnown();
+      if (action === "retry") startStudy(mode, unknownItems(currentItems()));
+      if (action === "wrong-only") startStudy("quiz", wrongWords);
+    });
+
+    app.addEventListener("change", event => {
+      const checkbox = event.target.closest("[data-known]");
+      if (!checkbox) return;
+      if (checkbox.checked) known.add(checkbox.dataset.known);
+      else known.delete(checkbox.dataset.known);
+      saveKnown();
+    });
+
+    homeBtn.addEventListener("click", renderTopics);
+    renderTopics();
+  </script>
+</body>
+</html>
