@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TOEIC Flashcards</title>
+  <title>TOEIC 600 Flashcards</title>
   <style>
     :root {
       --bg: #f7f4ed;
@@ -270,17 +270,47 @@
       box-shadow: var(--shadow);
       cursor: pointer;
       user-select: none;
+      perspective: 1200px;
     }
 
     .flashcard:hover {
       background: var(--panel);
     }
 
-    .flashcard > span {
+    .flashcard-inner {
+      position: relative;
       display: grid;
+      width: 100%;
+      min-height: 250px;
+      transform-style: preserve-3d;
+      transition: transform 520ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    .flashcard.is-flipped .flashcard-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flashcard-face {
+      grid-area: 1 / 1;
+      display: grid;
+      align-content: center;
       justify-items: center;
       gap: 10px;
       width: 100%;
+      padding: 8px;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .flashcard-back {
+      transform: rotateY(180deg);
+    }
+
+    .flip-hint {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
     }
 
     .flash-word {
@@ -389,15 +419,15 @@
       .toolbar button { width: 100%; }
       .study-actions { grid-template-columns: 1fr; }
       .flashcard { min-height: 290px; }
+      .flashcard-inner { min-height: 220px; }
     }
   </style>
 </head>
-
 <body>
   <main class="app">
     <header class="topbar">
       <div class="title">
-        <h1>TOEIC Flashcards</h1>
+        <h1>TOEIC 600 Flashcards</h1>
         <p id="subtitle">Chọn chủ đề, bỏ qua từ đã biết, rồi học bằng flashcard hoặc trắc nghiệm.</p>
       </div>
       <button class="ghost" id="homeBtn" type="button">Chủ đề</button>
@@ -408,41 +438,41 @@
 
   <script>
     const DATA_TEXT = `
-Lesson 01 - Contracts|abide by|/əˈbaɪd/|tuân thủ, chấp hành
-Lesson 01 - Contracts|agreement|/əˈɡɹiːmənt/|thỏa thuận; hợp đồng
-Lesson 01 - Contracts|assurance|/əˈʃɔːɹəns/|sự đảm bảo; cam kết
+Lesson 01 - Contracts|abide by|/əˈbaɪd/|tuân thủ; theo
+Lesson 01 - Contracts|agreement|/əˈɡɹiːmənt/|một thỏa thuận chung, một hợp đồng
+Lesson 01 - Contracts|assurance|/əˈʃɔːɹəns/|một sự đảm bảo; sự tự tin
 Lesson 01 - Contracts|cancellation|/kænsəˈleɪʃən/|hủy bỏ; dừng lại
-Lesson 01 - Contracts|determine|/dɪˈtɜːmɪn/|xác định; quyết định
+Lesson 01 - Contracts|determine|/dɪˈtɜːmɪn/|tìm ra; ảnh hưởng
 Lesson 01 - Contracts|engage|/ɛnˈɡeɪdʒ/|tham gia; liên quan
 Lesson 01 - Contracts|establish|/ɪˈstæb.lɪʃ/|thiết lập; thành lập; tạo ra
 Lesson 01 - Contracts|obligate|ˈɑblʌɡeɪt|ràng buộc về mặt pháp lý hoặc đạo đức
 Lesson 01 - Contracts|party|/ˈpɑ(ː)ɾi/|bên tham gia; bên liên quan
-Lesson 01 - Contracts|provision|/pɹəˈvɪʒ.ən/|điều khoản
+Lesson 01 - Contracts|provision|/pɹəˈvɪʒ.ən/|điều khoản; sự dự phòng
 Lesson 01 - Contracts|resolve|/ɹiːˈzɒlv/|giải quyết thành công; tuyên bố; niềm tin
 Lesson 01 - Contracts|specific|/spəˈsɪf.ɪk/|cụ thể
 Lesson 02 - Marketing|attract|/əˈtɹækt/|thu hút
 Lesson 02 - Marketing|compare|/kəmˈpɛə/|kiểm tra sự tương đồng và khác biệt
-Lesson 02 - Marketing|competition|/ˌkɒmpəˈtɪʃən/|sự cạnh tranh
+Lesson 02 - Marketing|competition|/ˌkɒmpəˈtɪʃən/|một cuộc thi hoặc cuộc đấu tranh
 Lesson 02 - Marketing|consume|/kənˈsjuːm/|hấp thụ; sử dụng hết
 Lesson 02 - Marketing|convince|/kənˈvɪns/|thuyết phục; làm cho tin
-Lesson 02 - Marketing|currently|/ˈkʌɹəntli/|đang xảy ra ở thời điểm hiện tại
+Lesson 02 - Marketing|currently|/ˈkʌɹəntli/|đang xảy ra ở thời điểm hiện tại; ôi
 Lesson 02 - Marketing|fad|/fæd/|trào lưu nhất thời; cơn sốt
 Lesson 02 - Marketing|inspiration|/ɪnspɨˈɹeɪʃən/|nguồn cảm hứng
 Lesson 02 - Marketing|market|/ˈmɑːkɪt/|thị trường; tiếp thị
 Lesson 02 - Marketing|persuasion|/pəˈsweɪʒ(ə)n/|sự thuyết phục; niềm tin
 Lesson 02 - Marketing|productive|/pɹəˈdʌktɪv/|mang tính xây dựng; năng suất cao
-Lesson 02 - Marketing|satisfaction|/sætɪsˈfækʃən/|sự hài lòng
+Lesson 02 - Marketing|satisfaction|/sætɪsˈfækʃən/|niềm hạnh phúc
 Lesson 03 - Warranties|characteristic|/ˌkæɹəktəˈɹɪstɪk/|đặc điểm; đặc trưng
 Lesson 03 - Warranties|consequence|/ˈkɒnsɪkwɛns/|hệ quả; hậu quả; kết quả tất yếu
-Lesson 03 - Warranties|consider|/kənˈsɪdə/|cân nhắc; xem xét
+Lesson 03 - Warranties|consider|/kənˈsɪdə/|hãy suy nghĩ kỹ nhé Ek
 Lesson 03 - Warranties|cover|/ˈkʌvə/|cung cấp sự bảo vệ chống lại
 Lesson 03 - Warranties|expiration|/ˌɛk.spəˈɹeɪ.ʃən/|sự kết thúc
 Lesson 03 - Warranties|frequently|/ˈfɹiː.kwənt.li/|xảy ra phổ biến; rộng rãi
 Lesson 03 - Warranties|imply|/ɪmˈplaɪ/|chỉ ra bằng suy luận
 Lesson 03 - Warranties|promise|/ˈpɹɒmɪs/|lời hứa; cam kết
-Lesson 03 - Warranties|protect|/pɹəˈtɛkt/|bảo vệ
+Lesson 03 - Warranties|protect|/pɹəˈtɛkt/|canh gác
 Lesson 03 - Warranties|reputation|/ˌɹɛpjʊˈteɪʃən/|chất lượng tổng thể của nhân vật
-Lesson 03 - Warranties|require|/ɹɪˈkwaɪə/|yêu cầu; đòi hỏi
+Lesson 03 - Warranties|require|/ɹɪˈkwaɪə/|cho là cần thiết hoặc cần thiết
 Lesson 03 - Warranties|variety|/vəˈɹaɪ.ɪ.ti/|nhiều loại khác nhau
 Lesson 04 - Business Planning|address|/æˈdɹɛs/|bài phát biểu; đề cập
 Lesson 04 - Business Planning|avoid|/əˈvɔɪd/|tránh xa; tránh xảy ra
@@ -567,7 +597,7 @@ Lesson 13 - Hiring and Training|update|ʌpdˈeɪt|tạo ra dòng điện; thông
 Lesson 14 - Salaries and Benefits|basis|/ˈbeɪsɪs/|cơ sở; nền tảng
 Lesson 14 - Salaries and Benefits|be aware of|bˈi ʌwˈɛr ˈʌv|có ý thức về; có kiến ​​thức về
 Lesson 14 - Salaries and Benefits|benefit|/ˈbɛn.ɪ.fɪt/|phúc lợi; lợi ích
-Lesson 14 - Salaries and Benefits|compensate|/ˈkɒm.pən.seɪt/|chi trả; bù đắp cho
+Lesson 14 - Salaries and Benefits|compensate|/ˈkɒm.pən.seɪt/|chi trả; bù đắp cho tôi
 Lesson 14 - Salaries and Benefits|delicately|/ˈdɛlɪkətli/|với độ nhạy
 Lesson 14 - Salaries and Benefits|eligible|/ˈɛlɪdʒəb(ə)l/|đủ điều kiện
 Lesson 14 - Salaries and Benefits|flexibly|flˈɛksʌbli|với khả năng thay đổi; lỏng lẻo
@@ -588,7 +618,7 @@ Lesson 15 - Promotions, Pensions, and Awards|productive|/pɹəˈdʌktɪv/|hữu 
 Lesson 15 - Promotions, Pensions, and Awards|promote|/pɹəˈməʊt/|thăng chức; quảng bá; thúc đẩy; ủng hộ
 Lesson 15 - Promotions, Pensions, and Awards|recognition|/ˌɹɛkəɡˈnɪʃən/|sự công nhận; khen ngợi
 Lesson 15 - Promotions, Pensions, and Awards|value|/ˈvæljuː/|nêu giá trị
-Lesson 16 - Shopping|bargain|/-ɡɪn/|thương lượng; một sự mua bán khó chịu
+Lesson 16 - Shopping|bargain|/-ɡɪn/|thương lượng; một sự mua bán khó chịu tôi
 Lesson 16 - Shopping|bear|/bɛə(ɹ)/|có lòng khoan dung đối với; chịu đựng
 Lesson 16 - Shopping|behavior|[bɪˈheɪvjə]|cách hành động của một người
 Lesson 16 - Shopping|checkout|tʃˈɛkaʊt|quầy thanh toán; trả phòng
@@ -662,7 +692,7 @@ Lesson 21 - Banking|take out|/teɪk/|rút; di dời
 Lesson 21 - Banking|transaction|/tɹænˈzækʃən/|một thỏa thuận kinh doanh
 Lesson 22 - Accounting|accounting|/ə.ˈkaʊn.tɪŋ/|kế toán
 Lesson 22 - Accounting|accumulate|/əˈkjuːmjʊˌleɪt/|tập trung; sưu tầm
-Lesson 22 - Accounting|asset|/ˈæsɪt/|một cái gì đó có giá trị
+Lesson 22 - Accounting|asset|/ˈæsɪt/|một cái gì đó có giá trị Tr
 Lesson 22 - Accounting|audit|/ɔː.dɪt/|kiểm toán; kiểm tra sổ sách
 Lesson 22 - Accounting|budget|/ˈbʌdʒ.ɪt/|ngân sách; lập ngân sách
 Lesson 22 - Accounting|build up|/bɪld/|tăng theo thời gian
@@ -700,7 +730,7 @@ Lesson 25 - Financial Statements|desire|dɪzˈaɪɝ|ước gì
 Lesson 25 - Financial Statements|detail|dɪtˈeɪl|trình bày chi tiết
 Lesson 25 - Financial Statements|forecast|fˈɔrkæst|dự báo; dự đoán
 Lesson 25 - Financial Statements|level|lˈɛvʌl|mức; cấp độ
-Lesson 25 - Financial Statements|overall|ˈoʊvɝɔl|được coi là tổng thể; nói chung với
+Lesson 25 - Financial Statements|overall|ˈoʊvɝɔl|được coi là tổng thể; nói chung với tôi
 Lesson 25 - Financial Statements|perspective|pɝspˈɛktɪv|một quan điểm hoặc quan điểm tinh thần
 Lesson 25 - Financial Statements|project|prˈɑdʒɛkt|ước tính hoặc dự đoán
 Lesson 25 - Financial Statements|realistic|riʌlˈɪstɪk|thực tế; khả thi
@@ -771,7 +801,7 @@ Lesson 30 - Renting and Leasing|subject to|/ˈsʌb.dʒɪkt/|dưới quyền lự
 Lesson 31 - Selecting Restaurants|appeal|/əˈpiːl/|khả năng thu hút
 Lesson 31 - Selecting Restaurants|arrive|/əˈɹaɪv/|đến đích
 Lesson 31 - Selecting Restaurants|compromise|/ˈkɒmpɹəˌmaɪz/|thỏa hiệp; dàn xếp
-Lesson 31 - Selecting Restaurants|daringly|dˈɛrɪŋli|dũng cảm /
+Lesson 31 - Selecting Restaurants|daringly|dˈɛrɪŋli|tôi dũng cảm /
 Lesson 31 - Selecting Restaurants|familiar|/fəˈmɪl.i.ə/|thường gặp hoặc nhìn thấy; chung
 Lesson 31 - Selecting Restaurants|guide|/ɡaɪd/|hướng dẫn viên; sách hướng dẫn
 Lesson 31 - Selecting Restaurants|majority|/məˈd͡ʒɒɹɪti/|số lớn hơn hoặc một phần
@@ -841,7 +871,7 @@ Lesson 36 - General Travel|itinerary|/aɪˈtɪnəɹi/|lịch trình; hành trìn
 Lesson 36 - General Travel|prohibit|/pɹəʊˈhɪbɪt/|cấm; ngăn cản
 Lesson 36 - General Travel|valid|/ˈvælɪd/|có hiệu lực pháp luật hoặc tính đúng đắn
 Lesson 37 - Airlines|deal with|/diːl/|xử lý; giải quyết; phụ trách
-Lesson 37 - Airlines|destination|/dɛstɪˈneɪʃən/|nơi mà người ta sẽ đến hoặc chỉ dẫn
+Lesson 37 - Airlines|destination|/dɛstɪˈneɪʃən/|nơi mà người ta sẽ đến hoặc chỉ dẫn tôi
 Lesson 37 - Airlines|distinguish|dɪstˈɪŋɡwɪʃ|phân biệt; làm nổi bật; làm cho khác biệt
 Lesson 37 - Airlines|economize|ɪkˈɑnʌmaɪz|hãy cẩn thận khi tiêu tiền
 Lesson 37 - Airlines|equivalent|ɪkwˈɪvʌlʌnt|bình đẳng
@@ -1009,6 +1039,7 @@ Lesson 50 - Pharmacy|sample|/sæːm.pəl/|mẫu; mẫu thử
 Lesson 50 - Pharmacy|sense|/sɛn(t)s/|một bản án; một sự giải thích trí tuệ
 Lesson 50 - Pharmacy|volunteer|/vɒl.ənˈtɪə/|một người làm việc không có sự ép buộc
 `.trim();
+
     const words = DATA_TEXT.split("\n").map((line, index) => {
       const [topic, word, ipa, meaning] = line.split("|");
       return { id: `${topic}-${word}`.toLowerCase().replace(/[^a-z0-9]+/g, "-"), topic, word, ipa, meaning, index };
@@ -1027,6 +1058,13 @@ Lesson 50 - Pharmacy|volunteer|/vɒl.ənˈtɪə/|một người làm việc khô
     let selected = false;
     let correctCount = 0;
     let wrongWords = [];
+    let quizAdvanceTimer = null;
+
+    function clearQuizAdvanceTimer() {
+      if (!quizAdvanceTimer) return;
+      clearTimeout(quizAdvanceTimer);
+      quizAdvanceTimer = null;
+    }
 
     function saveKnown() {
       localStorage.setItem(storageKey, JSON.stringify([...known]));
@@ -1054,6 +1092,7 @@ Lesson 50 - Pharmacy|volunteer|/vɒl.ənˈtɪə/|một người làm việc khô
     }
 
     function renderTopics() {
+      clearQuizAdvanceTimer();
       currentTopic = "";
       setSubtitle("Chọn chủ đề, bỏ qua từ đã biết, rồi học bằng flashcard hoặc trắc nghiệm.");
       const totalKnown = words.filter(item => known.has(item.id)).length;
@@ -1090,6 +1129,7 @@ Lesson 50 - Pharmacy|volunteer|/vɒl.ənˈtɪə/|một người làm việc khô
     }
 
     function renderWordList(topic, customItems) {
+      clearQuizAdvanceTimer();
       currentTopic = topic;
       const items = customItems || byTopic(topic);
       const unknownCount = unknownItems(items).length;
@@ -1122,6 +1162,7 @@ Lesson 50 - Pharmacy|volunteer|/vɒl.ənˈtɪə/|một người làm việc khô
     }
 
     function renderModePicker(items) {
+      clearQuizAdvanceTimer();
       studyList = unknownItems(items);
       setSubtitle(`${studyList.length} từ sẽ xuất hiện trong bài học.`);
       if (!studyList.length) {
@@ -1154,6 +1195,7 @@ Lesson 50 - Pharmacy|volunteer|/vɒl.ənˈtɪə/|một người làm việc khô
     }
 
     function startStudy(chosenMode, items) {
+      clearQuizAdvanceTimer();
       mode = chosenMode;
       studyList = shuffle(items || studyList);
       cursor = 0;
@@ -1193,11 +1235,18 @@ Lesson 50 - Pharmacy|volunteer|/vɒl.ənˈtɪə/|một người làm việc khô
       const item = studyList[cursor];
       setSubtitle("Chạm vào thẻ để lật nghĩa tiếng Việt.");
       renderStudyShell(`
-        <button class="flashcard" type="button" data-action="flip">
-          <span>
-            <span class="flash-word">${item.word}</span>
-            <span class="flash-ipa">${item.ipa}</span>
-            ${flipped ? `<span class="flash-meaning">${item.meaning}</span>` : ""}
+        <button class="flashcard ${flipped ? "is-flipped" : ""}" type="button" data-action="flip" aria-pressed="${flipped}">
+          <span class="flashcard-inner">
+            <span class="flashcard-face flashcard-front">
+              <span class="flash-word">${item.word}</span>
+              <span class="flash-ipa">${item.ipa}</span>
+              <span class="flip-hint">Ch&#7841;m &#273;&#7875; xem ngh&#297;a</span>
+            </span>
+            <span class="flashcard-face flashcard-back">
+              <span class="flash-word">${item.word}</span>
+              <span class="flash-meaning">${item.meaning}</span>
+              <span class="flash-ipa">${item.ipa}</span>
+            </span>
           </span>
         </button>
         <div class="study-actions">
@@ -1258,9 +1307,15 @@ Lesson 50 - Pharmacy|volunteer|/vɒl.ənˈtɪə/|một người làm việc khô
       feedback.textContent = isCorrect ? "Đúng rồi." : `Sai. Đáp án đúng: ${item.meaning}`;
       const nextButton = document.querySelector("[data-action='next-quiz']");
       if (nextButton) nextButton.disabled = false;
+      quizAdvanceTimer = setTimeout(() => {
+        if (mode === "quiz" && selected && studyList[cursor]?.id === item.id) {
+          nextCard();
+        }
+      }, 1500);
     }
 
     function nextCard() {
+      clearQuizAdvanceTimer();
       cursor += 1;
       flipped = false;
       selected = false;
@@ -1269,6 +1324,7 @@ Lesson 50 - Pharmacy|volunteer|/vɒl.ənˈtɪə/|một người làm việc khô
     }
 
     function prevCard() {
+      clearQuizAdvanceTimer();
       cursor = Math.max(0, cursor - 1);
       flipped = false;
       selected = false;
@@ -1284,6 +1340,7 @@ Lesson 50 - Pharmacy|volunteer|/vɒl.ənˈtɪə/|một người làm việc khô
     }
 
     function renderDone(doneMode) {
+      clearQuizAdvanceTimer();
       const wrongUnique = [...new Map(wrongWords.map(item => [item.id, item])).values()];
       setSubtitle("Bài học đã kết thúc.");
       app.innerHTML = `
@@ -1347,8 +1404,12 @@ Lesson 50 - Pharmacy|volunteer|/vɒl.ənˈtɪə/|một người làm việc khô
       if (action === "choose-mode") renderModePicker(currentItems());
       if (action === "word-list") renderWordList(currentTopic || "All", currentItems());
       if (action === "flip") {
+        const card = actionButton.closest(".flashcard");
         flipped = !flipped;
-        renderFlashcard();
+        if (card) {
+          card.classList.toggle("is-flipped", flipped);
+          card.setAttribute("aria-pressed", String(flipped));
+        }
       }
       if (action === "next") nextCard();
       if (action === "next-quiz") nextCard();
