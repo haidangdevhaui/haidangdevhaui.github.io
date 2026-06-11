@@ -408,606 +408,620 @@
 
   <script>
     const DATA_TEXT = `
-Lesson 01 - Contracts|abide by|/əˈbaɪd/|tuân theo
-Lesson 01 - Contracts|agreement|/əˈɡɹiːmənt/|hiệp định
-Lesson 01 - Contracts|assurance|/əˈʃɔːɹəns/|sự đảm bảo
-Lesson 01 - Contracts|cancellation|/kænsəˈleɪʃən/|hủy bỏ
-Lesson 01 - Contracts|determine|/dɪˈtɜːmɪn/|quyết tâm
-Lesson 01 - Contracts|engage|/ɛnˈɡeɪdʒ/|đính hôn
-Lesson 01 - Contracts|establish|/ɪˈstæb.lɪʃ/|thành lập
-Lesson 01 - Contracts|obligate|ˈɑblʌɡeɪt|bắt buộc
-Lesson 01 - Contracts|party|/ˈpɑ(ː)ɾi/|buổi tiệc
-Lesson 01 - Contracts|provision|/pɹəˈvɪʒ.ən/|sự cung cấp
-Lesson 01 - Contracts|resolve|/ɹiːˈzɒlv/|giải quyết
+Lesson 01 - Contracts|abide by|/əˈbaɪd/|tuân thủ, chấp hành
+Lesson 01 - Contracts|agreement|/əˈɡɹiːmənt/|thỏa thuận; hợp đồng
+Lesson 01 - Contracts|assurance|/əˈʃɔːɹəns/|sự đảm bảo; cam kết
+Lesson 01 - Contracts|cancellation|/kænsəˈleɪʃən/|hủy bỏ; dừng lại
+Lesson 01 - Contracts|determine|/dɪˈtɜːmɪn/|xác định; quyết định
+Lesson 01 - Contracts|engage|/ɛnˈɡeɪdʒ/|tham gia; liên quan
+Lesson 01 - Contracts|establish|/ɪˈstæb.lɪʃ/|thiết lập; thành lập; tạo ra
+Lesson 01 - Contracts|obligate|ˈɑblʌɡeɪt|ràng buộc về mặt pháp lý hoặc đạo đức
+Lesson 01 - Contracts|party|/ˈpɑ(ː)ɾi/|bên tham gia; bên liên quan
+Lesson 01 - Contracts|provision|/pɹəˈvɪʒ.ən/|điều khoản
+Lesson 01 - Contracts|resolve|/ɹiːˈzɒlv/|giải quyết thành công; tuyên bố; niềm tin
 Lesson 01 - Contracts|specific|/spəˈsɪf.ɪk/|cụ thể
 Lesson 02 - Marketing|attract|/əˈtɹækt/|thu hút
-Lesson 02 - Marketing|compare|/kəmˈpɛə/|so sánh
-Lesson 02 - Marketing|competition|/ˌkɒmpəˈtɪʃən/|cuộc thi
-Lesson 02 - Marketing|consume|/kənˈsjuːm/|tiêu thụ
-Lesson 02 - Marketing|convince|/kənˈvɪns/|thuyết phục
-Lesson 02 - Marketing|currently|/ˈkʌɹəntli/|Hiện nay
-Lesson 02 - Marketing|fad|/fæd/|ham mê
-Lesson 02 - Marketing|inspiration|/ɪnspɨˈɹeɪʃən/|cảm hứng
-Lesson 02 - Marketing|market|/ˈmɑːkɪt/|chợ
-Lesson 02 - Marketing|persuasion|/pəˈsweɪʒ(ə)n/|sự thuyết phục
-Lesson 02 - Marketing|productive|/pɹəˈdʌktɪv/|năng suất
+Lesson 02 - Marketing|compare|/kəmˈpɛə/|kiểm tra sự tương đồng và khác biệt
+Lesson 02 - Marketing|competition|/ˌkɒmpəˈtɪʃən/|sự cạnh tranh
+Lesson 02 - Marketing|consume|/kənˈsjuːm/|hấp thụ; sử dụng hết
+Lesson 02 - Marketing|convince|/kənˈvɪns/|thuyết phục; làm cho tin
+Lesson 02 - Marketing|currently|/ˈkʌɹəntli/|đang xảy ra ở thời điểm hiện tại
+Lesson 02 - Marketing|fad|/fæd/|trào lưu nhất thời; cơn sốt
+Lesson 02 - Marketing|inspiration|/ɪnspɨˈɹeɪʃən/|nguồn cảm hứng
+Lesson 02 - Marketing|market|/ˈmɑːkɪt/|thị trường; tiếp thị
+Lesson 02 - Marketing|persuasion|/pəˈsweɪʒ(ə)n/|sự thuyết phục; niềm tin
+Lesson 02 - Marketing|productive|/pɹəˈdʌktɪv/|mang tính xây dựng; năng suất cao
 Lesson 02 - Marketing|satisfaction|/sætɪsˈfækʃən/|sự hài lòng
-Lesson 03 - Warranties|characteristic|/ˌkæɹəktəˈɹɪstɪk/|đặc trưng
-Lesson 03 - Warranties|consequence|/ˈkɒnsɪkwɛns/|kết quả
-Lesson 03 - Warranties|consider|/kənˈsɪdə/|coi như
-Lesson 03 - Warranties|cover|/ˈkʌvə/|che phủ
-Lesson 03 - Warranties|expiration|/ˌɛk.spəˈɹeɪ.ʃən/|hết hạn
-Lesson 03 - Warranties|frequently|/ˈfɹiː.kwənt.li/|thường xuyên
-Lesson 03 - Warranties|imply|/ɪmˈplaɪ/|ngụ ý
-Lesson 03 - Warranties|promise|/ˈpɹɒmɪs/|hứa
+Lesson 03 - Warranties|characteristic|/ˌkæɹəktəˈɹɪstɪk/|đặc điểm; đặc trưng
+Lesson 03 - Warranties|consequence|/ˈkɒnsɪkwɛns/|hệ quả; hậu quả; kết quả tất yếu
+Lesson 03 - Warranties|consider|/kənˈsɪdə/|cân nhắc; xem xét
+Lesson 03 - Warranties|cover|/ˈkʌvə/|cung cấp sự bảo vệ chống lại
+Lesson 03 - Warranties|expiration|/ˌɛk.spəˈɹeɪ.ʃən/|sự kết thúc
+Lesson 03 - Warranties|frequently|/ˈfɹiː.kwənt.li/|xảy ra phổ biến; rộng rãi
+Lesson 03 - Warranties|imply|/ɪmˈplaɪ/|chỉ ra bằng suy luận
+Lesson 03 - Warranties|promise|/ˈpɹɒmɪs/|lời hứa; cam kết
 Lesson 03 - Warranties|protect|/pɹəˈtɛkt/|bảo vệ
-Lesson 03 - Warranties|reputation|/ˌɹɛpjʊˈteɪʃən/|danh tiếng
-Lesson 03 - Warranties|require|/ɹɪˈkwaɪə/|yêu cầu
-Lesson 03 - Warranties|variety|/vəˈɹaɪ.ɪ.ti/|đa dạng
-Lesson 04 - Business Planning|address|/æˈdɹɛs/|Địa chỉ
-Lesson 04 - Business Planning|avoid|/əˈvɔɪd/|tránh xa
-Lesson 04 - Business Planning|demonstrate|/ˈdɛmənstɹeɪt/|chứng minh
-Lesson 04 - Business Planning|develop|/dɛˈvɛ.ləp/|phát triển
-Lesson 04 - Business Planning|evaluate|/ɨˈvaljʊeɪt/|đánh giá
-Lesson 04 - Business Planning|gather|/ˈɡæðə/|tập trung
-Lesson 04 - Business Planning|offer|/ˈɑfɚ/|lời đề nghị
-Lesson 04 - Business Planning|primarily|/pɹaɪˈmɛɹəli/|chủ yếu
-Lesson 04 - Business Planning|risk|/ɹɪsk/|rủi ro
-Lesson 04 - Business Planning|strategy|/ˈstɹætədʒi/|chiến lược
-Lesson 04 - Business Planning|strong|/stɹɑŋ/|mạnh
+Lesson 03 - Warranties|reputation|/ˌɹɛpjʊˈteɪʃən/|chất lượng tổng thể của nhân vật
+Lesson 03 - Warranties|require|/ɹɪˈkwaɪə/|yêu cầu; đòi hỏi
+Lesson 03 - Warranties|variety|/vəˈɹaɪ.ɪ.ti/|nhiều loại khác nhau
+Lesson 04 - Business Planning|address|/æˈdɹɛs/|bài phát biểu; đề cập
+Lesson 04 - Business Planning|avoid|/əˈvɔɪd/|tránh xa; tránh xảy ra
+Lesson 04 - Business Planning|demonstrate|/ˈdɛmənstɹeɪt/|chứng minh; minh họa
+Lesson 04 - Business Planning|develop|/dɛˈvɛ.ləp/|mở rộng, tiến bộ hoặc cải thiện
+Lesson 04 - Business Planning|evaluate|/ɨˈvaljʊeɪt/|xác định giá trị hoặc tác động của
+Lesson 04 - Business Planning|gather|/ˈɡæðə/|tích lũy; kết luận
+Lesson 04 - Business Planning|offer|/ˈɑfɚ/|đề nghị; cung cấp
+Lesson 04 - Business Planning|primarily|/pɹaɪˈmɛɹəli/|Đầu tiên; quan trọng nhất
+Lesson 04 - Business Planning|risk|/ɹɪsk/|nguy cơ mất mát hoặc hư hỏng
+Lesson 04 - Business Planning|strategy|/ˈstɹætədʒi/|một kế hoạch hành động
+Lesson 04 - Business Planning|strong|/stɹɑŋ/|mạnh; vững chắc
 Lesson 04 - Business Planning|substitution|sʌbstɪtˈuʃʌn|thay thế
-Lesson 05 - Conferences|accommodate|/əˈkɒməˌdeɪt/|chứa
-Lesson 05 - Conferences|arrangement|/əˈɹeɪnd͡ʒmənt/|sắp xếp
-Lesson 05 - Conferences|association|/əˌsəʊsiˈeɪʃən/|sự kết hợp
-Lesson 05 - Conferences|attend|/əˈtɛnd/|tham gia
-Lesson 05 - Conferences|get in touch|/ɡɛt/|liên lạc
-Lesson 05 - Conferences|hold|/həʊld/|giữ
-Lesson 05 - Conferences|location|/ləʊˈkeɪʃən/|vị trí
+Lesson 05 - Conferences|accommodate|/əˈkɒməˌdeɪt/|đáp ứng; cung cấp chỗ
+Lesson 05 - Conferences|arrangement|/əˈɹeɪnd͡
+ʒmənt/|kế hoạch hoặc tổ chức
+Lesson 05 - Conferences|association|/əˌsəʊsiˈeɪʃən/|hiệp hội; mối liên hệ
+Lesson 05 - Conferences|attend|/əˈtɛnd/|đi tới; chú ý đến 3] trong
+Lesson 05 - Conferences|get in touch|/ɡɛt/|liên lạc với
+Lesson 05 - Conferences|hold|/həʊld/|chứa; chỉ đạo
+Lesson 05 - Conferences|location|/ləʊˈkeɪʃən/|một vị trí hoặc trang web
 Lesson 05 - Conferences|overcrowded|ˈoʊvɝkraʊdɪd|quá đông đúc
-Lesson 05 - Conferences|register|/ˈɹɛdʒ.ɪs.tə/|đăng ký
-Lesson 05 - Conferences|select|/sɪˈlɛkt/|lựa chọn
-Lesson 05 - Conferences|session|/ˈsɛʃən/|phiên họp
-Lesson 05 - Conferences|take part in|/teɪk/|tham gia vào
-Lesson 06 - Computers|access|/ˈæksɛs/|truy cập
-Lesson 06 - Computers|allocate|/ˈæl.ə.keɪt/|phân bổ
-Lesson 06 - Computers|compatible|/kəmˈpætəbəl/|tương thích
-Lesson 06 - Computers|delete|/diˈliːt/|xóa bỏ
-Lesson 06 - Computers|display|/dɪsˈpleɪ/|trưng bày
-Lesson 06 - Computers|duplicate|/ˈdjuː.plɪ.kət/|nhân bản
-Lesson 06 - Computers|failure|/ˈfeɪl.jɚ/|sự thất bại
-Lesson 06 - Computers|figure out|/ˈfɪɡjɚ/|tìm ra
-Lesson 06 - Computers|ignore|/ɪɡˈnɔː/|phớt lờ
-Lesson 06 - Computers|search|/sɜːt͡ʃ/|tìm kiếm
-Lesson 06 - Computers|shut down|/ʃʌt/|tắt
+Lesson 05 - Conferences|register|/ˈɹɛdʒ.ɪs.tə/|một bản ghi; ghi
+Lesson 05 - Conferences|select|/sɪˈlɛkt/|chọn từ một nhóm; được lựa chọn đặc biệt
+Lesson 05 - Conferences|session|/ˈsɛʃən/|một cuộc họp
+Lesson 05 - Conferences|take part in|/teɪk/|tham gia hoặc tham gia
+Lesson 06 - Computers|access|/ˈæksɛs/|quyền truy cập; tiếp cận
+Lesson 06 - Computers|allocate|/ˈæl.ə.keɪt/|chỉ định cho một mục đích cụ thể
+Lesson 06 - Computers|compatible|/kəmˈpætəbəl/|có thể hoạt động cùng nhau
+Lesson 06 - Computers|delete|/diˈliːt/|di dời; xóa
+Lesson 06 - Computers|display|/dɪsˈpleɪ/|màn hình/hiển thị; trình bày/cho thấy
+Lesson 06 - Computers|duplicate|/ˈdjuː.plɪ.kət/|sao chép; nhân bản
+Lesson 06 - Computers|failure|/ˈfeɪl.jɚ/|một công việc hoặc nỗ lực không thành công
+Lesson 06 - Computers|figure out|/ˈfɪɡjɚ/|hiểu; gỡ rối
+Lesson 06 - Computers|ignore|/ɪɡˈnɔː/|phớt lờ; bỏ qua; không chú ý
+Lesson 06 - Computers|search|/sɜːt͡ʃ/|cuộc điều tra; tìm kiếm
+Lesson 06 - Computers|shut down|/ʃʌt/|tắt đi; ngừng hoạt động
 Lesson 06 - Computers|warning|/ˈwɔːnɪŋ/|cảnh báo
-Lesson 07 - Office Technology|affordable|/əˈfɔː(ɹ).də.bəl/|có thể chi trả
-Lesson 07 - Office Technology|as needed|/ˈæs/|khi cần thiết
-Lesson 07 - Office Technology|be in charge of|bˈi ɪn tʃˈɑrdʒ ˈʌv|phụ trách
-Lesson 07 - Office Technology|capacity|/kəˈpæsɪti/|dung tích
-Lesson 07 - Office Technology|durable|/ˈd(j)ʊəɹəbəl/|bền bỉ
-Lesson 07 - Office Technology|initiative|/ɪˈnɪʃətɪv/|sáng kiến
-Lesson 07 - Office Technology|physically|/ˈfɪzɪkli/|về thể chất
-Lesson 07 - Office Technology|provider|prʌvˈaɪdɝ|nhà cung cấp
-Lesson 07 - Office Technology|recur|/ɹɪˈkɜː(ɹ)/|tái diễn
-Lesson 07 - Office Technology|reduction|/ɹiˈdɑk.ʃən/|sự giảm bớt
-Lesson 07 - Office Technology|stay on top of|/steɪ/|đứng đầu
-Lesson 07 - Office Technology|stock|/stɒk/|Cổ phần
-Lesson 08 - Office Procedures|appreciation|/əˌpɹiː.ʃiˈeɪ.ʃən/|đánh giá cao
-Lesson 08 - Office Procedures|be made of|bˈi mˈeɪd ˈʌv|được làm bằng
-Lesson 08 - Office Procedures|bring in|brˈɪŋ ɪn|mang vào
-Lesson 08 - Office Procedures|casually|kˈæʒʌwʌli|tình cờ
-Lesson 08 - Office Procedures|code|kˈoʊd|mã số
-Lesson 08 - Office Procedures|expose|ɪkspˈoʊz|phơi ra
-Lesson 08 - Office Procedures|glimpse|ɡlˈɪmps|thoáng qua
-Lesson 08 - Office Procedures|out of|/ˈaʊt əv/|ra khỏi
-Lesson 08 - Office Procedures|outdated|/aʊtˈdeɪtɪd/|lỗi thời
-Lesson 08 - Office Procedures|practice|/ˈpɹæktɪs/|luyện tập
-Lesson 08 - Office Procedures|reinforce|/ˌɹiːɪnˈfɔː(ɹ)s/|củng cố
-Lesson 08 - Office Procedures|verbally|vɝbˈæli|bằng lời nói
-Lesson 09 - Electronics|disk|/dɪsk/|đĩa
-Lesson 09 - Electronics|facilitate|/fəˈsɪləteɪt/|tạo điều kiện
-Lesson 09 - Electronics|network|/nɛtwɜːk/|mạng
-Lesson 09 - Electronics|popularity|/ˌpɒp.jəˈlæɹ.ɪ.ti/|sự nổi tiếng
-Lesson 09 - Electronics|process|/ˈpɹoʊsɛs/|quá trình
-Lesson 09 - Electronics|replace|/ɹɪˈpleɪs/|thay thế
-Lesson 09 - Electronics|revolution|/ˌɹɛvəˈl(j)uːʃən/|cuộc cách mạng
-Lesson 09 - Electronics|sharp|/ʃɑːp/|sắc
-Lesson 09 - Electronics|skill|/skɪl/|kỹ năng
-Lesson 09 - Electronics|software|/ˈsɑftˌwɛɹ/|phần mềm
-Lesson 09 - Electronics|store|/stɔː/|cửa hàng
-Lesson 09 - Electronics|technically|/ˈtɛknɪkli/|về mặt kỹ thuật
-Lesson 10 - Correspondence|assemble|/əˈsɛmbl̩/|tập hợp
-Lesson 10 - Correspondence|beforehand|/bɪˈfɔːhænd/|trước
-Lesson 10 - Correspondence|complication|kɑmplʌkˈeɪʃʌn|sự phức tạp
-Lesson 10 - Correspondence|courier|/ˈkʊɹ.ɪə/|chuyển phát nhanh
-Lesson 10 - Correspondence|express|/ɛk.ˈspɹɛs/|thể hiện
-Lesson 10 - Correspondence|fold|/fəʊld/|nếp gấp
-Lesson 10 - Correspondence|layout|/ˈleɪ.aʊt/|cách trình bày
-Lesson 10 - Correspondence|mention|/ˈmɛnʃən/|đề cập đến
-Lesson 10 - Correspondence|petition|pʌtˈɪʃʌn|đơn kiến nghị
-Lesson 10 - Correspondence|proof|prˈuf|bằng chứng
-Lesson 10 - Correspondence|register|/ˈɹɛdʒ.ɪs.tə/|đăng ký
-Lesson 10 - Correspondence|revise|rɪvˈaɪz|ôn lại
-Lesson 11 - Job Advertising and Recruiting|abundant|ʌbˈʌndʌnt|dồi dào
-Lesson 11 - Job Advertising and Recruiting|accomplishment|ʌkˈɑmplɪʃmʌnt|thành tựu
-Lesson 11 - Job Advertising and Recruiting|bring together|brˈɪŋ tʌɡˈɛðɝ|tập hợp lại với nhau
+Lesson 07 - Office Technology|affordable|/əˈfɔː(ɹ).də.bəl/|có thể được trả tiền; quá đắt
+Lesson 07 - Office Technology|as needed|/ˈæs/|cần thiết
+Lesson 07 - Office Technology|be in charge of|bˈi ɪn tʃˈɑrdʒ ˈʌv|được kiểm soát hoặc chỉ huy của
+Lesson 07 - Office Technology|capacity|/kəˈpæsɪti/|sức chứa; năng lực
+Lesson 07 - Office Technology|durable|/ˈd(j)ʊəɹəbəl/|chắc chắn, mạnh mẽ, lâu dài
+Lesson 07 - Office Technology|initiative|/ɪˈnɪʃətɪv/|bước đầu tiên; một vai trò tích cực
+Lesson 07 - Office Technology|physically|/ˈfɪzɪkli/|với các giác quan; của cơ thể
+Lesson 07 - Office Technology|provider|prʌvˈaɪdɝ|một nhà cung cấp
+Lesson 07 - Office Technology|recur|/ɹɪˈkɜː(ɹ)/|xảy ra một lần nữa hoặc lặp đi lặp lại
+Lesson 07 - Office Technology|reduction|/ɹiˈdɑk.ʃən/|sự giảm bớt; sự giảm sút
+Lesson 07 - Office Technology|stay on top of|/steɪ/|nắm bắt; cập nhật
+Lesson 07 - Office Technology|stock|/stɒk/|giữ trong tay; một nguồn cung cấp
+Lesson 08 - Office Procedures|appreciation|/əˌpɹiː.ʃiˈeɪ.ʃən/|sự công nhận, sự hiểu biết; Cảm ơn
+Lesson 08 - Office Procedures|be made of|bˈi mˈeɪd ˈʌv|bao gồm
+Lesson 08 - Office Procedures|bring in|brˈɪŋ ɪn|thuê hoặc tuyển dụng; khiến xuất hiện
+Lesson 08 - Office Procedures|casually|kˈæʒʌwʌli|một cách không chính thức
+Lesson 08 - Office Procedures|code|kˈoʊd|quy tắc ứng xử
+Lesson 08 - Office Procedures|expose|ɪkspˈoʊz|nhận biết; cho kinh nghiệm
+Lesson 08 - Office Procedures|glimpse|ɡlˈɪmps|một cái nhìn nhanh
+Lesson 08 - Office Procedures|out of|/ˈaʊt əv/|o còn có, thiếu
+Lesson 08 - Office Procedures|outdated|/aʊtˈdeɪtɪd/|lỗi thời; hiện đang được sử dụng
+Lesson 08 - Office Procedures|practice|/ˈpɹæktɪs/|thực hành; phương pháp
+Lesson 08 - Office Procedures|reinforce|/ˌɹiːɪnˈfɔː(ɹ)s/|tăng cường, hỗ trợ
+Lesson 08 - Office Procedures|verbally|vɝbˈæli|ở dạng nói
+Lesson 09 - Electronics|disk|/dɪsk/|đĩa lưu trữ dữ liệu; ổ/đĩa máy tính
+Lesson 09 - Electronics|facilitate|/fəˈsɪləteɪt/|làm dễ dàng hơn
+Lesson 09 - Electronics|network|/nɛtwɜːk/|mạng lưới; kết nối
+Lesson 09 - Electronics|popularity|/ˌpɒp.jəˈlæɹ.ɪ.ti/|sự phổ biến
+Lesson 09 - Electronics|process|/ˈpɹoʊsɛs/|xử lý; quy trình; chuỗi thao tác
+Lesson 09 - Electronics|replace|/ɹɪˈpleɪs/|thay thế; đặt lại
+Lesson 09 - Electronics|revolution|/ˌɹɛvəˈl(j)uːʃən/|cuộc cách mạng; vòng quay
+Lesson 09 - Electronics|sharp|/ʃɑːp/|đột ngột hoặc cấp tính; thông minh
+Lesson 09 - Electronics|skill|/skɪl/|một khả năng phát triển
+Lesson 09 - Electronics|software|/ˈsɑftˌwɛɹ/|các chương trình cho máy tính
+Lesson 09 - Electronics|store|/stɔː/|giữ
+Lesson 09 - Electronics|technically|/ˈtɛknɪkli/|với kỹ năng hoặc kiến thức chuyên môn
+Lesson 10 - Correspondence|assemble|/əˈsɛmbl
+̩/|tập hợp lại với nhau; tập hợp lại với nhau
+Lesson 10 - Correspondence|beforehand|/bɪˈfɔːhænd/|trong sự chờ đợi, trong sự chờ đợi
+Lesson 10 - Correspondence|complication|kɑmplʌkˈeɪʃʌn|tình thế khó khăn, phức tạp
+Lesson 10 - Correspondence|courier|/ˈkʊɹ.ɪə/|người đưa tin, người giao hàng chính thức
+Lesson 10 - Correspondence|express|/ɛk.
+ˈspɹɛs/|nhanh chóng và trực tiếp
+Lesson 10 - Correspondence|fold|/fəʊld/|uốn cong giấy
+Lesson 10 - Correspondence|layout|/ˈleɪ.aʊt/|bố cục; dàn trang
+Lesson 10 - Correspondence|mention|/ˈmɛnʃən/|điều gì đó được nói hoặc viết; tham khảo
+Lesson 10 - Correspondence|petition|pʌtˈɪʃʌn|đơn kiến nghị; yêu cầu
+Lesson 10 - Correspondence|proof|prˈuf|tìm kiếm lỗi; chứng cớ
+Lesson 10 - Correspondence|register|/ˈɹɛdʒ.ɪs.tə/|ghi lại, theo dõi; một kỷ lục
+Lesson 10 - Correspondence|revise|rɪvˈaɪz|viết lại
+Lesson 11 - Job Advertising and Recruiting|abundant|ʌbˈʌndʌnt|dồi dào, với số lượng lớn
+Lesson 11 - Job Advertising and Recruiting|accomplishment|ʌkˈɑmplɪʃmʌnt|một thành tựu, một thành công
+Lesson 11 - Job Advertising and Recruiting|bring together|brˈɪŋ tʌɡˈɛðɝ|tập hợp; đưa/gắn kết lại với nhau
 Lesson 11 - Job Advertising and Recruiting|candidate|kˈændʌdeɪt|ứng viên
-Lesson 11 - Job Advertising and Recruiting|come up with|kˈʌm ˈʌp wˈɪð|nghĩ ra
-Lesson 11 - Job Advertising and Recruiting|commensurate|kʌmˈɛnsɝʌt|tương xứng
-Lesson 11 - Job Advertising and Recruiting|match|mˈætʃ|cuộc thi đấu
-Lesson 11 - Job Advertising and Recruiting|profile|prˈoʊfaɪl|hồ sơ
-Lesson 11 - Job Advertising and Recruiting|qualifications|kwɑlʌfʌkˈeɪʃʌnz|bằng cấp
-Lesson 11 - Job Advertising and Recruiting|recruit|rʌkrˈut|tuyển dụng
-Lesson 11 - Job Advertising and Recruiting|submit|sʌbmˈɪt|nộp
-Lesson 11 - Job Advertising and Recruiting|time-consuming|tˈaɪmkʌnsˈumɪŋ|tốn thời gian
-Lesson 12 - Applying and Interviewing|ability|ʌbˈɪlʌti|khả năng
-Lesson 12 - Applying and Interviewing|apply|ʌplˈaɪ|áp dụng
-Lesson 12 - Applying and Interviewing|background|bˈækɡraʊnd|lý lịch
-Lesson 12 - Applying and Interviewing|be ready for|bˈi rˈɛdi fˈɔr|sẵn sàng cho
-Lesson 12 - Applying and Interviewing|call in|/kɔːɫ/|gọi vào
-Lesson 12 - Applying and Interviewing|confidence|/ˈkɒnfɪdəns/|sự tự tin
-Lesson 12 - Applying and Interviewing|constantly|/ˈkɒnstəntli/|liên tục
-Lesson 12 - Applying and Interviewing|expert|/ˈɛkspəːt/|chuyên gia
-Lesson 12 - Applying and Interviewing|follow up|/ˈfɒləʊ/|theo dõi
-Lesson 12 - Applying and Interviewing|hesitant|/ˈhɛzɪtənt/|do dự
-Lesson 12 - Applying and Interviewing|present|/pɹəˈzɛnt/|hiện tại
-Lesson 12 - Applying and Interviewing|weakly|/ˈwiːkli/|yếu đuối
-Lesson 13 - Hiring and Training|conduct|/ˈkɒndʌkt/|chỉ đạo
-Lesson 13 - Hiring and Training|generate|/ˈdʒɛn.əɹ.eɪt/|phát ra
-Lesson 13 - Hiring and Training|hire|/haɪə/|thuê
-Lesson 13 - Hiring and Training|keep up with|/kiːp/|theo kịp
-Lesson 13 - Hiring and Training|look up to|lˈʊk ˈʌp tˈu|nhìn lên
-Lesson 13 - Hiring and Training|mentor|/ˈmɛn.tɔː/|người hướng dẫn
-Lesson 13 - Hiring and Training|on track|/ɒn/|đi đúng hướng
-Lesson 13 - Hiring and Training|reject|rɪdʒˈɛkt|từ chối
-Lesson 13 - Hiring and Training|set up|/sɛt/|cài đặt
-Lesson 13 - Hiring and Training|success|/səkˈsɛs/|thành công
-Lesson 13 - Hiring and Training|training|/ˈtɹeɪnɪŋ/|đào tạo
-Lesson 13 - Hiring and Training|update|ʌpdˈeɪt|cập nhật
-Lesson 14 - Salaries and Benefits|basis|/ˈbeɪsɪs/|cơ sở
-Lesson 14 - Salaries and Benefits|be aware of|bˈi ʌwˈɛr ˈʌv|nhận thức được
-Lesson 14 - Salaries and Benefits|benefit|/ˈbɛn.ɪ.fɪt/|lợi ích
-Lesson 14 - Salaries and Benefits|compensate|/ˈkɒm.pən.seɪt/|đền bù
-Lesson 14 - Salaries and Benefits|delicately|/ˈdɛlɪkətli/|tế nhị
-Lesson 14 - Salaries and Benefits|eligible|/ˈɛlɪdʒəb(ə)l/|đạt chuẩn
-Lesson 14 - Salaries and Benefits|flexibly|flˈɛksʌbli|một cách linh hoạt
-Lesson 14 - Salaries and Benefits|negotiate|/nəˈɡəʊ.ʃi.eɪt/|thương lượng
-Lesson 14 - Salaries and Benefits|raise|/ɹeɪz/|nâng lên
-Lesson 14 - Salaries and Benefits|retire|/ɹəˈtaɪə(ɹ)/|về hưu
-Lesson 14 - Salaries and Benefits|vested|vˈɛstʌd|được trao quyền
-Lesson 14 - Salaries and Benefits|wage|/weɪd͡ʒ/|tiền công
-Lesson 15 - Promotions, Pensions, and Awards|achievement|/əˈtʃiːvmənt/|thành tích
-Lesson 15 - Promotions, Pensions, and Awards|contribute|/kənˈt(ʃ)ɹɪb.juːt/|đóng góp
-Lesson 15 - Promotions, Pensions, and Awards|dedication|/ˌdɛdɪˈkeɪʃən/|sự cống hiến
-Lesson 15 - Promotions, Pensions, and Awards|look forward to|lˈʊk fˈɔrwɝdtˈu|mong chờ
-Lesson 15 - Promotions, Pensions, and Awards|look to|lˈʊk tˈu|nhìn vào
+Lesson 11 - Job Advertising and Recruiting|come up with|kˈʌm ˈʌp wˈɪð|lập kế hoạch, phát minh, nghĩ về
+Lesson 11 - Job Advertising and Recruiting|commensurate|kʌmˈɛnsɝʌt|tỉ lệ với, tương ứng, bằng
+Lesson 11 - Job Advertising and Recruiting|match|mˈætʃ|sự phù hợp; ghép nối; phù hợp với
+Lesson 11 - Job Advertising and Recruiting|profile|prˈoʊfaɪl|một nhóm các đặc điểm hoặc đặc điểm
+Lesson 11 - Job Advertising and Recruiting|qualifications|kwɑlʌfʌkˈeɪʃʌnz|trình độ; điều kiện
+Lesson 11 - Job Advertising and Recruiting|recruit|rʌkrˈut|tuyển dụng; người mới
+Lesson 11 - Job Advertising and Recruiting|submit|sʌbmˈɪt|nộp; trình để xem xét
+Lesson 11 - Job Advertising and Recruiting|time-consuming|tˈaɪm kʌnsˈumɪŋ|mất nhiều thời gian, dài dòng
+Lesson 12 - Applying and Interviewing|ability|ʌbˈɪlʌti|một kỹ năng, một năng lực
+Lesson 12 - Applying and Interviewing|apply|ʌplˈaɪ|tìm kiếm; nộp đơn
+Lesson 12 - Applying and Interviewing|background|bˈækɡraʊnd|lý lịch; nền tảng
+Lesson 12 - Applying and Interviewing|be ready for|bˈi rˈɛdi fˈɔr|được sẵn sàng
+Lesson 12 - Applying and Interviewing|call in|/kɔːɫ/|yêu cầu đến; vẫy gọi
+Lesson 12 - Applying and Interviewing|confidence|/ˈkɒnfɪdəns/|sự tự tin; niềm tin
+Lesson 12 - Applying and Interviewing|constantly|/ˈkɒnstəntli/|diễn ra liên tục, liên tục
+Lesson 12 - Applying and Interviewing|expert|/ˈɛkspəːt/|một chuyên gia
+Lesson 12 - Applying and Interviewing|follow up|/ˈfɒləʊ/|theo dõi tiếp; tiếp tục
+Lesson 12 - Applying and Interviewing|hesitant|/ˈhɛzɪtənt/|miễn cưỡng; có đặt trước
+Lesson 12 - Applying and Interviewing|present|/pɹəˈzɛnt/|giới thiệu; trình bày; đưa ra để xem xét
+Lesson 12 - Applying and Interviewing|weakly|/ˈwiːkli/|không có sức mạnh; kém
+Lesson 13 - Hiring and Training|conduct|/ˈkɒndʌkt/|hành vi của một người; giữ, diễn ra, cư xử
+Lesson 13 - Hiring and Training|generate|/ˈdʒɛn.əɹ.eɪt/|tạo ra, sản xuất
+Lesson 13 - Hiring and Training|hire|/haɪə/|tuyển; thuê; nhân viên
+Lesson 13 - Hiring and Training|keep up with|/kiːp/|giữ bình đẳng với
+Lesson 13 - Hiring and Training|look up to|lˈʊk ˈʌp tˈu|ngưỡng mộ, đánh giá cao về
+Lesson 13 - Hiring and Training|mentor|/ˈmɛn.tɔː/|người hướng dẫn; cố vấn
+Lesson 13 - Hiring and Training|on track|/ɒn/|đúng tiến độ; tập trung
+Lesson 13 - Hiring and Training|reject|rɪdʒˈɛkt|từ chối; bác bỏ; thứ bị loại
+Lesson 13 - Hiring and Training|set up|/sɛt/|thành lập, sắp xếp; thành lập, sắp xếp
+Lesson 13 - Hiring and Training|success|/səkˈsɛs/|một thành tựu; đạt được mục tiêu
+Lesson 13 - Hiring and Training|training|/ˈtɹeɪnɪŋ/|đào tạo; huấn luyện
+Lesson 13 - Hiring and Training|update|ʌpdˈeɪt|tạo ra dòng điện; thông tin mới nhất
+Lesson 14 - Salaries and Benefits|basis|/ˈbeɪsɪs/|cơ sở; nền tảng
+Lesson 14 - Salaries and Benefits|be aware of|bˈi ʌwˈɛr ˈʌv|có ý thức về; có kiến thức về
+Lesson 14 - Salaries and Benefits|benefit|/ˈbɛn.ɪ.fɪt/|phúc lợi; lợi ích
+Lesson 14 - Salaries and Benefits|compensate|/ˈkɒm.pən.seɪt/|chi trả; bù đắp cho
+Lesson 14 - Salaries and Benefits|delicately|/ˈdɛlɪkətli/|với độ nhạy
+Lesson 14 - Salaries and Benefits|eligible|/ˈɛlɪdʒəb(ə)l/|đủ điều kiện
+Lesson 14 - Salaries and Benefits|flexibly|flˈɛksʌbli|với khả năng thay đổi; lỏng lẻo
+Lesson 14 - Salaries and Benefits|negotiate|/nəˈɡəʊ.ʃi.eɪt/|đàm phán; thương lượng
+Lesson 14 - Salaries and Benefits|raise|/ɹeɪz/|tăng lương; di chuyển lên
+Lesson 14 - Salaries and Benefits|retire|/ɹəˈtaɪə(ɹ)/|nghỉ hưu; rút lui
+Lesson 14 - Salaries and Benefits|vested|vˈɛstʌd|được đảm bảo như một quyền, liên quan
+Lesson 14 - Salaries and Benefits|wage|/weɪd͡
+ʒ/|tiền công; lương giờ
+Lesson 15 - Promotions, Pensions, and Awards|achievement|/əˈtʃiːvmənt/|một thành tựu, một hành động đã hoàn thành
+Lesson 15 - Promotions, Pensions, and Awards|contribute|/kənˈt(ʃ)ɹɪb.juːt/|thêm vào; tặng
+Lesson 15 - Promotions, Pensions, and Awards|dedication|/ˌdɛdɪˈkeɪʃən/|một cam kết với một cái gì đó
+Lesson 15 - Promotions, Pensions, and Awards|look forward to|lˈʊk fˈɔrwɝd tˈu|mong chờ; háo hức
+Lesson 15 - Promotions, Pensions, and Awards|look to|lˈʊk tˈu|phụ thuộc vào, dựa vào
 Lesson 15 - Promotions, Pensions, and Awards|loyal|/ˈlɔɪəl/|trung thành
-Lesson 15 - Promotions, Pensions, and Awards|merit|/ˈmɛɹət/|công lao
-Lesson 15 - Promotions, Pensions, and Awards|obviously|/ˈɒ(b).vɪəs.li/|rõ ràng
-Lesson 15 - Promotions, Pensions, and Awards|productive|/pɹəˈdʌktɪv/|năng suất
-Lesson 15 - Promotions, Pensions, and Awards|promote|/pɹəˈməʊt/|khuyến khích
-Lesson 15 - Promotions, Pensions, and Awards|recognition|/ˌɹɛkəɡˈnɪʃən/|sự công nhận
-Lesson 15 - Promotions, Pensions, and Awards|value|/ˈvæljuː/|giá trị
-Lesson 16 - Shopping|bargain|/-ɡɪn/|mặc cả
-Lesson 16 - Shopping|bear|/bɛə(ɹ)/|con gấu
-Lesson 16 - Shopping|behavior|[bɪˈheɪvjə]|hành vi
-Lesson 16 - Shopping|checkout|tʃˈɛkaʊt|thanh toán
-Lesson 16 - Shopping|comfort|/ˈkʊm.fət/|an ủi
-Lesson 16 - Shopping|expand|/ɛkˈspænd/|mở rộng
-Lesson 16 - Shopping|explore|ɪksplˈɔr|khám phá
-Lesson 16 - Shopping|item|ˈaɪtʌm|mục
-Lesson 16 - Shopping|mandatory|mˈændʌtɔri|bắt buộc
-Lesson 16 - Shopping|merchandise|mˈɝtʃʌndaɪz|hàng hóa
-Lesson 16 - Shopping|strictly|strˈɪktli|nghiêm ngặt
-Lesson 16 - Shopping|trend|trˈɛnd|xu hướng
-Lesson 17 - Ordering Supplies|diversify|daɪvˈɝsʌfaɪ|đa dạng hóa
-Lesson 17 - Ordering Supplies|enterprise|ˈɛntɝpraɪz|doanh nghiệp
-Lesson 17 - Ordering Supplies|essentially|ɪsˈɛnʃʌli|Thiết yếu
-Lesson 17 - Ordering Supplies|everyday|ˈɛvridˈeɪ|hàng ngày
-Lesson 17 - Ordering Supplies|function|fˈʌŋkʃʌn|chức năng
-Lesson 17 - Ordering Supplies|maintain|meɪntˈeɪn|duy trì
-Lesson 17 - Ordering Supplies|obtain|ʌbtˈeɪn|đạt được
+Lesson 15 - Promotions, Pensions, and Awards|merit|/ˈmɛɹət/|sự xuất sắc, chất lượng cao
+Lesson 15 - Promotions, Pensions, and Awards|obviously|/ˈɒ(b).vɪəs.li/|rõ ràng, hiển nhiên
+Lesson 15 - Promotions, Pensions, and Awards|productive|/pɹəˈdʌktɪv/|hữu ích, làm được nhiều việc
+Lesson 15 - Promotions, Pensions, and Awards|promote|/pɹəˈməʊt/|thăng chức; quảng bá; thúc đẩy; ủng hộ
+Lesson 15 - Promotions, Pensions, and Awards|recognition|/ˌɹɛkəɡˈnɪʃən/|sự công nhận; khen ngợi
+Lesson 15 - Promotions, Pensions, and Awards|value|/ˈvæljuː/|nêu giá trị
+Lesson 16 - Shopping|bargain|/-ɡɪn/|thương lượng; một sự mua bán khó chịu
+Lesson 16 - Shopping|bear|/bɛə(ɹ)/|có lòng khoan dung đối với; chịu đựng
+Lesson 16 - Shopping|behavior|[bɪˈheɪvjə]|cách hành động của một người
+Lesson 16 - Shopping|checkout|tʃˈɛkaʊt|quầy thanh toán; trả phòng
+Lesson 16 - Shopping|comfort|/ˈkʊm.fət/|sự thoải mái; an ủi
+Lesson 16 - Shopping|expand|/ɛkˈspænd/|mở rộng; tăng lên
+Lesson 16 - Shopping|explore|ɪksplˈɔr|điều tra một cách có hệ thống
+Lesson 16 - Shopping|item|ˈaɪtʌm|một bài viết hoặc đơn vị
+Lesson 16 - Shopping|mandatory|mˈændʌtɔri|được yêu cầu hoặc ra lệnh; bắt buộc
+Lesson 16 - Shopping|merchandise|mˈɝtʃʌndaɪz|mặt hàng có sẵn tại cửa hàng
+Lesson 16 - Shopping|strictly|strˈɪktli|nghiêm ngặt; cứng nhắc
+Lesson 16 - Shopping|trend|trˈɛnd|phong cách hiện tại; quỷ quái
+Lesson 17 - Ordering Supplies|diversify|daɪvˈɝsʌfaɪ|mở rộng, làm phong phú hơn
+Lesson 17 - Ordering Supplies|enterprise|ˈɛntɝpraɪz|một doanh nghiệp; một dự án lớn để
+Lesson 17 - Ordering Supplies|essentially|ɪsˈɛnʃʌli|nhất thiết, về cơ bản, cuối cùng
+Lesson 17 - Ordering Supplies|everyday|ˈɛvridˈeɪ|thông thường, thông thường, thông thường
+Lesson 17 - Ordering Supplies|function|fˈʌŋkʃʌn|thực hiện nhiệm vụ; một mục đích
+Lesson 17 - Ordering Supplies|maintain|meɪntˈeɪn|duy trì; tiếp tục; hỗ trợ
+Lesson 17 - Ordering Supplies|obtain|ʌbtˈeɪn|giành được
 Lesson 17 - Ordering Supplies|prerequisite|prɪrˈɛkwʌzʌt|điều kiện tiên quyết
-Lesson 17 - Ordering Supplies|quality|kwˈɑlʌti|chất lượng
-Lesson 17 - Ordering Supplies|smooth|smˈuð|trơn tru
-Lesson 17 - Ordering Supplies|source|sˈɔrs|nguồn
-Lesson 17 - Ordering Supplies|stationery|stˈeɪʃʌnɛri|văn phòng phẩm
-Lesson 18 - Shipping|accurately|ˈækjɝʌtli|chính xác
-Lesson 18 - Shipping|carrier|kˈæriɝ|người chuyên chở
-Lesson 18 - Shipping|catalog|kˈætʌlɔɡ|danh mục
-Lesson 18 - Shipping|fulfill|fʊlfˈɪl|thực hiện
-Lesson 18 - Shipping|integral|ˈɪntʌɡrʌl|tích phân
-Lesson 18 - Shipping|inventory|ɪnvʌntˈɔri|hàng tồn kho
-Lesson 18 - Shipping|minimize|mˈɪnʌmaɪz|giảm thiểu
-Lesson 18 - Shipping|on hand|/ɒn/|trong tay
-Lesson 18 - Shipping|remember|/ɹɪˈmɛmbə/|nhớ
-Lesson 18 - Shipping|ship|/ʃɪp/|tàu thủy
+Lesson 17 - Ordering Supplies|quality|kwˈɑlʌti|chất lượng; đặc điểm
+Lesson 17 - Ordering Supplies|smooth|smˈuð|suôn sẻ; trơn tru; khéo léo dễ chịu
+Lesson 17 - Ordering Supplies|source|sˈɔrs|nguồn gốc
+Lesson 17 - Ordering Supplies|stationery|stˈeɪʃʌnɛri|giấy viết và phong bì
+Lesson 18 - Shipping|accurately|ˈækjɝʌtli|một cách chính xác; không có lỗi
+Lesson 18 - Shipping|carrier|kˈæriɝ|hãng/người vận chuyển; đơn vị vận tải
+Lesson 18 - Shipping|catalog|kˈætʌlɔɡ|danh mục; lập danh mục
+Lesson 18 - Shipping|fulfill|fʊlfˈɪl|kết thúc hoàn toàn
+Lesson 18 - Shipping|integral|ˈɪntʌɡrʌl|cần thiết để hoàn thành
+Lesson 18 - Shipping|inventory|ɪnvʌntˈɔri|hàng tồn kho; kiểm kê
+Lesson 18 - Shipping|minimize|mˈɪnʌmaɪz|giảm bớt; ít quan trọng hơn
+Lesson 18 - Shipping|on hand|/ɒn/|có sẵn
+Lesson 18 - Shipping|remember|/ɹɪˈmɛmbə/|nghĩ lại; giữ lại trong bộ nhớ
+Lesson 18 - Shipping|ship|/ʃɪp/|chuyên chở; gửi
 Lesson 18 - Shipping|sufficiently|/səˈfɪʃəntli/|đủ
-Lesson 18 - Shipping|supply|/səˈplaɪ/|cung cấp
-Lesson 19 - Invoices|charge|/t͡ʃɑːd͡ʒ/|thù lao
-Lesson 19 - Invoices|compile|/kəmpʌɪl/|biên soạn
-Lesson 19 - Invoices|customer|/ˈkʌstəmə/|khách hàng
-Lesson 19 - Invoices|discount|/dɪsˈkaʊnt/|giảm giá
-Lesson 19 - Invoices|efficient|/əˈfɪʃənt/|có hiệu quả
-Lesson 19 - Invoices|estimate|/ˈɛstɨmɨt/|ước lượng
-Lesson 19 - Invoices|impose|/ɪmˈpəʊz/|áp đặt
-Lesson 19 - Invoices|mistake|/mɪˈsteɪk/|sai lầm
-Lesson 19 - Invoices|order|/ˈɔːdə/|đặt hàng
-Lesson 19 - Invoices|promptly|/ˈpɹɒmptli/|kịp thời
-Lesson 19 - Invoices|rectify|/ˈɹɛktəˌfaɪ/|sửa chữa
-Lesson 19 - Invoices|terms|/tɜːmz/|điều khoản
-Lesson 20 - Inventory|adjustment|/əˈdʒʌst.mənt/|điều chỉnh
+Lesson 18 - Shipping|supply|/səˈplaɪ/|nguồn cung; hàng có sẵn; cung cấp
+Lesson 19 - Invoices|charge|/t͡ʃɑːd͡
+ʒ/|tính phí; yêu cầu thanh toán; khoản phí
+Lesson 19 - Invoices|compile|/kəmpʌɪl/|tập hợp lại từ nhiều nguồn
+Lesson 19 - Invoices|customer|/ˈkʌstəmə/|người mua hàng hóa hoặc dịch vụ
+Lesson 19 - Invoices|discount|/dɪsˈkaʊnt/|giảm giá; giảm giá lại
+Lesson 19 - Invoices|efficient|/əˈfɪʃənt/|hiệu quả; tiết kiệm
+Lesson 19 - Invoices|estimate|/ˈɛstɨmɨt/|ước tính; sự ước lượng
+Lesson 19 - Invoices|impose|/ɪmˈpəʊz/|áp đặt; bắt buộc
+Lesson 19 - Invoices|mistake|/mɪˈsteɪk/|một lỗi hoặc một lỗi
+Lesson 19 - Invoices|order|/ˈɔːdə/|đơn đặt hàng; đặt hàng; ra lệnh
+Lesson 19 - Invoices|promptly|/ˈpɹɒmptli/|đúng giờ; đúng giờ
+Lesson 19 - Invoices|rectify|/ˈɹɛktəˌfaɪ/|đặt đúng hoặc đúng
+Lesson 19 - Invoices|terms|/tɜːmz/|điều kiện
+Lesson 20 - Inventory|adjustment|/əˈdʒʌst.mənt/|sự điều chỉnh; thay đổi để khớp/đúng hơn
 Lesson 20 - Inventory|automatically|/ˈɔːtəʊˌmæt.ɪk(.ə)li/|tự động
-Lesson 20 - Inventory|crucial|/ˈkɹuː.ʃəl/|chủ yếu
-Lesson 20 - Inventory|discrepancy|/dɪsˈkɹɛpənsi/|sự khác biệt
-Lesson 20 - Inventory|disturb|/dɪsˈtɜːb/|quấy rầy
-Lesson 20 - Inventory|liability|/laɪəˈbɪlɪti/|trách nhiệm pháp lý
-Lesson 20 - Inventory|reflection|/ɹɪˈflɛkʃən/|sự phản xạ
-Lesson 20 - Inventory|run|/ɹʊn/|chạy
-Lesson 20 - Inventory|scan|/skæn/|quét
-Lesson 20 - Inventory|subtract|/səbˈtɹækt/|trừ đi
-Lesson 20 - Inventory|tedious|/ˈtiː.dɪəs/|tẻ nhạt
-Lesson 20 - Inventory|verify|vˈɛrʌfaɪ|xác minh
-Lesson 21 - Banking|accept|/ækˈsɛpt/|chấp nhận
-Lesson 21 - Banking|balance|/ˈbæləns/|THĂNG BẰNG
-Lesson 21 - Banking|borrow|/ˈbɔɹoʊ/|vay mượn
-Lesson 21 - Banking|cautiously|/ˈkɑʃəsli/|thận trọng
-Lesson 21 - Banking|deduct|/dɪˈdʊkt/|khấu trừ
-Lesson 21 - Banking|dividend|/ˈdɪvɪdɛnd/|cổ tức
-Lesson 21 - Banking|down payment|/daʊn/|trả trước
-Lesson 21 - Banking|mortgage|/ˈmɔː.ɡɪdʒ/|thế chấp
-Lesson 21 - Banking|restricted|/ɹɪˈstɹɪktɪd/|hạn chế
-Lesson 21 - Banking|signature|/ˈsɪɡnətʃə/|chữ ký
-Lesson 21 - Banking|take out|/teɪk/|lấy ra
-Lesson 21 - Banking|transaction|/tɹænˈzækʃən/|giao dịch
-Lesson 22 - Accounting|accounting|/ə.ˈkaʊn.tɪŋ/|kế toán
-Lesson 22 - Accounting|accumulate|/əˈkjuːmjʊˌleɪt/|tích lũy
-Lesson 22 - Accounting|asset|/ˈæsɪt/|tài sản
-Lesson 22 - Accounting|audit|/ɔː.dɪt/|kiểm toán
-Lesson 22 - Accounting|budget|/ˈbʌdʒ.ɪt/|ngân sách
-Lesson 22 - Accounting|build up|/bɪld/|xây dựng lên
-Lesson 22 - Accounting|client|/ˈklʌɪənt/|khách hàng
-Lesson 22 - Accounting|debt|/dɛt/|món nợ
-Lesson 22 - Accounting|outstanding|aʊtstˈændɪŋ|nổi bật
-Lesson 22 - Accounting|profitably|prˈɑfʌtʌbli|có lợi nhuận
-Lesson 22 - Accounting|reconcile|/ˈɹɛkənsaɪl/|hòa giải
-Lesson 22 - Accounting|turnover|tˈɝnoʊvɝ|doanh thu
-Lesson 23 - Investments|aggressively|ʌɡrˈɛsɪvli|hung hãn
-Lesson 23 - Investments|attitude|/ˈætɪˌtjuːd/|thái độ
-Lesson 23 - Investments|commit|/kəˈmɪt/|làm
-Lesson 23 - Investments|conservative|/kənˈsɜːvətɪv/|thận trọng
-Lesson 23 - Investments|fund|/ˈfʌnd/|quỹ
-Lesson 23 - Investments|invest|/ɪnˈvɛst/|đầu tư
-Lesson 23 - Investments|long-term|/ˈlɔːŋ/|lâu dài
-Lesson 23 - Investments|portfolio|/-əʊl.jəʊ/|danh mục đầu tư
-Lesson 23 - Investments|pull out|/pʊl/|kéo ra
-Lesson 23 - Investments|resource|/ɹɪˈsɔɹs/|tài nguyên
-Lesson 23 - Investments|return|/ɹɪˈtɜːn/|trở lại
-Lesson 23 - Investments|wisely|/ˈwaɪzli/|một cách khôn ngoan
-Lesson 24 - Taxes|calculation|/kælkjuˈleɪʃən/|tính toán
-Lesson 24 - Taxes|deadline|/ˈdɛdˌlaɪn/|thời hạn
-Lesson 24 - Taxes|file|/faɪl/|tài liệu
-Lesson 24 - Taxes|fill out|/fɪl aʊt/|điền vào
-Lesson 24 - Taxes|give up|/ɡɪv/|bỏ cuộc
-Lesson 24 - Taxes|joint|/dʒɔɪnt/|chung
-Lesson 24 - Taxes|owe|/əʊ/|nợ
-Lesson 24 - Taxes|penalty|pˈɛnʌlti|hình phạt
-Lesson 24 - Taxes|preparation|prɛpɝˈeɪʃʌn|sự chuẩn bị
-Lesson 24 - Taxes|refund|rɪfˈʌnd|đền bù
-Lesson 24 - Taxes|spouse|spˈaʊs|vợ chồng
-Lesson 24 - Taxes|withhold|wɪθhˈoʊld|giữ lại
-Lesson 25 - Financial Statements|desire|dɪzˈaɪɝ|sự mong muốn
-Lesson 25 - Financial Statements|detail|dɪtˈeɪl|chi tiết
-Lesson 25 - Financial Statements|forecast|fˈɔrkæst|dự báo
-Lesson 25 - Financial Statements|level|lˈɛvʌl|mức độ
-Lesson 25 - Financial Statements|overall|ˈoʊvɝɔl|tổng thể
-Lesson 25 - Financial Statements|perspective|pɝspˈɛktɪv|luật xa gần
-Lesson 25 - Financial Statements|project|prˈɑdʒɛkt|dự án
-Lesson 25 - Financial Statements|realistic|riʌlˈɪstɪk|thực tế
-Lesson 25 - Financial Statements|target|tˈɑrɡʌt|mục tiêu
-Lesson 25 - Financial Statements|translation|trænzlˈeɪʃʌn|dịch thuật
-Lesson 25 - Financial Statements|typically|tˈɪpɪkli|tiêu biểu
-Lesson 25 - Financial Statements|yield|jˈild|năng suất
-Lesson 26 - Property and Departments|adjacent|ʌdʒˈeɪsʌnt|liền kề
-Lesson 26 - Property and Departments|collaboration|kʌlæbɝˈeɪʃʌn|sự hợp tác
+Lesson 20 - Inventory|crucial|/ˈkɹuː.ʃəl/|cực kỳ quan trọng hoặc quan trọng
+Lesson 20 - Inventory|discrepancy|/dɪsˈkɹɛpənsi/|sự khác biệt hoặc bất đồng
+Lesson 20 - Inventory|disturb|/dɪsˈtɜːb/|can thiệp vào; ngắt
+Lesson 20 - Inventory|liability|/laɪəˈbɪlɪti/|một nghĩa vụ; một trách nhiệm
+Lesson 20 - Inventory|reflection|/ɹɪˈflɛkʃən/|một hình ảnh, một hình ảnh
+Lesson 20 - Inventory|run|/ɹʊn/|vận hành
+Lesson 20 - Inventory|scan|/skæn/|nhìn qua nhanh
+Lesson 20 - Inventory|subtract|/səbˈtɹækt/|mua mang về; khấu trừ
+Lesson 20 - Inventory|tedious|/ˈtiː.dɪəs/|tẻ nhạt; nhàm chán
+Lesson 20 - Inventory|verify|vˈɛrʌfaɪ|xác minh; kiểm chứng
+Lesson 21 - Banking|accept|/ækˈsɛpt/|nhận được; phản hồi tích cực
+Lesson 21 - Banking|balance|/ˈbæləns/|số dư; cân đối
+Lesson 21 - Banking|borrow|/ˈbɔɹoʊ/|sử dụng tạm thời
+Lesson 21 - Banking|cautiously|/ˈkɑʃəsli/|cẩn thận, thận trọng
+Lesson 21 - Banking|deduct|/dɪˈdʊkt/|lấy đi từ tổng số; trừ đi
+Lesson 21 - Banking|dividend|/ˈdɪvɪdɛnd/|một phần trong sự phân phối
+Lesson 21 - Banking|down payment|/daʊn/|thanh toán một phần ban đầu
+Lesson 21 - Banking|mortgage|/ˈmɔː.ɡɪdʒ/|thế chấp; khoản vay mua nhà
+Lesson 21 - Banking|restricted|/ɹɪˈstɹɪktɪd/|giới hạn
+Lesson 21 - Banking|signature|/ˈsɪɡnətʃə/|ame của một người được viết bởi người đó
+Lesson 21 - Banking|take out|/teɪk/|rút; di dời
+Lesson 21 - Banking|transaction|/tɹænˈzækʃən/|một thỏa thuận kinh doanh
+Lesson 22 - Accounting|accounting|/ə.
+ˈkaʊn.tɪŋ/|kế toán
+Lesson 22 - Accounting|accumulate|/əˈkjuːmjʊˌleɪt/|tập trung; sưu tầm
+Lesson 22 - Accounting|asset|/ˈæsɪt/|một cái gì đó có giá trị
+Lesson 22 - Accounting|audit|/ɔː.dɪt/|kiểm toán; kiểm tra sổ sách
+Lesson 22 - Accounting|budget|/ˈbʌdʒ.ɪt/|ngân sách; lập ngân sách
+Lesson 22 - Accounting|build up|/bɪld/|tăng theo thời gian
+Lesson 22 - Accounting|client|/ˈklʌɪənt/|một khách hàng
+Lesson 22 - Accounting|debt|/dɛt/|khoản nợ
+Lesson 22 - Accounting|outstanding|aʊtstˈændɪŋ|chưa thanh toán; nổi bật
+Lesson 22 - Accounting|profitably|prˈɑfʌtʌbli|một cách phản cảm
+Lesson 22 - Accounting|reconcile|/ˈɹɛkənsaɪl/|đối chiếu; làm cho nhất quán/phù hợp
+Lesson 22 - Accounting|turnover|tˈɝnoʊvɝ|doanh thu; tỷ lệ thay nhân sự
+Lesson 23 - Investments|aggressively|ʌɡrˈɛsɪvli|một cách cạnh tranh, quyết đoán
+Lesson 23 - Investments|attitude|/ˈætɪˌtjuːd/|một cảm giác về một cái gì đó hoặc ai đó
+Lesson 23 - Investments|commit|/kəˈmɪt/|cam kết; dành riêng cho mục đích sau; hứa
+Lesson 23 - Investments|conservative|/kənˈsɜːvətɪv/|thận trọng, hạn chế nguồn lực
+Lesson 23 - Investments|fund|/ˈfʌnd/|quỹ; cấp vốn
+Lesson 23 - Investments|invest|/ɪnˈvɛst/|đầu tư; bỏ công sức
+Lesson 23 - Investments|long-term|/ˈlɔːŋ/|dài hạn
+Lesson 23 - Investments|portfolio|/-əʊl.jəʊ/|danh sách đầu tư
+Lesson 23 - Investments|pull out|/pʊl/|rút lui; rút vốn
+Lesson 23 - Investments|resource|/ɹɪˈsɔɹs/|tài sản; những thứ có giá trị
+Lesson 23 - Investments|return|/ɹɪˈtɜːn/|số tiền thu được dưới dạng lợi nhuận
+Lesson 23 - Investments|wisely|/ˈwaɪzli/|một cách có hiểu biết, thông minh
+Lesson 24 - Taxes|calculation|/kælkjuˈleɪʃən/|tính toán; ước lượng
+Lesson 24 - Taxes|deadline|/ˈdɛdˌlaɪn/|hạn chót
+Lesson 24 - Taxes|file|/faɪl/|ghi vào hồ sơ công khai nợ
+Lesson 24 - Taxes|fill out|/fɪl aʊt/|hoàn thành
+Lesson 24 - Taxes|give up|/ɡɪv/|từ bỏ; dừng lại
+Lesson 24 - Taxes|joint|/dʒɔɪnt/|cùng nhau; đã chia sẻ
+Lesson 24 - Taxes|owe|/əʊ/|có một khoản nợ; có nghĩa vụ phải trả
+Lesson 24 - Taxes|penalty|pˈɛnʌlti|một hình phạt; một hậu quả
+Lesson 24 - Taxes|preparation|prɛpɝˈeɪʃʌn|hành động làm một cái gì đó sẵn sàng
+Lesson 24 - Taxes|refund|rɪfˈʌnd|số tiền được trả lại; trả lại
+Lesson 24 - Taxes|spouse|spˈaʊs|một người chồng hoặc một người vợ
+Lesson 24 - Taxes|withhold|wɪθhˈoʊld|tránh xa; kiềm chế
+Lesson 25 - Financial Statements|desire|dɪzˈaɪɝ|ước gì
+Lesson 25 - Financial Statements|detail|dɪtˈeɪl|trình bày chi tiết
+Lesson 25 - Financial Statements|forecast|fˈɔrkæst|dự báo; dự đoán
+Lesson 25 - Financial Statements|level|lˈɛvʌl|mức; cấp độ
+Lesson 25 - Financial Statements|overall|ˈoʊvɝɔl|được coi là tổng thể; nói chung với
+Lesson 25 - Financial Statements|perspective|pɝspˈɛktɪv|một quan điểm hoặc quan điểm tinh thần
+Lesson 25 - Financial Statements|project|prˈɑdʒɛkt|ước tính hoặc dự đoán
+Lesson 25 - Financial Statements|realistic|riʌlˈɪstɪk|thực tế; khả thi
+Lesson 25 - Financial Statements|target|tˈɑrɡʌt|thiết lập như một mục tiêu; một mục tiêu
+Lesson 25 - Financial Statements|translation|trænzlˈeɪʃʌn|hành động hoặc quá trình dịch thuật
+Lesson 25 - Financial Statements|typically|tˈɪpɪkli|hành động phù hợp với một loại; đặc trưng
+Lesson 25 - Financial Statements|yield|jˈild|một lượng sản xuất; tạo ra lợi nhuận
+Lesson 26 - Property and Departments|adjacent|ʌdʒˈeɪsʌnt|mở rộng sang
+Lesson 26 - Property and Departments|collaboration|kʌlæbɝˈeɪʃʌn|hành động làm việc với ai đó
 Lesson 26 - Property and Departments|concentrate|kˈɑnsʌntreɪt|tập trung
-Lesson 26 - Property and Departments|conducive|kʌndˈusɪv|thuận lợi
-Lesson 26 - Property and Departments|disruption|dɪsrˈʌpʃʌn|sự gián đoạn
-Lesson 26 - Property and Departments|hamper|hˈæmpɝ|cản trở
-Lesson 26 - Property and Departments|inconsiderately|ɪnkʌnsˈɪdɝʌtli|thiếu cân nhắc
-Lesson 26 - Property and Departments|lobby|lˈɑbi|sảnh
-Lesson 26 - Property and Departments|move up|/muːv/|di chuyển lên
-Lesson 26 - Property and Departments|open to|/ˈəʊ.pən/|mở cửa cho
-Lesson 26 - Property and Departments|opt|ˈɑpt|chọn
-Lesson 26 - Property and Departments|scrutiny|skrˈutʌni|sự xem xét kỹ lưỡng
-Lesson 27 - Board Meetings and Committees|adhere to|/ædˈhiɹ/|tuân thủ
-Lesson 27 - Board Meetings and Committees|agenda|/əˈdʒɛn.də/|chương trình nghị sự
-Lesson 27 - Board Meetings and Committees|bring up|/ˈbɹɪŋ/|nuôi dưỡng
-Lesson 27 - Board Meetings and Committees|conclude|/kən.ˈkluːd/|kết luận
-Lesson 27 - Board Meetings and Committees|go ahead|/ɡəʉ/|tiếp tục đi
-Lesson 27 - Board Meetings and Committees|goal|/ɡɒʊl/|mục tiêu
-Lesson 27 - Board Meetings and Committees|lengthy|lˈɛŋθi|dài dòng
-Lesson 27 - Board Meetings and Committees|matter|/ˈmætə/|vấn đề
-Lesson 27 - Board Meetings and Committees|periodically|pɪriˈɑdɪkʌli|định kỳ
-Lesson 27 - Board Meetings and Committees|priority|/pɹaɪˈɒɹɨti/|sự ưu tiên
-Lesson 27 - Board Meetings and Committees|progress|/ˈpɹɒɡɹɛs/|tiến triển
-Lesson 27 - Board Meetings and Committees|waste|/weɪst/|rác thải
-Lesson 28 - Quality Control|brand|/bɹand/|thương hiệu
-Lesson 28 - Quality Control|conform|/kənˈfɔːm/|theo
-Lesson 28 - Quality Control|defect|dˈifɛkt|khuyết điểm
-Lesson 28 - Quality Control|enhance|/ɪnˈhɑːns/|nâng cao
-Lesson 28 - Quality Control|garment|/ˈɡɑː.mənt/|may mặc
-Lesson 28 - Quality Control|inspect|/ɪnˈspɛkt/|thanh tra
-Lesson 28 - Quality Control|perceptive|/pəˈsɛptɪv/|sâu sắc
-Lesson 28 - Quality Control|repel|/ɹɪˈpɛl/|đẩy lùi
-Lesson 28 - Quality Control|take back|/teɪk/|lấy lại
-Lesson 28 - Quality Control|throw out|/θɹəʊ/|vứt đi
-Lesson 28 - Quality Control|uniformly|/ˈjuːnɪfɔːmli/|đồng nhất
-Lesson 28 - Quality Control|wrinkle|/ˈɹɪŋkl̩/|nếp nhăn
+Lesson 26 - Property and Departments|conducive|kʌndˈusɪv|góp phần vào; dẫn tới
+Lesson 26 - Property and Departments|disruption|dɪsrˈʌpʃʌn|gián đoạn; sự xáo trộn
+Lesson 26 - Property and Departments|hamper|hˈæmpɝ|cản trở hoặc can thiệp
+Lesson 26 - Property and Departments|inconsiderately|ɪnkʌnsˈɪdɝʌtli|một cách thô lỗ; bất lịch sự
+Lesson 26 - Property and Departments|lobby|lˈɑbi|phòng chờ, tiền sảnh hoặc phòng chờ
+Lesson 26 - Property and Departments|move up|/muːv/|ance, nâng cao vị thế
+Lesson 26 - Property and Departments|open to|/ˈəʊ.pən/|tiếp thu; không thể chịu nổi
+Lesson 26 - Property and Departments|opt|ˈɑpt|chọn, quyết định
+Lesson 26 - Property and Departments|scrutiny|skrˈutʌni|kiểm tra chặt chẽ, cẩn thận
+Lesson 27 - Board Meetings and Committees|adhere to|/ædˈhiɹ/|theo; hãy chú ý đến
+Lesson 27 - Board Meetings and Committees|agenda|/əˈdʒɛn.də/|danh sách các chủ đề sẽ được thảo luận
+Lesson 27 - Board Meetings and Committees|bring up|/ˈbɹɪŋ/|giới thiệu một chủ đề
+Lesson 27 - Board Meetings and Committees|conclude|/kən.
+ˈkluːd/|dừng lại; đi đến quyết định
+Lesson 27 - Board Meetings and Committees|go ahead|/ɡəʉ/|tiếp tục với; sự cho phép làm điều gì đó
+Lesson 27 - Board Meetings and Committees|goal|/ɡɒʊl/|mục đích, mục đích
+Lesson 27 - Board Meetings and Committees|lengthy|lˈɛŋθi|dài; kéo dài
+Lesson 27 - Board Meetings and Committees|matter|/ˈmætə/|một mục, vấn đề, chủ đề quan tâm
+Lesson 27 - Board Meetings and Committees|periodically|pɪriˈɑdɪkʌli|theo thời gian
+Lesson 27 - Board Meetings and Committees|priority|/pɹaɪˈɒɹɨti/|ưu tiên; việc quan trọng
+Lesson 27 - Board Meetings and Committees|progress|/ˈpɹɒɡɹɛs/|tiến độ; tiến triển
+Lesson 27 - Board Meetings and Committees|waste|/weɪst/|ot sử dụng một cách khôn ngoan; đồ đáng giá
+Lesson 28 - Quality Control|brand|/bɹand/|nhãn hiệu; thương hiệu
+Lesson 28 - Quality Control|conform|/kənˈfɔːm/|tuân theo; phù hợp
+Lesson 28 - Quality Control|defect|dˈifɛkt|một sự không hoàn hảo hoặc sai sót
+Lesson 28 - Quality Control|enhance|/ɪnˈhɑːns/|nâng cao; cải thiện
+Lesson 28 - Quality Control|garment|/ˈɡɑː.mənt/|một mặt hàng quần áo
+Lesson 28 - Quality Control|inspect|/ɪnˈspɛkt/|nhìn kỹ; kiểm tra cẩn thận hoặc chính thức
+Lesson 28 - Quality Control|perceptive|/pəˈsɛptɪv/|có thể nhìn thấy hoặc hiểu
+Lesson 28 - Quality Control|repel|/ɹɪˈpɛl/|tránh xa; chiến đấu chống lại
+Lesson 28 - Quality Control|take back|/teɪk/|trả lại; rút lại
+Lesson 28 - Quality Control|throw out|/θɹəʊ/|vứt bỏ
+Lesson 28 - Quality Control|uniformly|/ˈjuːnɪfɔːmli/|theo cách tương tự; nhất quán
+Lesson 28 - Quality Control|wrinkle|/ˈɹɪŋkl
+̩/|nếp nhăn; vết nhăn
 Lesson 29 - Product Development|anxious|/ˈaŋ(k)ʃəs/|lo lắng
-Lesson 29 - Product Development|ascertain|/ˌæsəˈteɪn/|xác định
-Lesson 29 - Product Development|assume|/əˈsuːm/|cho rằng
-Lesson 29 - Product Development|decade|/dəˈkeɪd/|thập kỷ
-Lesson 29 - Product Development|examine|/ɪɡˈzæmɪn/|nghiên cứu
-Lesson 29 - Product Development|experiment|/ɛk.ˈspɛ.ɹɪ.mənt/|cuộc thí nghiệm
-Lesson 29 - Product Development|logical|/ˈlɒdʒɪkəɫ/|logic
-Lesson 29 - Product Development|research|/ɹɪˈsɜːtʃ/|nghiên cứu
-Lesson 29 - Product Development|responsibility|/ɹɪˌspɑnsəˈbɪlɪɾi/|trách nhiệm
-Lesson 29 - Product Development|solve|/sɒlv/|gỡ rối
-Lesson 29 - Product Development|supervisor|/ˈsuːpɚˌvaɪzɚ/|người giám sát
-Lesson 29 - Product Development|systematically|sɪstʌmˈætɪkli|một cách có hệ thống
-Lesson 30 - Renting and Leasing|apprehensive|æprɪhˈɛnsɪv|e ngại
-Lesson 30 - Renting and Leasing|circumstance|/-æns/|hoàn cảnh
-Lesson 30 - Renting and Leasing|condition|/kənˈdɪʃən/|tình trạng
+Lesson 29 - Product Development|ascertain|/ˌæsəˈteɪn/|phát hiện; tìm hiểu
+Lesson 29 - Product Development|assume|/əˈsuːm/|đảm nhận chính mình; tin là sự thật
+Lesson 29 - Product Development|decade|/dəˈkeɪd/|khoảng thời gian mười năm giải quyết
+Lesson 29 - Product Development|examine|/ɪɡˈzæmɪn/|thẩm vấn; xem xét kỹ lưỡng
+Lesson 29 - Product Development|experiment|/ɛk.
+ˈspɛ.ɹɪ.mənt/|thử nghiệm
+Lesson 29 - Product Development|logical|/ˈlɒdʒɪkəɫ/|hợp lý; logic
+Lesson 29 - Product Development|research|/ɹɪˈsɜːtʃ/|nghiên cứu; khảo sát
+Lesson 29 - Product Development|responsibility|/ɹɪˌspɑnsəˈbɪlɪɾi/|một nhiệm vụ
+Lesson 29 - Product Development|solve|/sɒlv/|giải quyết; tìm lời giải
+Lesson 29 - Product Development|supervisor|/ˈsuːpɚˌvaɪzɚ/|một quản trị viên phụ trách
+Lesson 29 - Product Development|systematically|sɪstʌmˈætɪkli|một cách có phương pháp; theo một hệ thống
+Lesson 30 - Renting and Leasing|apprehensive|æprɪhˈɛnsɪv|lo lắng về tương lai
+Lesson 30 - Renting and Leasing|circumstance|/-æns/|một điều kiện; một tình huống
+Lesson 30 - Renting and Leasing|condition|/kənˈdɪʃən/|điều kiện; tình trạng
 Lesson 30 - Renting and Leasing|due to|/dʒʉː/|bởi vì
-Lesson 30 - Renting and Leasing|fluctuate|flˈʌktʃʌweɪt|dao động
-Lesson 30 - Renting and Leasing|get out of|/ɡɛt/|thoát ra khỏi
-Lesson 30 - Renting and Leasing|indicator|/ˈɪn.dɪ.ˌkeɪ.tə(ɹ)/|chỉ báo
-Lesson 30 - Renting and Leasing|lease|/liːs/|cho thuê
-Lesson 30 - Renting and Leasing|lock into|/lɒk/|khóa vào
-Lesson 30 - Renting and Leasing|occupy|/ˈɒkjʊpaɪ/|chiếm đóng
-Lesson 30 - Renting and Leasing|option|/ˈɒpʃən/|lựa chọn
-Lesson 30 - Renting and Leasing|subject to|/ˈsʌb.dʒɪkt/|tùy thuộc vào
-Lesson 31 - Selecting Restaurants|appeal|/əˈpiːl/|bắt mắt
-Lesson 31 - Selecting Restaurants|arrive|/əˈɹaɪv/|đến
-Lesson 31 - Selecting Restaurants|compromise|/ˈkɒmpɹəˌmaɪz/|thỏa hiệp
-Lesson 31 - Selecting Restaurants|daringly|dˈɛrɪŋli|táo bạo
-Lesson 31 - Selecting Restaurants|familiar|/fəˈmɪl.i.ə/|thân thuộc
-Lesson 31 - Selecting Restaurants|guide|/ɡaɪd/|hướng dẫn
-Lesson 31 - Selecting Restaurants|majority|/məˈd͡ʒɒɹɪti/|số đông
-Lesson 31 - Selecting Restaurants|mix|/ˈmɪks/|trộn
-Lesson 31 - Selecting Restaurants|rely|/ɹɪˈlaɪ/|phụ thuộc
-Lesson 31 - Selecting Restaurants|secure|/səˈkjɔː(ɹ)/|chắc chắn
-Lesson 31 - Selecting Restaurants|subjective|/səbˈdʒɛktɪv/|chủ quan
-Lesson 31 - Selecting Restaurants|suggestion|/səˈd͡ʒɛstjən/|gợi ý
-Lesson 32 - Eating Out|basic|/ˈbeɪsɪk/|nền tảng
-Lesson 32 - Eating Out|complete|/kəmˈpliːt/|hoàn thành
-Lesson 32 - Eating Out|excite|/ɪkˈsaɪt/|kích động
-Lesson 32 - Eating Out|flavor|/ˈfleɪvə/|hương vị
-Lesson 32 - Eating Out|forget|/fəˈɡɛt/|quên
-Lesson 32 - Eating Out|ingredient|/ɪnˈɡɹiːdi.ənt/|nguyên liệu
-Lesson 32 - Eating Out|judge|/d͡ʒʌd͡ʒ/|phán xét
-Lesson 32 - Eating Out|mix-up|/ˈmɪks/|sự trộn lẫn
-Lesson 32 - Eating Out|patron|/ˈpeɪ.tɹən/|người bảo trợ
-Lesson 32 - Eating Out|predict|/pɹɪˈdɪkt/|dự đoán
-Lesson 32 - Eating Out|randomly|/ˈɹændm̩li/|ngẫu nhiên
-Lesson 32 - Eating Out|remind|/ɹəˈmaɪnd/|nhắc lại
-Lesson 33 - Ordering Lunch|burden|/ˈbɜːdn/|gánh nặng
-Lesson 33 - Ordering Lunch|commonly|kˈɑmʌnli|thông thường
-Lesson 33 - Ordering Lunch|delivery|/dɪˈlɪv(ə)ɹi/|vận chuyển
-Lesson 33 - Ordering Lunch|elegance|/ˈɛl.ɪ.ɡəns/|sang trọng
-Lesson 33 - Ordering Lunch|fall to|/fɔːl/|rơi vào
-Lesson 33 - Ordering Lunch|impress|/ˈɪmpɹɛs/|gây ấn tượng
-Lesson 33 - Ordering Lunch|individual|/ˌɘndɘˈvɘd͡ʒɘl/|cá nhân
-Lesson 33 - Ordering Lunch|list|/lɪst/|danh sách
-Lesson 33 - Ordering Lunch|multiple|/ˈmʌltɪpl̩/|nhiều
-Lesson 33 - Ordering Lunch|narrow|/ˈnæɹəʊ/|chật hẹp
-Lesson 33 - Ordering Lunch|pick up|/pɪk/|nhặt lên
-Lesson 33 - Ordering Lunch|settle|/ˈsɛtəl/|ổn định
-Lesson 34 - Cooking as a Career|accustom to|ʌkˈʌstʌm tˈu|quen với
+Lesson 30 - Renting and Leasing|fluctuate|flˈʌktʃʌweɪt|đi lên và đi xuống
+Lesson 30 - Renting and Leasing|get out of|/ɡɛt/|bỏ trốn; ra
+Lesson 30 - Renting and Leasing|indicator|/ˈɪn.dɪ.ˌkeɪ.tə(ɹ)/|một dấu hiệu, một tín hiệu
+Lesson 30 - Renting and Leasing|lease|/liːs/|hợp đồng thuê; cho thuê
+Lesson 30 - Renting and Leasing|lock into|/lɒk/|làm; không thể thay đổi
+Lesson 30 - Renting and Leasing|occupy|/ˈɒkjʊpaɪ/|cư trú hoặc cư trú tại
+Lesson 30 - Renting and Leasing|option|/ˈɒpʃən/|một sự lựa chọn, một sự thay thế
+Lesson 30 - Renting and Leasing|subject to|/ˈsʌb.dʒɪkt/|dưới quyền lực pháp lý; sự phụ thuộc
+Lesson 31 - Selecting Restaurants|appeal|/əˈpiːl/|khả năng thu hút
+Lesson 31 - Selecting Restaurants|arrive|/əˈɹaɪv/|đến đích
+Lesson 31 - Selecting Restaurants|compromise|/ˈkɒmpɹəˌmaɪz/|thỏa hiệp; dàn xếp
+Lesson 31 - Selecting Restaurants|daringly|dˈɛrɪŋli|dũng cảm /
+Lesson 31 - Selecting Restaurants|familiar|/fəˈmɪl.i.ə/|thường gặp hoặc nhìn thấy; chung
+Lesson 31 - Selecting Restaurants|guide|/ɡaɪd/|hướng dẫn viên; sách hướng dẫn
+Lesson 31 - Selecting Restaurants|majority|/məˈd͡
+ʒɒɹɪti/|số lớn hơn hoặc một phần
+Lesson 31 - Selecting Restaurants|mix|/ˈmɪks/|trộn; sự pha trộn
+Lesson 31 - Selecting Restaurants|rely|/ɹɪˈlaɪ/|có niềm tin vào; phụ thuộc vào
+Lesson 31 - Selecting Restaurants|secure|/səˈkjɔː(ɹ)/|sở hữu; đạt được
+Lesson 31 - Selecting Restaurants|subjective|/səbˈdʒɛktɪv/|chủ quan; cá nhân
+Lesson 31 - Selecting Restaurants|suggestion|/səˈd͡
+ʒɛstjən/|một đề nghị; đá
+Lesson 32 - Eating Out|basic|/ˈbeɪsɪk/|cơ bản; đơn giản
+Lesson 32 - Eating Out|complete|/kəmˈpliːt/|hoàn thành hoặc làm toàn bộ
+Lesson 32 - Eating Out|excite|/ɪkˈsaɪt/|khơi dậy cảm xúc
+Lesson 32 - Eating Out|flavor|/ˈfleɪvə/|một hương vị đặc biệt
+Lesson 32 - Eating Out|forget|/fəˈɡɛt/|không thể nhớ được
+Lesson 32 - Eating Out|ingredient|/ɪnˈɡɹiːdi.ənt/|một nguyên tố trong hỗn hợp
+Lesson 32 - Eating Out|judge|/d͡
+ʒʌd͡
+ʒ/|đưa ra ý kiến
+Lesson 32 - Eating Out|mix-up|/ˈmɪks/|một sự nhầm lẫn
+Lesson 32 - Eating Out|patron|/ˈpeɪ.tɹən/|khách quen; người bảo trợ
+Lesson 32 - Eating Out|predict|/pɹɪˈdɪkt/|dự đoán; báo trước
+Lesson 32 - Eating Out|randomly|/ˈɹændm
+̩
+li/|không có bất kỳ mẫu cụ thể nào
+Lesson 32 - Eating Out|remind|/ɹəˈmaɪnd/|nhắc nhở; làm cho nhớ
+Lesson 33 - Ordering Lunch|burden|/ˈbɜːdn/|một trách nhiệm; thứ gì đó được mang theo
+Lesson 33 - Ordering Lunch|commonly|kˈɑmʌnli|thông thường, theo thói quen
+Lesson 33 - Ordering Lunch|delivery|/dɪˈlɪv(ə)ɹi/|hành động chuyển tải hoặc giao hàng
+Lesson 33 - Ordering Lunch|elegance|/ˈɛl.ɪ.ɡəns/|sự tinh tế, vẻ đẹp, sự duyên dáng
+Lesson 33 - Ordering Lunch|fall to|/fɔːl/|trở thành trách nhiệm của một người
+Lesson 33 - Ordering Lunch|impress|/ˈɪmpɹɛs/|ảnh hưởng mạnh mẽ, thường thuận lợi
+Lesson 33 - Ordering Lunch|individual|/ˌɘndɘˈvɘd͡
+ʒɘl/|bởi hoặc cho một người; đặc biệt; cụ thể
+Lesson 33 - Ordering Lunch|list|/lɪst/|danh sách; liệt kê
+Lesson 33 - Ordering Lunch|multiple|/ˈmʌltɪpl
+̩/|nhiều; đa dạng
+Lesson 33 - Ordering Lunch|narrow|/ˈnæɹəʊ/|giới hạn hoặc hạn chế
+Lesson 33 - Ordering Lunch|pick up|/pɪk/|nhận hành khách hoặc hàng hóa
+Lesson 33 - Ordering Lunch|settle|/ˈsɛtəl/|bồi thường, trả tiền; chọn
+Lesson 34 - Cooking as a Career|accustom to|ʌkˈʌstʌm tˈu|làm quen với, làm quen với TOLF
 Lesson 34 - Cooking as a Career|apprentice|/əˈpɹɛntɪs/|người học việc
-Lesson 34 - Cooking as a Career|culinary|/ˈkʌlɪn(ə)ɹi/|ẩm thực
+Lesson 34 - Cooking as a Career|culinary|/ˈkʌlɪn(ə)ɹi/|liên quan đến nhà bếp hoặc nấu ăn
 Lesson 34 - Cooking as a Career|demand|/dɪˈmɑːnd/|yêu cầu
-Lesson 34 - Cooking as a Career|draw|/dɹɔː/|vẽ tranh
-Lesson 34 - Cooking as a Career|incorporate|/ɪŋˈkɔɹpɚe(ɪ)t/|kết hợp
-Lesson 34 - Cooking as a Career|influx|/ˈɪnˌflʌks/|sự tràn vào
-Lesson 34 - Cooking as a Career|method|/ˈmɛθəd/|phương pháp
-Lesson 34 - Cooking as a Career|outlet|/ˈaʊtlɛt/|chỗ thoát
-Lesson 34 - Cooking as a Career|profession|/pɹəˈfɛʃən/|nghề nghiệp
-Lesson 34 - Cooking as a Career|relinquish|[ɹɪˈlɪŋkwɪʃ]|từ bỏ
-Lesson 34 - Cooking as a Career|theme|/θiːm/|chủ đề
-Lesson 35 - Events|assist|/əˈsɪst/|hỗ trợ
-Lesson 35 - Events|coordinate|koʊˈɔrdʌnʌt|điều phối
-Lesson 35 - Events|dimension|/daɪˈmɛnʃən/|kích thước
+Lesson 34 - Cooking as a Career|draw|/dɹɔː/|nguyên nhân đến bằng cách thu hút
+Lesson 34 - Cooking as a Career|incorporate|/ɪŋˈkɔɹpɚe(ɪ)t/|kết hợp; đưa vào
+Lesson 34 - Cooking as a Career|influx|/ˈɪnˌflʌks/|một dòng chảy vào
+Lesson 34 - Cooking as a Career|method|/ˈmɛθəd/|một thủ tục
+Lesson 34 - Cooking as a Career|outlet|/ˈaʊtlɛt/|cửa hàng; lối thoát
+Lesson 34 - Cooking as a Career|profession|/pɹəˈfɛʃən/|nghề nghiệp chuyên môn
+Lesson 34 - Cooking as a Career|relinquish|[ɹɪˈlɪŋkwɪʃ]|buông ra; đầu hàng
+Lesson 34 - Cooking as a Career|theme|/θiːm/|chủ đề; mô típ
+Lesson 35 - Events|assist|/əˈsɪst/|giúp đỡ hoặc hỗ trợ cho
+Lesson 35 - Events|coordinate|koʊˈɔrdʌnʌt|phối hợp; điều phối
+Lesson 35 - Events|dimension|/daɪˈmɛnʃən/|kích thước; chiều
 Lesson 35 - Events|exact|/ɪɡˈzækt/|chính xác
-Lesson 35 - Events|general|/ˈd͡ʒɛnɹəl/|tổng quan
-Lesson 35 - Events|ideally|/ʌɪˈdɪəli/|lý tưởng nhất
-Lesson 35 - Events|lead time|/lɛd/|thời gian dẫn
-Lesson 35 - Events|plan|/plæn/|kế hoạch
-Lesson 35 - Events|proximity|/pɹɑkˈsɪ.mɪ.ti/|sự gần gũi
-Lesson 35 - Events|regulate|/ˈɹɛɡjəleɪt/|điều tiết
-Lesson 35 - Events|site|/saɪt/|địa điểm
-Lesson 35 - Events|stage|/steɪd͡ʒ/|sân khấu
-Lesson 36 - General Travel|agent|/ˈeɪ.dʒənt/|đại lý
-Lesson 36 - General Travel|announcement|/əˈnaʊns.mɛnt/|thông báo
-Lesson 36 - General Travel|beverage|/ˈbevəɹɪdʒ/|đồ uống
-Lesson 36 - General Travel|blanket|/ˈblæŋkɪt/|cái chăn
-Lesson 36 - General Travel|board|/bɔːd/|Cái bảng
-Lesson 36 - General Travel|claim|/kleɪm/|khẳng định
-Lesson 36 - General Travel|delay|/dɪˈleɪ/|trì hoãn
-Lesson 36 - General Travel|depart|/dɪˈpɑːt/|khởi hành
-Lesson 36 - General Travel|embarkation|ɛmbɑrkˈeɪʃʌn|lên tàu
-Lesson 36 - General Travel|itinerary|/aɪˈtɪnəɹi/|hành trình
-Lesson 36 - General Travel|prohibit|/pɹəʊˈhɪbɪt/|cấm
-Lesson 36 - General Travel|valid|/ˈvælɪd/|có hiệu lực
-Lesson 37 - Airlines|deal with|/diːl/|đối phó với
-Lesson 37 - Airlines|destination|/dɛstɪˈneɪʃən/|điểm đến
-Lesson 37 - Airlines|distingulsh|dɪstˈɪŋɡwɪʃ|phân biệt
-Lesson 37 - Airlines|economize|ɪkˈɑnʌmaɪz|tiết kiệm
-Lesson 37 - Airlines|equivalent|ɪkwˈɪvʌlʌnt|tương đương
-Lesson 37 - Airlines|excursion|ɪkskˈɝʒʌn|đi chơi, dã ngoại
-Lesson 37 - Airlines|expense|ɪkspˈɛns|chi phí
-Lesson 37 - Airlines|extend|ɪkstˈɛnd|mở rộng
-Lesson 37 - Airlines|prospective|prʌspˈɛktɪv|triển vọng
-Lesson 37 - Airlines|situation|sɪtʃuˈeɪʃʌn|tình huống
+Lesson 35 - Events|general|/ˈd͡
+ʒɛnɹəl/|chung; tổng quát
+Lesson 35 - Events|ideally|/ʌɪˈdɪəli/|hoàn hảo; phù hợp với một lý tưởng
+Lesson 35 - Events|lead time|/lɛd/|thời gian chuẩn bị
+Lesson 35 - Events|plan|/plæn/|xây dựng một kế hoạch
+Lesson 35 - Events|proximity|/pɹɑkˈsɪ.mɪ.ti/|sự gần kề; khoảng cách gần
+Lesson 35 - Events|regulate|/ˈɹɛɡjəleɪt/|điều khiển
+Lesson 35 - Events|site|/saɪt/|một địa điểm hoặc khung cảnh
+Lesson 35 - Events|stage|/steɪd͡
+ʒ/|trưng bày hoặc trình bày
+Lesson 36 - General Travel|agent|/ˈeɪ.dʒənt/|đại diện của một công ty
+Lesson 36 - General Travel|announcement|/əˈnaʊns.mɛnt/|một thông báo công khai
+Lesson 36 - General Travel|beverage|/ˈbevəɹɪdʒ/|một thức uống khác ngoài nước thường
+Lesson 36 - General Travel|blanket|/ˈblæŋkɪt/|chăn; bao phủ toàn bộ; phạm vi bao trùm
+Lesson 36 - General Travel|board|/bɔːd/|lên thuyền, máy bay hoặc tàu hỏa
+Lesson 36 - General Travel|claim|/kleɪm/|coi là chính đáng; lấy lại
+Lesson 36 - General Travel|delay|/dɪˈleɪ/|hoãn lại cho đến một thời điểm sau
+Lesson 36 - General Travel|depart|/dɪˈpɑːt/|khởi hành; rời đi
+Lesson 36 - General Travel|embarkation|ɛmbɑrkˈeɪʃʌn|sự lên tàu/máy bay
+Lesson 36 - General Travel|itinerary|/aɪˈtɪnəɹi/|lịch trình; hành trình
+Lesson 36 - General Travel|prohibit|/pɹəʊˈhɪbɪt/|cấm; ngăn cản
+Lesson 36 - General Travel|valid|/ˈvælɪd/|có hiệu lực pháp luật hoặc tính đúng đắn
+Lesson 37 - Airlines|deal with|/diːl/|xử lý; giải quyết; phụ trách
+Lesson 37 - Airlines|destination|/dɛstɪˈneɪʃən/|nơi mà người ta sẽ đến hoặc chỉ dẫn
+Lesson 37 - Airlines|distinguish|dɪstˈɪŋɡwɪʃ|phân biệt; làm nổi bật; làm cho khác biệt
+Lesson 37 - Airlines|economize|ɪkˈɑnʌmaɪz|hãy cẩn thận khi tiêu tiền
+Lesson 37 - Airlines|equivalent|ɪkwˈɪvʌlʌnt|bình đẳng
+Lesson 37 - Airlines|excursion|ɪkskˈɝʒʌn|chuyến tham quan ngắn
+Lesson 37 - Airlines|expense|ɪkspˈɛns|một cái gì đó yêu cầu thanh toán
+Lesson 37 - Airlines|extend|ɪkstˈɛnd|làm lâu hơn; lời đề nghị
+Lesson 37 - Airlines|prospective|prʌspˈɛktɪv|có khả năng trở thành hoặc được
+Lesson 37 - Airlines|situation|sɪtʃuˈeɪʃʌn|tình huống; hoàn cảnh
 Lesson 37 - Airlines|substantially|sʌbstˈænʃʌli|đáng kể
 Lesson 37 - Airlines|system|sˈɪstʌm|hệ thống
-Lesson 38 - Trains|comprehensive|kɑmprihˈɛnsɪv|toàn diện
-Lesson 38 - Trains|deluxe|dʌlˈʌks|sang trọng
-Lesson 38 - Trains|directory|dɝˈɛktɝi|thư mục
-Lesson 38 - Trains|duration|dˈʊrˈeɪʃʌn|khoảng thời gian
-Lesson 38 - Trains|entitle|ɛntˈaɪtʌl|quyền
-Lesson 38 - Trains|fare|fˈɛr|giá vé
-Lesson 38 - Trains|offset|ɔfsˈɛt|bù lại
-Lesson 38 - Trains|operate|ˈɑpɝeɪt|vận hành
-Lesson 38 - Trains|punctually|pˈʌŋktʃuʌli|đúng giờ
-Lesson 38 - Trains|relatively|rˈɛlʌtɪvli|tương đối
-Lesson 38 - Trains|remainder|rɪmˈeɪndɝ|phần còn lại
-Lesson 38 - Trains|remote|rɪmˈoʊt|xa
-Lesson 39 - Hotels|advanced|ʌdvˈænst|trình độ cao
-Lesson 39 - Hotels|chain|/ˈt͡ʃeɪn/|xích
-Lesson 39 - Hotels|check in|/t͡ʃɛk/|đăng ký vào
+Lesson 38 - Trains|comprehensive|kɑmprihˈɛnsɪv|bao phủ rộng rãi; bao gồm
+Lesson 38 - Trains|deluxe|dʌlˈʌks|sang trọng rõ rệt
+Lesson 38 - Trains|directory|dɝˈɛktɝi|danh bạ; thư mục
+Lesson 38 - Trains|duration|dˈʊrˈeɪʃʌn|thời gian trong đó một cái gì đó nhịn ăn
+Lesson 38 - Trains|entitle|ɛntˈaɪtʌl|cho phép hoặc đủ điều kiện
+Lesson 38 - Trains|fare|fˈɛr|số tiền đã trả cho việc vận chuyển
+Lesson 38 - Trains|offset|ɔfsˈɛt|đối trọng
+Lesson 38 - Trains|operate|ˈɑpɝeɪt|thực hiện một chức năng
+Lesson 38 - Trains|punctually|pˈʌŋktʃuʌli|kịp thời; đúng giờ
+Lesson 38 - Trains|relatively|rˈɛlʌtɪvli|phần nào
+Lesson 38 - Trains|remainder|rɪmˈeɪndɝ|phần còn lại; còn sót lại
+Lesson 38 - Trains|remote|rɪmˈoʊt|xa; ot gần khu dân cư
+Lesson 39 - Hotels|advanced|ʌdvˈænst|phát triển cao; ở cấp độ cao hơn
+Lesson 39 - Hotels|chain|/ˈt͡ʃeɪn/|chuỗi; hệ thống chi nhánh
+Lesson 39 - Hotels|check in|/t͡ʃɛk/|làm thủ tục nhận phòng
 Lesson 39 - Hotels|confirm|/kənˈfɜːm/|xác nhận
-Lesson 39 - Hotels|expect|/ɛkˈspɛkt/|trông chờ
-Lesson 39 - Hotels|housekeeper|/ˈhaʊskiːpə/|quản gia
-Lesson 39 - Hotels|notify|/ˈnoʊtɪfaɪ/|thông báo
-Lesson 39 - Hotels|preclude|/pɹiːˈkluːd/|ngăn cản
-Lesson 39 - Hotels|quote|/kwəʊt/|trích dẫn
-Lesson 39 - Hotels|rate|/ɹeɪt/|tỷ lệ
-Lesson 39 - Hotels|reservation|/ˌɹɛzəˈveɪʃən/|sự đặt chỗ
-Lesson 39 - Hotels|service|/ˈsɜːvɪs/|dịch vụ
-Lesson 40 - Car Rentals|busy|/ˈbɪzi/|bận
-Lesson 40 - Car Rentals|coincide|/ˌkoʊɪnˈsaɪd/|trùng hợp
-Lesson 40 - Car Rentals|confusion|/kənˈfjuːʒən/|lú lẫn
-Lesson 40 - Car Rentals|contact|kˈɑntækt|liên hệ
-Lesson 40 - Car Rentals|disappoint|/dɪsəˈpɔɪnt/|thất vọng
-Lesson 40 - Car Rentals|intend|/ɪnˈtɛnd/|có ý định
-Lesson 40 - Car Rentals|license|/ˈlaɪsəns/|giấy phép
-Lesson 40 - Car Rentals|nervously|nˈɝvʌsli|bồn chồn
-Lesson 40 - Car Rentals|optional|ˈɑpʃʌnʌl|không bắt buộc
-Lesson 40 - Car Rentals|tempt|/tɛmpt/|cám dỗ
-Lesson 40 - Car Rentals|thrill|[t̪ɾ̪̊ɪl]|hồi hộp
-Lesson 40 - Car Rentals|tier|/ˈtaɪ.ə(ɹ)/|bậc
-Lesson 41 - Movies|attainment|/əˈteɪnmənt/|sự đạt được
-Lesson 41 - Movies|combine|/kəmˈbaɪn/|kết hợp
-Lesson 41 - Movies|continue|/kənˈtɪnjuː/|Tiếp tục
-Lesson 41 - Movies|description|/dɪˈskɹɪpʃən/|Sự miêu tả
-Lesson 41 - Movies|disperse|/dɪˈspɜːs/|giải tán
-Lesson 41 - Movies|entertainment|/ˈɛn.tɚˈteɪn.mənt/|sự giải trí
-Lesson 41 - Movies|influence|/ˈɪn.flu.əns/|ảnh hưởng
+Lesson 39 - Hotels|expect|/ɛkˈspɛkt/|xem xét có thể xảy ra hoặc hợp lý
+Lesson 39 - Hotels|housekeeper|/ˈhaʊskiːpə/|ai đó được thuê làm công việc nhà
+Lesson 39 - Hotels|notify|/ˈnoʊtɪfaɪ/|báo cáo
+Lesson 39 - Hotels|preclude|/pɹiːˈkluːd/|ngăn cản; loại trừ khả năng
+Lesson 39 - Hotels|quote|/kwəʊt/|báo giá; trích dẫn
+Lesson 39 - Hotels|rate|/ɹeɪt/|mức giá; tỷ lệ
+Lesson 39 - Hotels|reservation|/ˌɹɛzəˈveɪʃən/|đặt chỗ; sự giữ trước/sắp xếp trước
+Lesson 39 - Hotels|service|/ˈsɜːvɪs/|chức năng hữu ích
+Lesson 40 - Car Rentals|busy|/ˈbɪzi/|tham gia vào hoạt động
+Lesson 40 - Car Rentals|coincide|/ˌkoʊɪnˈsaɪd/|xảy ra cùng lúc một
+Lesson 40 - Car Rentals|confusion|/kənˈfjuːʒən/|sự nhầm lẫn
+Lesson 40 - Car Rentals|contact|kˈɑntækt|liên lạc với
+Lesson 40 - Car Rentals|disappoint|/dɪsəˈpɔɪnt/|làm thất vọng
+Lesson 40 - Car Rentals|intend|/ɪnˈtɛnd/|có trong tâm trí
+Lesson 40 - Car Rentals|license|/ˈlaɪsəns/|giấy phép; cấp phép
+Lesson 40 - Car Rentals|nervously|nˈɝvʌsli|một cách đau khổ hoặc khó chịu
+Lesson 40 - Car Rentals|optional|ˈɑpʃʌnʌl|ot bắt buộc hoặc tự động
+Lesson 40 - Car Rentals|tempt|/tɛmpt/|được mời hoặc hấp dẫn để
+Lesson 40 - Car Rentals|thrill|[t
+ɾ
+̪
+̪
+̊ɪl]|sự phấn khích; kích thích
+Lesson 40 - Car Rentals|tier|/ˈtaɪ.ə(ɹ)/|một cấp bậc hoặc lớp
+Lesson 41 - Movies|attainment|/əˈteɪnmənt/|thành tích
+Lesson 41 - Movies|combine|/kəmˈbaɪn/|đến với nhau
+Lesson 41 - Movies|continue|/kənˈtɪnjuː/|duy trì không bị gián đoạn
+Lesson 41 - Movies|description|/dɪˈskɹɪpʃən/|sự mô tả; lời mô tả
+Lesson 41 - Movies|disperse|/dɪˈspɜːs/|lan rộng, rải rác
+Lesson 41 - Movies|entertainment|/ˈɛn.tɚˈteɪn.mənt/|một hiệu suất hoặc hoạt động chuyển hướng
+Lesson 41 - Movies|influence|/ˈɪn.flu.əns/|thay đổi hoặc ảnh hưởng
 Lesson 41 - Movies|range|/ɹeɪndʒ/|phạm vi
-Lesson 41 - Movies|release|/ɹɪˈliːs/|giải phóng
-Lesson 41 - Movies|representation|/ˌɹɛp.ɹə.zɛn.ˈteɪ.ʃən/|đại diện
-Lesson 41 - Movies|separately|/ˈsɛpəɹətli/|riêng
-Lesson 41 - Movies|successive|/səkˈsɛsɪv/|liên tiếp
-Lesson 42 - Theater|action|/ˈæk.ʃən/|hoạt động
-Lesson 42 - Theater|approach|/əˈpɹəʊt͡ʃ/|tiếp cận
-Lesson 42 - Theater|audience|/ˈɔːdi.əns/|khán giả
+Lesson 41 - Movies|release|/ɹɪˈliːs/|phát hành; cho phép
+Lesson 41 - Movies|representation|/ˌɹɛp.ɹə.zɛn.
+ˈteɪ.ʃən/|ví dụ; sự tượng trưng
+Lesson 41 - Movies|separately|/ˈsɛpəɹətli/|riêng biệt
+Lesson 41 - Movies|successive|/səkˈsɛsɪv/|theo thứ tự
+Lesson 42 - Theater|action|/ˈæk.ʃən/|hành động; diễn biến
+Lesson 42 - Theater|approach|/əˈpɹəʊt͡ʃ/|đi tai; tiến tới
+Lesson 42 - Theater|audience|/ˈɔːdi.əns/|khán giả tại buổi biểu diễn
 Lesson 42 - Theater|creative|/kɹiˈeɪtɪv/|sáng tạo
-Lesson 42 - Theater|dialogue|/ˈdaɪəlɑɡ/|đối thoại
-Lesson 42 - Theater|element|/ˈɛlɪmənt/|yếu tố
-Lesson 42 - Theater|experience|/ɪkˈspɪə.ɹɪəns/|kinh nghiệm
-Lesson 42 - Theater|occur|/əˈkɜː/|xảy ra
-Lesson 42 - Theater|perform|/pəˈfɔːm/|trình diễn
-Lesson 42 - Theater|rehearse|[ɹɪˈhɜːs]|luyện tập
-Lesson 42 - Theater|review|/ɹɪˈvjuː/|ôn tập
-Lesson 42 - Theater|sell out|/sɛl/|bán hết
-Lesson 43 - Music|available|/əˈveɪləb(ə)l/|có sẵn
-Lesson 43 - Music|broaden|brˈɔdʌn|mở rộng
-Lesson 43 - Music|category|/ˈkætəˌɡɔɹi/|loại
-Lesson 43 - Music|disparate|/ˈdɪsp(ə)ɹət/|khác nhau
-Lesson 43 - Music|divide|/dɪˈvaɪd/|chia
-Lesson 43 - Music|favor|/ˈfeɪvə/|ủng hộ
-Lesson 43 - Music|instinct|/ˈɪn.stɪŋkt/|bản năng
-Lesson 43 - Music|prefer|/pɹɪˈfɜː/|thích hơn
-Lesson 43 - Music|reason|/ˈɹiːzən/|lý do
-Lesson 43 - Music|relaxation|/ˌɹilækˈseɪʃən/|thư giãn
-Lesson 43 - Music|taste|tˈeɪst|nếm
-Lesson 43 - Music|urge|ˈɝdʒ|thúc giục
-Lesson 44 - Museums|acquire|ʌkwˈaɪɝ|giành được
-Lesson 44 - Museums|admire|ædmˈaɪr|ngưỡng mộ
+Lesson 42 - Theater|dialogue|/ˈdaɪəlɑɡ/|cuộc trò chuyện giữa hai hoặc nhiều người
+Lesson 42 - Theater|element|/ˈɛlɪmənt/|thành phần cơ bản hoặc thiết yếu
+Lesson 42 - Theater|experience|/ɪkˈspɪə.ɹɪəns/|trải nghiệm; kinh nghiệm
+Lesson 42 - Theater|occur|/əˈkɜː/|diễn ra; đến đây
+Lesson 42 - Theater|perform|/pəˈfɔːm/|biểu diễn; thực hiện
+Lesson 42 - Theater|rehearse|[ɹɪˈhɜːs]|diễn tập; tập luyện
+Lesson 42 - Theater|review|/ɹɪˈvjuː/|bài đánh giá; đánh giá
+Lesson 42 - Theater|sell out|/sɛl/|bán hết vé
+Lesson 43 - Music|available|/əˈveɪləb(ə)l/|có sẵn; sẵn sàng sử dụng/phục vụ
+Lesson 43 - Music|broaden|brˈɔdʌn|làm rộng hơn
+Lesson 43 - Music|category|/ˈkætəˌɡɔɹi/|hạng mục; loại
+Lesson 43 - Music|disparate|/ˈdɪsp(ə)ɹət/|về cơ bản khác biệt hoặc khác nhau
+Lesson 43 - Music|divide|/dɪˈvaɪd/|tách thành các phần
+Lesson 43 - Music|favor|/ˈfeɪvə/|là một phần
+Lesson 43 - Music|instinct|/ˈɪn.stɪŋkt/|một khuôn mẫu bẩm sinh là động lực mạnh mẽ
+Lesson 43 - Music|prefer|/pɹɪˈfɜː/|ưa thích hơn
+Lesson 43 - Music|reason|/ˈɹiːzən/|lý do; nguyên nhân
+Lesson 43 - Music|relaxation|/ˌɹilækˈseɪʃən/|sự thư giãn
+Lesson 43 - Music|taste|tˈeɪst|gu; khả năng đánh giá
+Lesson 43 - Music|urge|ˈɝdʒ|ocate một cách nghiêm túc
+Lesson 44 - Museums|acquire|ʌkwˈaɪɝ|đạt được; thu được
+Lesson 44 - Museums|admire|ædmˈaɪr|ngưỡng mộ; khâm phục
 Lesson 44 - Museums|collection|kʌlˈɛkʃʌn|bộ sưu tập
-Lesson 44 - Museums|criticism|krˈɪtɪsɪzʌm|chỉ trích
-Lesson 44 - Museums|express|/ɛk.ˈspɹɛs/|thể hiện
-Lesson 44 - Museums|fashion|fˈæʃʌn|thời trang
-Lesson 44 - Museums|leisure|lˈɛʒɝ|thời gian rảnh rỗi
-Lesson 44 - Museums|respond|rɪspˈɑnd|trả lời
-Lesson 44 - Museums|schedule|skˈɛdʒʊl|lịch trình
-Lesson 44 - Museums|significant|sʌɡnˈɪfɪkʌnt|có ý nghĩa
-Lesson 44 - Museums|specialize|spˈɛʃʌlaɪz|chuyên môn hóa
-Lesson 44 - Museums|spectrum|spˈɛktrʌm|quang phổ
-Lesson 45 - Media|assignment|ʌsˈaɪnmʌnt|phân công
-Lesson 45 - Media|choose|tʃˈuz|chọn
+Lesson 44 - Museums|criticism|krˈɪtɪsɪzʌm|sự phê bình; đánh giá
+Lesson 44 - Museums|express|/ɛk.
+ˈspɹɛs/|đưa ra ý kiến hoặc mô tả cảm xúc
+Lesson 44 - Museums|fashion|fˈæʃʌn|phong cách hoặc phong tục thịnh hành
+Lesson 44 - Museums|leisure|lˈɛʒɝ|thời gian rảnh
+Lesson 44 - Museums|respond|rɪspˈɑnd|trả lời; phản ứng
+Lesson 44 - Museums|schedule|skˈɛdʒʊl|ghi vào sổ kế hoạch hoặc nhật ký
+Lesson 44 - Museums|significant|sʌɡnˈɪfɪkʌnt|có ý nghĩa; có ảnh hưởng lớn; quan trọng
+Lesson 44 - Museums|specialize|spˈɛʃʌlaɪz|tập trung vào một hoạt động cụ thể
+Lesson 44 - Museums|spectrum|spˈɛktrʌm|phạm vi; dải
+Lesson 45 - Media|assignment|ʌsˈaɪnmʌnt|nhiệm vụ; bài được giao
+Lesson 45 - Media|choose|tʃˈuz|chọn cái này hơn cái khác
 Lesson 45 - Media|constantly|/ˈkɒnstəntli/|liên tục
-Lesson 45 - Media|constitute|kˈɑnstʌtut|cấu thành
-Lesson 45 - Media|decision|dɪsˈɪʒʌn|phán quyết
-Lesson 45 - Media|disseminate|dɪsˈɛmʌneɪt|phổ biến
-Lesson 45 - Media|impact|ɪmpˈækt|sự va chạm
-Lesson 45 - Media|in-depth|/ɪn/|chuyên sâu
-Lesson 45 - Media|investigate|[ɪn.ˈves.tɪ.ɡeɪ̯t]|khảo sát
-Lesson 45 - Media|link|/lɪŋk/|liên kết
-Lesson 45 - Media|subscribe|/səbˈskɹaɪb/|đặt mua
-Lesson 45 - Media|thorough|/ˈθʌɹə/|kỹ lưỡng
-Lesson 46 - Doctor’s Office|annually|/ˈæn.jʊə.li/|hàng năm
-Lesson 46 - Doctor’s Office|appointment|/əˈpɔɪnt.mɛnt/|cuộc hẹn
-Lesson 46 - Doctor’s Office|assess|/əˈsɛs/|đánh giá
-Lesson 46 - Doctor’s Office|diagnose|/daɪəɡˈnəʊz/|chẩn đoán
-Lesson 46 - Doctor’s Office|effective|/əˈfɛktɪv/|hiệu quả
-Lesson 46 - Doctor’s Office|instrument|/ˈɪnstɹəmənt/|dụng cụ
-Lesson 46 - Doctor’s Office|manage|/ˈmænɪdʒ/|quản lý
-Lesson 46 - Doctor’s Office|prevent|/pɹəˈvɛnt/|ngăn chặn
-Lesson 46 - Doctor’s Office|recommendation|/ˌɹɛkəmənˈdeɪʃən/|sự giới thiệu
-Lesson 46 - Doctor’s Office|record|/ˈɹɛkɔːd/|ghi
-Lesson 46 - Doctor’s Office|refer|/ɹɪˈfɜː/|tham khảo
-Lesson 46 - Doctor’s Office|serious|/ˈsɪə.ɹi.əs/|nghiêm trọng
-Lesson 47 - Dentist’s Office|aware|/əˈweːɹ/|nhận thức
-Lesson 47 - Dentist’s Office|catch up|/kæt͡ʃ/|bắt kịp
-Lesson 47 - Dentist’s Office|distraction|/dɪsˈtɹækʃən/|xao lãng
-Lesson 47 - Dentist’s Office|encouragement|[ɪnˈkʌɹɪdʒmənt]|sự khích lệ
-Lesson 47 - Dentist’s Office|evident|/ˈɛ.vɪ.dənt/|hiển nhiên
-Lesson 47 - Dentist’s Office|habit|/ˈhæbət/|thói quen
-Lesson 47 - Dentist’s Office|illuminate|/ɪlˈl(j)uməneɪt/|chiếu sáng
-Lesson 47 - Dentist’s Office|irritate|/ˈɪɹɪteɪt/|chọc tức
-Lesson 47 - Dentist’s Office|overview|/ˈəʊvə(ɹ)ˌvjuː/|Tổng quan
-Lesson 47 - Dentist’s Office|position|/pəˈzɪʃ(ə)n/|chức vụ
-Lesson 47 - Dentist’s Office|regularly|rˈɛɡjʌlɝli|thường xuyên
-Lesson 47 - Dentist’s Office|restore|rɪstˈɔr|khôi phục
-Lesson 48 - Health Insurance|allow|ʌlˈaʊ|cho phép
-Lesson 48 - Health Insurance|alternative|ɔltˈɝnʌtɪv|thay thế
-Lesson 48 - Health Insurance|aspect|ˈæspɛkt|diện mạo
-Lesson 48 - Health Insurance|concern|kʌnsˈɝn|bận tâm
+Lesson 45 - Media|constitute|kˈɑnstʌtut|là các phần tử
+Lesson 45 - Media|decision|dɪsˈɪʒʌn|phán xét hoặc lựa chọn
+Lesson 45 - Media|disseminate|dɪsˈɛmʌneɪt|phân tán rộng rãi; phân phát
+Lesson 45 - Media|impact|ɪmpˈækt|một ấn tượng mạnh mẽ, ngay lập tức
+Lesson 45 - Media|in-depth|/ɪn/|đầy đủ chi tiết; kỹ lưỡng
+Lesson 45 - Media|investigate|[ɪn.
+ˈves.tɪ.ɡeɪ
+̯
+t]|phát hiện và báo cáo thông tin ẩn
+Lesson 45 - Media|link|/lɪŋk/|một hiệp hội; một mối quan hệ
+Lesson 45 - Media|subscribe|/səbˈskɹaɪb/|đăng ký dài hạn
+Lesson 45 - Media|thorough|/ˈθʌɹə/|hoàn thành đầy đủ
+Lesson 46 - Doctor’s Office|annually|/ˈæn.jʊə.li/|mỗi năm một lần
+Lesson 46 - Doctor’s Office|appointment|/əˈpɔɪnt.mɛnt/|cuộc hẹn; chức vụ
+Lesson 46 - Doctor’s Office|assess|/əˈsɛs/|đánh giá; định giá
+Lesson 46 - Doctor’s Office|diagnose|/daɪəɡˈnəʊz/|chẩn đoán; phân tích
+Lesson 46 - Doctor’s Office|effective|/əˈfɛktɪv/|hiệu quả; có hiệu lực
+Lesson 46 - Doctor’s Office|instrument|/ˈɪnstɹəmənt/|dụng cụ; công cụ chính xác; phương tiện
+Lesson 46 - Doctor’s Office|manage|/ˈmænɪdʒ/|xử lý; đối phó với; hướng dẫn
+Lesson 46 - Doctor’s Office|prevent|/pɹəˈvɛnt/|tránh xảy ra; cản trở
+Lesson 46 - Doctor’s Office|recommendation|/ˌɹɛkəmənˈdeɪʃən/|đá; sự chứng thực
+Lesson 46 - Doctor’s Office|record|/ˈɹɛkɔːd/|một bản sao chính thức của tài liệu
+Lesson 46 - Doctor’s Office|refer|/ɹɪˈfɜː/|giới thiệu/chuyển đến; tham khảo; đề cập
+Lesson 46 - Doctor’s Office|serious|/ˈsɪə.ɹi.əs/|nặng nề
+Lesson 47 - Dentist’s Office|aware|/əˈweːɹ/|có kiến thức
+Lesson 47 - Dentist’s Office|catch up|/kæt͡ʃ/|cập nhật; bắt kịp
+Lesson 47 - Dentist’s Office|distraction|/dɪsˈtɹækʃən/|sự xao nhãng
+Lesson 47 - Dentist’s Office|encouragement|[ɪnˈkʌɹɪdʒmənt]|nguồn cảm hứng hoặc hỗ trợ
+Lesson 47 - Dentist’s Office|evident|/ˈɛ.vɪ.dənt/|dễ dàng nhìn thấy hoặc hiểu được; rõ ràng
+Lesson 47 - Dentist’s Office|habit|/ˈhæbət/|một cách thông thường hoặc thực hành
+Lesson 47 - Dentist’s Office|illuminate|/ɪlˈl(j)uməneɪt/|cung cấp hoặc làm sáng bằng ánh sáng
+Lesson 47 - Dentist’s Office|irritate|/ˈɪɹɪteɪt/|chafe hoặc viêm, làm phiền
+Lesson 47 - Dentist’s Office|overview|/ˈəʊvə(ɹ)ˌvjuː/|tổng quan; tóm tắt
+Lesson 47 - Dentist’s Office|position|/pəˈzɪʃ(ə)n/|đúng nơi hoặc thích hợp
+Lesson 47 - Dentist’s Office|regularly|rˈɛɡjʌlɝli|xảy ra theo những khoảng thời gian cố định
+Lesson 47 - Dentist’s Office|restore|rɪstˈɔr|đưa trở lại tình trạng ban đầu
+Lesson 48 - Health Insurance|allow|ʌlˈaʊ|hãy làm hoặc xảy ra; giấy phép
+Lesson 48 - Health Insurance|alternative|ɔltˈɝnʌtɪv|cho phép lựa chọn; khác
+Lesson 48 - Health Insurance|aspect|ˈæspɛkt|một yếu tố đặc trưng; sự xuất hiện
+Lesson 48 - Health Insurance|concern|kʌnsˈɝn|sự lo lắng; lo lắng
 Lesson 48 - Health Insurance|emphasize|ˈɛmfʌsaɪz|nhấn mạnh
-Lesson 48 - Health Insurance|incur|ɪnkˈɝ|gánh chịu
-Lesson 48 - Health Insurance|personnel|pɝsʌnˈɛl|nhân viên
-Lesson 48 - Health Insurance|policy|/ˈpɒləsi/|chính sách
-Lesson 48 - Health Insurance|portion|/ˈpoəɹʃən/|phần
-Lesson 48 - Health Insurance|regardless|/ɹɪˈɡɑːd.lɪs/|bất kể
-Lesson 48 - Health Insurance|salary|/ˈsælɚi/|lương
-Lesson 48 - Health Insurance|suit|/s(j)uːt/|bộ đồ
-Lesson 49 - Hospitals|admit|/ədˈmɪt/|thừa nhận
-Lesson 49 - Hospitals|authorize|/ˈɑθəɹaɪz/|ủy quyền
-Lesson 49 - Hospitals|designate|/ˈdɛzɪɡ.neɪt/|chỉ định
-Lesson 49 - Hospitals|escort|/ɛˈskɔːt/|hộ tống
-Lesson 49 - Hospitals|identify|/aɪˈdɛn.tɪ.faɪ/|nhận dạng
-Lesson 49 - Hospitals|mission|/ˈmɪʃn̩/|Sứ mệnh
-Lesson 49 - Hospitals|permit|/ˈpɜːmɪt/|cho phép làm gì
-Lesson 49 - Hospitals|pertinent|/ˈpəːtɪnənt/|thích hợp
-Lesson 49 - Hospitals|procedure|/pɹəˈsiːdʒə/|thủ tục
-Lesson 49 - Hospitals|result|/ɹɪˈzʌlt/|kết quả
-Lesson 49 - Hospitals|statement|/ˈsteɪtm(ə)nt/|tuyên bố
-Lesson 49 - Hospitals|usually|/ˈjuːʒju(ə)li/|thường xuyên
-Lesson 50 - Pharmacy|consult|kʌnsˈʌlt|tham khảo ý kiến
-Lesson 50 - Pharmacy|control|/kənˈtɹəʊl/|điều khiển
-Lesson 50 - Pharmacy|convenient|/kənˈviːniənt/|thuận lợi
-Lesson 50 - Pharmacy|detect|/dɪˈtɛkt/|phát hiện
-Lesson 50 - Pharmacy|factor|/ˈfæktə/|nhân tố
-Lesson 50 - Pharmacy|interaction|/ˌɪntəɹˈækʃən/|sự tương tác
-Lesson 50 - Pharmacy|limit|/ˈlɪmt/|giới hạn
-Lesson 50 - Pharmacy|monitor|/ˈmɒnɨtə/|màn hình
-Lesson 50 - Pharmacy|potential|/pəˈtɛnʃəl/|tiềm năng
-Lesson 50 - Pharmacy|sample|/sæːm.pəl/|vật mẫu
-Lesson 50 - Pharmacy|sense|/sɛn(t)s/|giác quan
-Lesson 50 - Pharmacy|volunteer|/vɒl.ənˈtɪə/|tình nguyện viên
+Lesson 48 - Health Insurance|incur|ɪnkˈɝ|trở thành đối tượng
+Lesson 48 - Health Insurance|personnel|pɝsʌnˈɛl|một nhóm nhân viên hoặc công nhân
+Lesson 48 - Health Insurance|policy|/ˈpɒləsi/|một bộ quy tắc và quy định
+Lesson 48 - Health Insurance|portion|/ˈpoəɹʃən/|phần; khẩu phần
+Lesson 48 - Health Insurance|regardless|/ɹɪˈɡɑːd.lɪs/|mặc dù
+Lesson 48 - Health Insurance|salary|/ˈsælɚi/|tiền lương; lương cố định
+Lesson 48 - Health Insurance|suit|/s(j)uːt/|phù hợp; thỏa mãn
+Lesson 49 - Hospitals|admit|/ədˈmɪt/|giấy phép vào
+Lesson 49 - Hospitals|authorize|/ˈɑθəɹaɪz/|chấp thuận
+Lesson 49 - Hospitals|designate|/ˈdɛzɪɡ.neɪt/|chỉ ra hoặc chỉ định
+Lesson 49 - Hospitals|escort|/ɛˈskɔːt/|người hộ tống; đi cùng để hướng dẫn/bảo vệ
+Lesson 49 - Hospitals|identify|/aɪˈdɛn.tɪ.faɪ/|xác định ame hoặc đồ đạc của
+Lesson 49 - Hospitals|mission|/ˈmɪʃn
+̩/|sứ mệnh; nhiệm vụ
+Lesson 49 - Hospitals|permit|/ˈpɜːmɪt/|cho phép
+Lesson 49 - Hospitals|pertinent|/ˈpəːtɪnənt/|có liên quan đến vấn đề hiện tại
+Lesson 49 - Hospitals|procedure|/pɹəˈsiːdʒə/|quy trình; thủ tục; các bước thực hiện
 `.trim();
     const words = DATA_TEXT.split("\n").map((line, index) => {
       const [topic, word, ipa, meaning] = line.split("|");
