@@ -57,3 +57,14 @@ supportive	/səˈpɔː.tɪv/	adj	providing encouragement or help	The manager was
 turnout	/ˈtɜːn.aʊt/	n	the number of people attending an event	There was an impressive turnout for the annual charity marathon.
 to adjourn	/tə əˈdʒɜːn/	v	to pause a meeting until later	The board decided to adjourn the session until tomorrow morning.
 to breach	/tə briːtʃ/	v	to break a rule, contract, or law	Sharing confidential records will breach company data policies.
+devote	/dɪˈvəʊt/	v	devote time/resources to sth (dedicate fully)	She decided to devote more time to research and development.
+forceful	ˈfɔːs.fəl/	adj	strong, assertive, and convincing	He delivered a forceful speech defending the new company policy.
+admission	/ədˈmɪʃ.n/	n	permission or fee to enter a place	General admission to the museum is free on weekends.
+submission	/səbˈmɪʃ.n/	n	the act of presenting a document or proposal	The deadline for the proposal submission is 5:00 PM on Friday.
+transmission	/trænzˈmɪʃ.n/	n	broadcasting or passing along signals/diseases	Proper hygiene prevents the transmission of viral infections.
+pivotal	/ˈpɪv.ə.tl/	adj	extremely important, decisive, or crucial	Winning this contract plays a pivotal role in the company's growth.
+keynote	/ˈkiː.nəʊt/	n	the central speech or main theme of an event	Dr. Lee will deliver the keynote address at the opening ceremony.
+rampant	/ˈræm.pənt/	adj	spreading uncontrollably and widely	The government introduced urgent measures to control rampant inflation.
+topical	/ˈtɒp.ɪ.kəl/	adj	of current interest; contemporary	The panel debated several topical issues in corporate governance.
+cornerstone	/ˈkɔː.nə.stəʊn/	n	an essential and foundational element	Trust and transparency are the cornerstone of any successful partnership.
+reinstate	/ˌriː.ɪnˈsteɪt/	v	to restore to a previous position or condition	The board voted to reinstate the former CEO with immediate effect.
